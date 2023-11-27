@@ -1,0 +1,29 @@
+man() {
+    help
+}
+
+list() {
+    help
+}
+
+help() {
+    echo "                                   "
+    echo "     _           _   _             "
+    echo " ___| |_ ___ ___| |_| |            "
+    echo "| . |   | . |  _|  _| |            "
+    echo "|  _|_|_|  _|___|_| |_|            "
+    echo "|_|     |_|                        "
+    echo "                                   "
+    echo "Usage: phpctl <command> [arguments]"
+    echo "                                   "
+    echo "Commands:"
+    echo "  help                        Show this help message"
+    echo "  doctor                      Inspects the current PHP_VERSION and PHPCTL_IMAGE"
+    echo "  install                     Install phpctl (and pctl) globally in you system"
+    echo "  build                       Builds the current Dockerfile (useful for custom images)"
+    echo "  images                      Shows local phpctl images"
+    echo "  php                         Runs PHP commands"
+    echo "  composer                    Runs Composer commands"
+    echo "  server [port] [directory]   Runs PHP's built-in web server (default port is 80 and default directory is current .)"
+    echo "                                   "
+}
