@@ -8,6 +8,7 @@ RUN apk add --no-cache \
         php${PHP}-mbstring \
         php${PHP}-phar \
         php${PHP}-openssl \
+        php${PHP}-pecl-swoole \
     && ln -sf /usr/bin/php${PHP} /usr/bin/php \
     && wget https://raw.githubusercontent.com/composer/getcomposer.org/76a7060ccb93902cd7576b67264ad91c8a2700e2/web/installer -O - -q | php -- --quiet \
     && mv composer.phar /usr/bin/composer \
