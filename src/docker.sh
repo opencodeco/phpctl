@@ -11,6 +11,7 @@ images() {
 }
 
 run() {
-    args=${@:3}
-    docker run --rm -v $(pwd):/opt -w /opt --entrypoint ${2:-php} ${1--it} $PHPCTL_IMAGE ${args:--v}
+    arg=${3:--v}
+    args=${@:4}
+    docker run --rm -v $(pwd):/opt -w /opt --entrypoint ${2:-php} ${1--it} $PHPCTL_IMAGE $arg "$args"
 }
