@@ -24,6 +24,7 @@ RUN apk add --no-cache \
     && mv /etc/php/php.ini /etc/php${PHP}/conf.d/99_phpctl.ini \
     && wget https://raw.githubusercontent.com/composer/getcomposer.org/76a7060ccb93902cd7576b67264ad91c8a2700e2/web/installer -O - -q | php -- --quiet \
     && mv composer.phar /usr/bin/composer \
+    && wget https://psysh.org/psysh && chmod +x psysh && mv psysh /usr/local/bin/psysh \
     && rm -rf /var/cache/apk/*
 ENTRYPOINT [ "/usr/bin/php" ]
 CMD [ "-v" ]

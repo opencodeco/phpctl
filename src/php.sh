@@ -1,9 +1,13 @@
 php() {
-    run -it php "$@"
+    $(run -it php) ${@:--v}
 }
 
 composer() {
-    run -it composer "$@"
+    $(run -it composer) $@
+}
+
+repl() {
+    $(run -it psysh)
 }
 
 server() {
@@ -14,6 +18,5 @@ server() {
 
 at() {
     port=${1:-80}
-    # shellcheck disable=SC2068
-    run "-it -p$port:$port" ${@:2}
+    $(run "-it -p$port:$port" "$2") ${@:3}
 }

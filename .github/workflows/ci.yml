@@ -18,6 +18,9 @@ jobs:
         name: Checkout
         uses: actions/checkout@v3
       -
+        name: Test
+        run: ./lib/bashunit ./tests/
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       -

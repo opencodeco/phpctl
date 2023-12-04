@@ -27,5 +27,6 @@ help() {
     echo "  server [port] [directory]   Runs PHP's built-in web server (default port is 80 and default directory is current .)"
     echo "  sh [commands]               Starts an interactive Shell session or runs sh commands"
     echo "  at [port] [command]         Runs commands within a bound port (default port is 80)"
+    echo "  repl                        Starts a PHP REPL session (powered by PsySH)"
     echo "                                   "
 }
