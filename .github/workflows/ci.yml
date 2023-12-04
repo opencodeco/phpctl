@@ -18,9 +18,6 @@ jobs:
         name: Checkout
         uses: actions/checkout@v3
       -
-        name: Test
-        run: PHPCTL_TTY="--label=no-tty" ./lib/bashunit ./tests/
-      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       -
@@ -32,6 +29,18 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build and export to Docker
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          load: true
+          build-args: PHP=${{ matrix.php }}
+          tags: opencodeco/phpctl:php${{ matrix.php }}
+      -
+        name: Test
+        run: |
+          PHPCTL_TTY="--label=no-tty" ./lib/bashunit ./tests/
       -
         name: Build and push
         uses: docker/build-push-action@v5
