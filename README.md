@@ -104,3 +104,7 @@ Xdebug
 </details>
 
 You can always use your custom image with the `PHPCTL_IMAGE` variable, but feel free to ask for more essential extensions in the issues.
+
+## Contributing
+
+Click here to read the [contributing guidelines](CONTRIBUTING.md).
