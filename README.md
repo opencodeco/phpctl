@@ -1,4 +1,4 @@
-# phpctl
+# phpctl [![CI](https://github.com/opencodeco/phpctl/actions/workflows/ci.yml/badge.svg)](https://github.com/opencodeco/phpctl/actions/workflows/ci.yml)
 
 🐳 A Docker-based development environment for PHP 🐘
 
