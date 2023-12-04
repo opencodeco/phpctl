@@ -28,14 +28,15 @@ phpctl <command> [arguments]
 
 | Command | Description |
 | --- | --- |
-| `help` or `man` | Shows a help message |
-| `doctor` | Inspects the current `PHP_VERSION` and `PHPCTL_IMAGE` |
-| `install` | Installs `phpctl` (and `pctl`) globally in your system |
-| `build` | Builds the current `Dockerfile` (useful for custom images) |
-| `images` | Shows local `phpctl` images |
-| `php` | **Runs PHP commands** (`phpctl php -v` or `pctl php -m`) |
-| `composer` | Runs Composer commands (`phpctl composer install` or `pctl composer validate`) |
-| `server [port] [directory]` | Runs PHP's built-in web-server (default port is `80` and default directory is current `.`) |
+| `help` or `man` | Shows a help message. |
+| `doctor` | Inspects the current `PHP_VERSION` and `PHPCTL_IMAGE`. |
+| `install` | Installs `phpctl` (and `pctl`) globally in your system. |
+| `build` | Builds the current `Dockerfile` (useful for custom images). |
+| `images` | Shows local `phpctl` images. |
+| `php` | **Runs PHP commands** (`phpctl php -v` or `pctl php -m`). |
+| `composer` | Runs Composer commands (`phpctl composer install` or `pctl composer validate`). |
+| `server [port] [directory]` | Runs PHP's built-in web-server (default port is `80` and default directory is current `.`). |
+| `sh [commands]` | Starts an interactive Shell session or runs `sh` commands. |
 
 #### The `.phpctl` file
 
