@@ -9,5 +9,11 @@ composer() {
 server() {
     port=${1:-80}
     dir=${2:-.}
-    run "-p$port:$port" php -S 0.0.0.0:"$port" -t "$dir"
+    at "$port" php -S 0.0.0.0:"$port" -t "$dir"
+}
+
+at() {
+    port=${1:-80}
+    # shellcheck disable=SC2068
+    run "-it -p$port:$port" ${@:2}
 }
