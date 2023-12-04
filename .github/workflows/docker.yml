@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Docker
 on:
   push:
     branches: [ "main" ]
@@ -9,8 +9,8 @@ jobs:
     strategy:
       matrix:
         php:
-        - php82
-        - php83
+        - 82
+        - 83
           
     steps:
     - uses: actions/checkout@v3
