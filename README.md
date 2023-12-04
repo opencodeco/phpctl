@@ -50,7 +50,7 @@ You can also add a `.phpctl` file with some overrides like:
 
 ## Modules
 <details>
-<summary>Expand</summary>
+<summary>For the default Docker image we have the following modules installed (click to expand).</summary>
 <pre>
 [PHP Modules]
 Core
@@ -93,3 +93,5 @@ zlib
 Xdebug
 </pre>
 </details>
+
+You can always use your custom image with the `PHPCTL_IMAGE` variable, but feel free to ask for more essential extensions in the issues.
