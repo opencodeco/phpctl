@@ -51,7 +51,7 @@ You can also add a `.phpctl` file with some overrides like:
 ## Modules
 <details>
 <summary>Expand</summary>
-<code>
+<pre>
 [PHP Modules]
 Core
 curl
@@ -91,5 +91,5 @@ zlib
 
 [Zend Modules]
 Xdebug
-</code>
+</pre>
 </details>
