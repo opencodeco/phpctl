@@ -14,5 +14,9 @@ jobs:
           
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build --build-arg PHP=${{ matrix.php }} -t opencodeco/phpctl:php${{ matrix.php }} .
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v5.1.0
+      with:
+        build-args: PHP=${{ matrix.php }}
+        tags: opencodeco/phpctl:php${{ matrix.php }}
+  
