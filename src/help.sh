@@ -28,5 +28,6 @@ help() {
     echo "  sh [commands]               Starts an interactive Shell session or runs sh commands"
     echo "  at [port] [command]         Runs commands within a bound port (default port is 80)"
     echo "  repl                        Starts a PHP REPL session (powered by PsySH)"
+    echo "  fix [directory]             Runs PHP CS Fixer on the given directory."
     echo "                                   "
 }

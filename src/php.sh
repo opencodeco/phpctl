@@ -21,3 +21,12 @@ at() {
     port=${1:-80}
     $(run "$PHPCTL_TTY -p$port:$port" "$2") ${@:3}
 }
+
+fix() {
+    if [ -n "$1" ]; then
+        $(run "$PHPCTL_TTY" php-cs-fixer) fix $@
+        exit 0
+    fi
+
+    $(run "$PHPCTL_TTY" php-cs-fixer) help fix
+}
