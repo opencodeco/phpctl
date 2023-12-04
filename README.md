@@ -17,14 +17,14 @@ cd ~/.phpctl
 ./phpctl install
 ```
 
-### Usage
+## Usage
 
 Then you can use `phpctl` or `pctl` with a subcommand:
 ```shell
 phpctl <command> [arguments]
 ```
 
-#### Commands
+### Commands
 
 | Command | Description |
 | --- | --- |
@@ -38,7 +38,8 @@ phpctl <command> [arguments]
 | `server [port] [directory]` | Runs PHP's built-in web-server (default port is `80` and default directory is current `.`). |
 | `sh [commands]` | Starts an interactive Shell session or runs `sh` commands. |
 | `at [port] [command]` | Run commands within a bound port (default port is `80`). |
-#### The `.phpctl` file
+
+### The `.phpctl` file
 
 You can also add a `.phpctl` file with some overrides like:
 
@@ -46,3 +47,49 @@ You can also add a `.phpctl` file with some overrides like:
 | --- | --- |
 | `PHP_VERSION` | Values can be `82` and `83` |
 | `PHPCTL_IMAGE` | Use to name your own custom image |
+
+## Modules
+<details>
+<summary>Expand</summary>
+<code>
+[PHP Modules]
+Core
+curl
+date
+dom
+filter
+hash
+iconv
+igbinary
+json
+libxml
+mbstring
+msgpack
+mysqlnd
+openssl
+pcntl
+pcre
+PDO
+pdo_mysql
+Phar
+posix
+random
+readline
+redis
+Reflection
+session
+sockets
+SPL
+standard
+swoole
+tokenizer
+xdebug
+xml
+xmlwriter
+zend_test
+zlib
+
+[Zend Modules]
+Xdebug
+</code>
+</details>
