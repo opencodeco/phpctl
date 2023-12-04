@@ -39,8 +39,11 @@ jobs:
           tags: opencodeco/phpctl:php${{ matrix.php }}
       -
         name: Test
+        env:
+          PHP_VERSION: ${{ matrix.php }}
+          PHPCTL_TTY: --label=no-tty
         run: |
-          PHPCTL_TTY="--label=no-tty" ./lib/bashunit ./tests/
+          ./lib/bashunit ./tests/
       -
         name: Build and push
         uses: docker/build-push-action@v5
