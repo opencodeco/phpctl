@@ -1,13 +1,14 @@
 php() {
-    $(run -it php) ${@:--v}
+    $(run "$PHPCTL_TTY" php) ${@:--v}
 }
 
 composer() {
-    $(run -it composer) $@
+    $(run "$PHPCTL_TTY" composer) $@
 }
 
 repl() {
-    $(run -it psysh)
+    # shellcheck disable=SC2091
+    $(run "$PHPCTL_TTY" psysh)
 }
 
 server() {
@@ -18,5 +19,5 @@ server() {
 
 at() {
     port=${1:-80}
-    $(run "-it -p$port:$port" "$2") ${@:3}
+    $(run "$PHPCTL_TTY -p$port:$port" "$2") ${@:3}
 }

@@ -1,8 +1,8 @@
 sh() {
     if [ -z "$1" ]; then
         # shellcheck disable=SC2091
-        $(run -it sh)
+        $(run "$PHPCTL_TTY" sh)
     else
-        $(run -it sh) -c "$*"
+        $(run "$PHPCTL_TTY" sh) -c "$*"
     fi
 }

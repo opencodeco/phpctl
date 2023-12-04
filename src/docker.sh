@@ -11,5 +11,5 @@ images() {
 }
 
 run() {
-    echo "docker run --rm -v $(pwd):/opt -w /opt --entrypoint ${2:-php} ${1--it} $PHPCTL_IMAGE"
+    echo "docker run --rm -v $(pwd):/opt -w /opt --entrypoint ${2:-php} ${1:-$PHPCTL_TTY} $PHPCTL_IMAGE"
 }
