@@ -37,12 +37,12 @@ phpctl <command> [arguments]
 | `composer` | Runs Composer commands (`phpctl composer install` or `pctl composer validate`). |
 | `server [port] [directory]` | Runs PHP's built-in web-server (default port is `80` and default directory is current `.`). |
 | `sh [commands]` | Starts an interactive Shell session or runs `sh` commands. |
-
+| `at [port] [command]` | Run commands within a bound port (default port is `80`). |
 #### The `.phpctl` file
 
 You can also add a `.phpctl` file with some overrides like:
 
 | Variable | Description |
 | --- | --- |
-| `PHP_VERSION` | Values can be `81`, `82` and `83` |
+| `PHP_VERSION` | Values can be `82` and `83` |
 | `PHPCTL_IMAGE` | Use to name your own custom image |
