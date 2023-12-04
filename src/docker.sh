@@ -15,8 +15,10 @@ run() {
     args=${*:4}
 
     if [ -z "$args" ]; then
-        docker run --rm -v "$(pwd)":/opt -w /opt --entrypoint "${2:-php}" "${1--it}" "$PHPCTL_IMAGE" "$arg"
+        # shellcheck disable=SC2086
+        docker run --rm -v "$(pwd)":/opt -w /opt --entrypoint "${2:-php}" ${1--it} "$PHPCTL_IMAGE" "$arg"
     else
-        docker run --rm -v "$(pwd)":/opt -w /opt --entrypoint "${2:-php}" "${1--it}" "$PHPCTL_IMAGE" "$arg" "$args"
+        # shellcheck disable=SC2086
+        docker run --rm -v "$(pwd)":/opt -w /opt --entrypoint "${2:-php}" ${1--it} "$PHPCTL_IMAGE" "$arg" $args
     fi
 }
