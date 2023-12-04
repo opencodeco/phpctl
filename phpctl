@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-PHPCTL_DIR=$(dirname $(realpath $0))
+PHPCTL_DIR=$(dirname "$(realpath "$0")")
 if [ -s .phpctl ]; then
     set -a
     . .phpctl
@@ -9,8 +9,9 @@ fi
 PHP_VERSION=${PHP_VERSION:-83}
 PHPCTL_IMAGE=${PHPCTL_IMAGE:-opencodeco/phpctl:php$PHP_VERSION}
 
-for file in $PHPCTL_DIR/src/*.sh; do
-    . $file
+for file in "$PHPCTL_DIR"/src/*.sh; do
+    # shellcheck source=src/php.sh
+    . "$file"
 done
 
-${1:-help} ${@:2}
+${1:-help} "${@:2}"

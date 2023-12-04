@@ -1,13 +1,13 @@
 php() {
-    run -it php $@
+    run -it php "$@"
 }
 
 composer() {
-    run -it composer $@
+    run -it composer "$@"
 }
 
 server() {
     port=${1:-80}
     dir=${2:-.}
-    run "-p$port:$port" php -S 0.0.0.0:$port -t $dir
+    run "-p$port:$port" php -S 0.0.0.0:"$port" -t "$dir"
 }
