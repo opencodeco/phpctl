@@ -1,8 +1,15 @@
-# phpctl [![CI](https://github.com/opencodeco/phpctl/actions/workflows/ci.yml/badge.svg)](https://github.com/opencodeco/phpctl/actions/workflows/ci.yml)
-
-🐳 A Docker-based development environment for PHP 🐘
-
-> Heavily inspired by [opencodeco/hfctl](https://github.com/opencodeco/hfctl).
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/opencodeco/phpctl/assets/183722/f241cca0-aa1d-4776-b4f7-ff17c3f11955">
+    </td>
+    <td>
+      <h1>phpctl <a href="https://github.com/opencodeco/phpctl/actions/workflows/ci.yml"><img src="https://github.com/opencodeco/phpctl/actions/workflows/ci.yml/badge.svg"></a></h1>
+      <p>🐳 A Docker-based development environment for PHP 🐘</p>
+      <blockquote>Heavily inspired by <a href="https://github.com/opencodeco/hfctl">opencodeco/hfctl</a>.</blockquote>
+    </td>
+  </tr>
+</table>
 
 ## Getting started
 
