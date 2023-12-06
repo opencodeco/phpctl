@@ -19,7 +19,7 @@
 
 ### Install
 ```shell
-wget https://raw.githubusercontent.com/opencodeco/phpctl/main/installer.sh -qO- | sh
+sh <(wget -qO- wget https://raw.githubusercontent.com/opencodeco/phpctl/main/installer.sh)
 ```
 
 ## Usage
