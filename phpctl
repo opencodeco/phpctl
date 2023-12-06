@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 PHPCTL_DIR=$(dirname "$(realpath "$0")")
-if [ -s .phpctl ]; then
+if [ -s .phpctlrc ]; then
     set -a
-    . .phpctl
+    . .phpctlrc
     set +a
 fi
 

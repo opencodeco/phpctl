@@ -31,31 +31,71 @@ Then you can use `phpctl` or `pctl` with a subcommand:
 phpctl <command> [arguments]
 ```
 
-### Commands
+For example
+```shell
+phpctl php -m # To show built-in modules
+```
+Or
+```shell
+phpctl sh echo 'Hello, World!' # To run arbitrary sh commands inside the container
+```
 
+## Command list
+
+### Developing
 | Command                     | Description                                                                                 |
 |-----------------------------|---------------------------------------------------------------------------------------------|
-| `help` or `man`             | Shows a help message.                                                                       |
-| `doctor`                    | Inspects the current `PHP_VERSION` and `PHPCTL_IMAGE`.                                      |
-| `install`                   | Installs `phpctl` (and `pctl`) globally in your system.                                     |
-| `build`                     | Builds the current `Dockerfile` (useful for custom images).                                 |
-| `images`                    | Shows local `phpctl` images.                                                                |
-| `php`                       | **Runs PHP commands** (`phpctl php -v` or `pctl php -m`).                                   |
+| `php`                       | **Runs PHP commands** (`phpctl php -v` or `phpctl php -m`).                                 |
 | `composer`                  | Runs Composer commands (`phpctl composer install` or `pctl composer validate`).             |
+| `at [port] [command]`       | Runs commands within a bound port (default port is `80`).                                   |
 | `server [port] [directory]` | Runs PHP's built-in web-server (default port is `80` and default directory is current `.`). |
-| `sh [commands]`             | Starts an interactive Shell session or runs `sh` commands.                                  |
-| `at [port] [command]`       | Run commands within a bound port (default port is `80`).                                    |
-| `repl`                      | Starts a PHP REPL session (powered by [PsySH](https://psysh.org/)).                         |
-| `fix [directory]`           | Runs PHP CS Fixer on the given directory.                                                   |
 
-### The `.phpctl` file
+### Useful 
+| Command           | Description                                                          |
+|-------------------|----------------------------------------------------------------------|
+| `sh [commands]`   | Starts an interactive Shell session or runs `sh` commands.           |
+| `repl`            | Starts a PHP REPL session (powered by [PsySH](https://psysh.org/)).  |
+| `fix [arguments]` | Runs PHP CS Fixer on the given directory.                            |
 
-You can also add a `.phpctl` file with some overrides like:
+### Starters
+| Command                      | Description                                                         |
+|------------------------------|---------------------------------------------------------------------|
+| `install`                    | Installs `phpctl` (and `pctl`) globally in your system.             |
+| `new [template] [directory]` | Creates a new project from a template (`composer create-project`).  |
 
-| Variable | Description |
-| --- | --- |
-| `PHP_VERSION` | Values can be `82` and `83` |
+### Helpers
+| Command                      | Description                                                  |
+|------------------------------|--------------------------------------------------------------|
+| `help` or `man`              | Displays a help message.                                     |
+| `doctor`                     | Inspects the current `PHP_VERSION` and `PHPCTL_IMAGE`.       |
+| `build`                      | Builds the current `Dockerfile` (useful for custom images).  |
+| `images`                     | Shows local `phpctl` images.                                 |
+
+## The `.phpctlrc` file
+
+You can also add a `.phpctlrc` file at project's root directory with some overrides like:
+
+### Environment variables
+
+| Variable       | Description                       |
+|----------------|-----------------------------------|
+| `PHP_VERSION`  | Values can be `82` and `83`       |
 | `PHPCTL_IMAGE` | Use to name your own custom image |
+
+For example:
+```shell
+PHP_VERSION=83
+```
+
+### Docker arguments
+
+You can also provide any additional [Docker `run` arguments](https://docs.docker.com/engine/reference/commandline/run/#options) using the `args` variable.
+
+For example, suppose you want to bind the `9501` port from the running `phpctl` container to your host,
+you can add the following to your `.phpctlrc` file:
+```shell
+args=(-p 9501:9501)
+```
 
 ## Modules
 <details>

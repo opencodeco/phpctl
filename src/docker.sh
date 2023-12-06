@@ -11,6 +11,10 @@ images() {
 }
 
 run() {
-    composer_auth="${COMPOSER_AUTH//[$'\t\r\n ']}"
-    echo "docker run --rm -e COMPOSER_AUTH=$composer_auth -v $(pwd):/opt -w /opt --entrypoint ${2:-php} ${1:-$PHPCTL_TTY} $PHPCTL_IMAGE"
+    docker run \
+        --rm "$PHPCTL_TTY" \
+        -e COMPOSER_AUTH="$COMPOSER_AUTH" \
+        -v "$(pwd)":/opt -w /opt \
+        --entrypoint sh \
+        ${args[@]} $1 "$PHPCTL_IMAGE" -c "${*:2}"
 }
