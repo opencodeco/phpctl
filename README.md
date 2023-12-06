@@ -14,6 +14,7 @@
 ## Getting started
 
 ### Requirements
+- Git
 - Docker
 
 ### Install
