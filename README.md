@@ -18,15 +18,11 @@
 - Docker
 
 ### Install
-Clone this repository and run `./phpctl install`:
 ```shell
-git clone https://github.com/opencodeco/phpctl.git ~/.phpctl
-cd ~/.phpctl
-./phpctl install
+wget https://raw.githubusercontent.com/opencodeco/phpctl/main/installer.sh -qO- | sh
 ```
 
 ## Usage
-
 Then you can use `phpctl` or `pctl` with a subcommand:
 ```shell
 phpctl <command> [arguments]
@@ -73,11 +69,9 @@ phpctl sh echo 'Hello, World!' # To run arbitrary sh commands inside the contain
 | `images`                     | Shows local `phpctl` images.                                 |
 
 ## The `.phpctlrc` file
-
 You can also add a `.phpctlrc` file at project's root directory with some overrides like:
 
 ### Environment variables
-
 | Variable       | Description                       |
 |----------------|-----------------------------------|
 | `PHP_VERSION`  | Values can be `82` and `83`       |
