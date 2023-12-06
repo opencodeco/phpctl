@@ -25,7 +25,6 @@ help() {
     echo -e "\033[0;32m  sh [commands]              \033[0m Starts an interactive Shell session or runs sh commands"
     echo -e "\033[0;32m  repl                       \033[0m Starts a PHP REPL session (powered by PsySH)"
     echo -e "\033[0;32m  fix [arguments]            \033[0m Runs PHP CS Fixer on the given directory."
-    echo -e "\033[0;32m  install                    \033[0m Installs phpctl (and pctl) globally in you system"
     echo -e "\033[0;32m  new [template] [directory] \033[0m Creates a new project from a template (composer create-project)"
     echo -e "\033[0;32m  help or man                \033[0m Displays this help message"
     echo -e "\033[0;32m  doctor                     \033[0m Inspects the current PHP_VERSION and PHPCTL_IMAGE"
