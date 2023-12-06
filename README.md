@@ -20,7 +20,7 @@
 ### Install
 Clone this repository and run `./phpctl install`:
 ```shell
-https://github.com/opencodeco/phpctl.git ~/.phpctl
+git clone https://github.com/opencodeco/phpctl.git ~/.phpctl
 cd ~/.phpctl
 ./phpctl install
 ```
