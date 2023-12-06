@@ -11,10 +11,14 @@ echo -e "\033[0;33mInstalling phpctl at \033[0m$INSTALL_DIR"
 rm -rf $INSTALL_DIR
 git clone --quiet https://github.com/opencodeco/phpctl.git $INSTALL_DIR
 
-echo -e "Sudo will be prompted to symlink the phpctl files. \033[0;32mDo you want to continue?\033[0m"
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) symlink; break;;
-        No ) exit;;
-    esac
-done
+echo -e "Sudo will be prompted to symlink the phpctl files. \033[0;32mDo you want to continue? (y/n)\033[0m"
+read answer
+if [ "$answer" != "${answer#[Yy]}" ]; then
+    symlink
+else
+    echo -e "\033[0;31mTo use phpclt globally, link the cloned script to your bin directory, like:\033[0m"
+    echo ""
+    echo "  sudo ln -sf ${INSTALL_DIR}/phpctl /usr/local/bin/phpctl"
+    echo "  sudo ln -sf ${INSTALL_DIR}/phpctl /usr/local/bin/pctl"
+    echo ""
+fi
