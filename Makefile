@@ -4,6 +4,5 @@ test:
 
 .PHONY: install
 install:
-	@INSTALL_DIR=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))
-	@sudo ln -sf ${INSTALL_DIR}/phpctl /usr/local/bin/phpctl
-	@sudo ln -sf ${INSTALL_DIR}/phpctl /usr/local/bin/pctls
+	@sudo ln -sf $(shell pwd)/phpctl /usr/local/bin/phpctl
+	@sudo ln -sf $(shell pwd)/phpctl /usr/local/bin/pctl
