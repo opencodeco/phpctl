@@ -27,8 +27,10 @@ RUN apk add --no-cache \
     && mv /etc/php/php.ini /etc/php${PHP}/conf.d/99_phpctl.ini \
     && wget https://raw.githubusercontent.com/composer/getcomposer.org/76a7060ccb93902cd7576b67264ad91c8a2700e2/web/installer -O - -q | php -- --quiet \
     && mv composer.phar /usr/bin/composer \
-    && wget https://psysh.org/psysh && chmod a+x psysh && mv psysh /usr/local/bin/psysh \
+    # && wget https://psysh.org/psysh && chmod a+x psysh && mv psysh /usr/local/bin/psysh \
     && wget https://cs.symfony.com/download/php-cs-fixer-v3.phar -O php-cs-fixer && chmod a+x php-cs-fixer && mv php-cs-fixer /usr/local/bin/php-cs-fixer \
-    && rm -rf /var/cache/apk/*
+    && rm -rf /var/cache/apk/* \
+    && adduser -D phpctl
+USER phpctl
 ENTRYPOINT [ "/usr/bin/php" ]
 CMD [ "-v" ]
