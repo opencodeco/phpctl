@@ -6,3 +6,5 @@ test:
 install:
 	@sudo ln -sf $(shell pwd)/phpctl /usr/local/bin/phpctl
 	@sudo ln -sf $(shell pwd)/phpctl /usr/local/bin/pctl
+	@sudo ln -sf $(shell pwd)/php /usr/local/bin/php
+	@sudo ln -sf $(shell pwd)/composer /usr/local/bin/composer
