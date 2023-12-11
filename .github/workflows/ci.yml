@@ -11,6 +11,7 @@ jobs:
     strategy:
       matrix:
         php:
+          - 81
           - 82
           - 83
     steps:
