@@ -77,7 +77,9 @@ For example:
 PHP_VERSION=83
 ```
 
-### Docker arguments
+### Docker behaviour
+
+#### Run options
 
 You can also provide any additional [Docker `run` arguments](https://docs.docker.com/engine/reference/commandline/run/#options) using the `args` variable.
 
@@ -85,6 +87,13 @@ For example, suppose you want to bind the `9501` port from the running `phpctl` 
 you can add the following to your `.phpctlrc` file:
 ```shell
 args=(-p 9501:9501)
+```
+
+#### Build options
+
+You can also provide [build options](https://docs.docker.com/engine/reference/commandline/build/) to the build command using the `build` variable:
+```shell
+build=(--build-arg APP_ENV=dev --label phprocks)
 ```
 
 ## Modules

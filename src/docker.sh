@@ -1,5 +1,8 @@
 build() {
-    docker build --build-arg PHP="$PHP_VERSION" --build-arg COMPOSER_AUTH="$COMPOSER_AUTH" -t "$PHPCTL_IMAGE" .
+    docker build \
+        --build-arg PHP="$PHP_VERSION" \
+        --build-arg COMPOSER_AUTH="$COMPOSER_AUTH" \
+        ${build[@]} -t "$PHPCTL_IMAGE" .
 }
 
 push() {
