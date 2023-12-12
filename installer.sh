@@ -3,8 +3,10 @@
 INSTALL_DIR=~/.phpctl
 
 symlink() {
-    sudo ln -sf "${INSTALL_DIR}/phpctl" /usr/local/bin/phpctl
-    sudo ln -sf "${INSTALL_DIR}/phpctl" /usr/local/bin/pctl
+    sudo ln -sf "${INSTALL_DIR}/composer" /usr/local/bin/composer
+    sudo ln -sf "${INSTALL_DIR}/php"      /usr/local/bin/php
+    sudo ln -sf "${INSTALL_DIR}/phpctl"   /usr/local/bin/pctl
+    sudo ln -sf "${INSTALL_DIR}/phpctl"   /usr/local/bin/phpctl
 }
 
 echo "\033[0;33mInstalling phpctl at \033[0m$INSTALL_DIR"
@@ -19,8 +21,8 @@ else
     echo "\033[0;31mTo use phpclt globally, link the cloned script to your bin directory, like:\033[0m"
     echo ""
     echo "  sudo ln -sf ${INSTALL_DIR}/composer /usr/local/bin/composer"
-    echo "  sudo ln -sf ${INSTALL_DIR}/php /usr/local/bin/php"
-    echo "  sudo ln -sf ${INSTALL_DIR}/phpctl /usr/local/bin/pctl"
-    echo "  sudo ln -sf ${INSTALL_DIR}/phpctl /usr/local/bin/phpctl"
+    echo "  sudo ln -sf ${INSTALL_DIR}/php      /usr/local/bin/php"
+    echo "  sudo ln -sf ${INSTALL_DIR}/phpctl   /usr/local/bin/pctl"
+    echo "  sudo ln -sf ${INSTALL_DIR}/phpctl   /usr/local/bin/phpctl"
     echo ""
 fi
