@@ -1,20 +1,20 @@
 build() {
-    docker build \
+    $PHPCTL_RUNTIME build \
         --build-arg PHP="$PHP_VERSION" \
         --build-arg COMPOSER_AUTH="$COMPOSER_AUTH" \
         ${build[@]} -t "$PHPCTL_IMAGE" .
 }
 
 push() {
-    docker push "$PHPCTL_IMAGE"
+    $PHPCTL_RUNTIME push "$PHPCTL_IMAGE"
 }
 
 images() {
-    docker images | grep phpctl
+    $PHPCTL_RUNTIME images | grep phpctl
 }
 
 run() {
-    docker run \
+    $PHPCTL_RUNTIME run \
         --rm "$PHPCTL_TTY" \
         -e COMPOSER_AUTH="$COMPOSER_AUTH" \
         -v "$(pwd)":/opt -w /opt \

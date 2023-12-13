@@ -96,6 +96,14 @@ You can also provide [build options](https://docs.docker.com/engine/reference/co
 build=(--build-arg APP_ENV=dev --label phprocks)
 ```
 
+### Podman
+
+You can use Podman instead of Docker by setting the `PHPCTL_RUNTIME` variable to `podman` in your environment variables or at `.phpctlrc` file.
+```shell
+PHPCTL_RUNTIME=podman phpctl php -v
+```
+
+
 ## Modules
 <details>
 <summary>For the default Docker image we have the following modules installed (click to expand).</summary>
