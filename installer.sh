@@ -3,11 +3,12 @@
 INSTALL_DIR=~/.phpctl
 
 symlink() {
-    sudo ln -sf "${INSTALL_DIR}/bin/composer" /usr/local/bin/composer
-    sudo ln -sf "${INSTALL_DIR}/bin/php"      /usr/local/bin/php
-    sudo ln -sf "${INSTALL_DIR}/bin/phpctl"   /usr/local/bin/pctl
-    sudo ln -sf "${INSTALL_DIR}/bin/phpctl"   /usr/local/bin/phpctl
-    sudo ln -sf "${INSTALL_DIR}/bin/phpunit"  /usr/local/bin/phpunit
+    sudo ln -sf "${INSTALL_DIR}/bin/composer"     /usr/local/bin/composer
+    sudo ln -sf "${INSTALL_DIR}/bin/php"          /usr/local/bin/php
+    sudo ln -sf "${INSTALL_DIR}/bin/php-cs-fixer" /usr/local/bin/php-cs-fixer
+    sudo ln -sf "${INSTALL_DIR}/bin/phpctl"       /usr/local/bin/pctl
+    sudo ln -sf "${INSTALL_DIR}/bin/phpctl"       /usr/local/bin/phpctl
+    sudo ln -sf "${INSTALL_DIR}/bin/phpunit"      /usr/local/bin/phpunit
 }
 
 echo "\033[0;33mInstalling phpctl at \033[0m$INSTALL_DIR"
@@ -21,10 +22,11 @@ if [ "$answer" != "${answer#[Yy]}" ]; then
 else
     echo "\033[0;31mTo use phpclt globally, link the cloned script to your bin directory, like:\033[0m"
     echo ""
-    echo "  sudo ln -sf ${INSTALL_DIR}/bin/composer /usr/local/bin/composer"
-    echo "  sudo ln -sf ${INSTALL_DIR}/bin/php      /usr/local/bin/php"
-    echo "  sudo ln -sf ${INSTALL_DIR}/bin/phpctl   /usr/local/bin/pctl"
-    echo "  sudo ln -sf ${INSTALL_DIR}/bin/phpctl   /usr/local/bin/phpctl"
-    echo "  sudo ln -sf ${INSTALL_DIR}/bin/phpunit  /usr/local/bin/phpunit"
+    echo "  sudo ln -sf ${INSTALL_DIR}/bin/composer     /usr/local/bin/composer"
+    echo "  sudo ln -sf ${INSTALL_DIR}/bin/php          /usr/local/bin/php"
+    echo "  sudo ln -sf ${INSTALL_DIR}/bin/php-cs-fixer /usr/local/bin/php-cs-fixer"
+    echo "  sudo ln -sf ${INSTALL_DIR}/bin/phpctl       /usr/local/bin/pctl"
+    echo "  sudo ln -sf ${INSTALL_DIR}/bin/phpctl       /usr/local/bin/phpctl"
+    echo "  sudo ln -sf ${INSTALL_DIR}/bin/phpunit      /usr/local/bin/phpunit"
     echo ""
 fi
