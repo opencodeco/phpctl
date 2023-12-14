@@ -3,6 +3,7 @@ FROM alpine:${ALPINE}
 ARG PHP
 COPY rootfs /
 RUN apk add --no-cache \
+        git \
         docker-cli \
         php${PHP} \
         php${PHP}-dom \
