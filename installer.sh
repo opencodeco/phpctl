@@ -7,6 +7,7 @@ symlink() {
     sudo ln -sf "${INSTALL_DIR}/php"      /usr/local/bin/php
     sudo ln -sf "${INSTALL_DIR}/phpctl"   /usr/local/bin/pctl
     sudo ln -sf "${INSTALL_DIR}/phpctl"   /usr/local/bin/phpctl
+    sudo ln -sf "${INSTALL_DIR}/phpunit"  /usr/local/bin/phpunit
 }
 
 echo "\033[0;33mInstalling phpctl at \033[0m$INSTALL_DIR"
@@ -24,5 +25,6 @@ else
     echo "  sudo ln -sf ${INSTALL_DIR}/php      /usr/local/bin/php"
     echo "  sudo ln -sf ${INSTALL_DIR}/phpctl   /usr/local/bin/pctl"
     echo "  sudo ln -sf ${INSTALL_DIR}/phpctl   /usr/local/bin/phpctl"
+    echo "  sudo ln -sf ${INSTALL_DIR}/phpunit  /usr/local/bin/phpunit"
     echo ""
 fi
