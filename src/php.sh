@@ -21,10 +21,20 @@ init-phpunit() {
 }
 
 phpunit() {
+    if [ ! -f vendor/bin/phpunit ]; then
+        echo "PHPUnit not found. Installing..."
+        composer require --dev phpunit/phpunit
+    fi;
+
     run -- vendor/bin/phpunit ${@}
 }
 
 php-cs-fixer() {
+    if [ ! -f vendor/bin/php-cs-fixer ]; then
+        echo "PHP-CS-Fixer not found. Installing..."
+        composer require --dev friendsofphp/php-cs-fixer
+    fi;
+
     run -- vendor/bin/php-cs-fixer ${@}
 }
 
