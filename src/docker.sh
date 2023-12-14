@@ -17,6 +17,7 @@ run() {
     $PHPCTL_RUNTIME run \
         --rm "$PHPCTL_TTY" \
         -e COMPOSER_AUTH="$COMPOSER_AUTH" \
+        -v /var/run/docker.sock:/var/run/docker.sock \
         -v "$(pwd)":/opt -w /opt \
         --entrypoint sh \
         ${args[@]} $1 "$PHPCTL_IMAGE" -c "${*:2}"
