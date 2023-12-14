@@ -3,6 +3,7 @@ FROM alpine:${ALPINE}
 ARG PHP
 COPY rootfs /
 RUN apk add --no-cache \
+        docker-cli \
         php${PHP} \
         php${PHP}-dom \
         php${PHP}-iconv \
@@ -26,8 +27,6 @@ RUN apk add --no-cache \
         php${PHP}-pecl-xdebug \
     && ln -sf /usr/bin/php${PHP} /usr/bin/php \
     && mv /etc/php/php.ini /etc/php${PHP}/conf.d/99_phpctl.ini \
-    && rm -rf /var/cache/apk/* \
-    && adduser -D phpctl
-USER phpctl
+    && rm -rf /var/cache/apk/*
 ENTRYPOINT [ "/usr/bin/php" ]
 CMD [ "-v" ]
