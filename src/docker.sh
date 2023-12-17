@@ -9,6 +9,10 @@ push() {
     $PHPCTL_RUNTIME push "$PHPCTL_IMAGE"
 }
 
+pull() {
+    $PHPCTL_RUNTIME pull "$PHPCTL_IMAGE"
+}
+
 images() {
     $PHPCTL_RUNTIME images | grep phpctl
 }
