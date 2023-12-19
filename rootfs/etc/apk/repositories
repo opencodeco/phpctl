@@ -1,4 +1,4 @@
-https://dl-cdn.alpinelinux.org/alpine/v3.19/main
-https://dl-cdn.alpinelinux.org/alpine/v3.19/community
-https://dl-cdn.alpinelinux.org/alpine/edge/community
-https://dl-cdn.alpinelinux.org/alpine/edge/testing
+https://dl-cdn.alpinelinux.org/alpine/latest-stable/main
+https://dl-cdn.alpinelinux.org/alpine/latest-stable/community
+http://dl-cdn.alpinelinux.org/alpine/edge/main
+http://dl-cdn.alpinelinux.org/alpine/edge/community
