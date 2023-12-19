@@ -1,4 +1,5 @@
 build() {
+    echo -e "Building \033[0;32m$PHPCTL_IMAGE\033[0m"
     $PHPCTL_RUNTIME build \
         --build-arg PHP="$PHP_VERSION" \
         --build-arg COMPOSER_AUTH="$COMPOSER_AUTH" \
@@ -6,6 +7,7 @@ build() {
 }
 
 push() {
+    echo -e "Pushing \033[0;32m$PHPCTL_IMAGE\033[0m"
     $PHPCTL_RUNTIME push "$PHPCTL_IMAGE"
 }
 
@@ -18,6 +20,7 @@ images() {
 }
 
 run() {
+    echo -e "Running \033[0;32m$PHPCTL_IMAGE\033[0m"
     $PHPCTL_RUNTIME run \
         --rm "$PHPCTL_TTY" \
         -e COMPOSER_AUTH="$COMPOSER_AUTH" \
