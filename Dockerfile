@@ -1,11 +1,11 @@
-ARG ALPINE=3.18
+ARG ALPINE=3.19
 FROM alpine:${ALPINE}
 ARG PHP
 COPY rootfs /
 RUN apk add --no-cache \
         git \
         docker-cli \
-        php${PHP} \
+        php${PHP}-cli \
         php${PHP}-dom \
         php${PHP}-iconv \
         php${PHP}-mbstring \
@@ -20,6 +20,7 @@ RUN apk add --no-cache \
         php${PHP}-tokenizer \
         php${PHP}-xml \
         php${PHP}-xmlwriter \
+        php${PHP}-xmlreader \
         php${PHP}-pecl-mongodb \
         php${PHP}-pecl-pcov \
         php${PHP}-pecl-rdkafka \
