@@ -6,7 +6,9 @@ RUN apk add --no-cache \
         git \
         docker-cli \
         php${PHP}-cli \
+        php${PHP}-ctype \
         php${PHP}-dom \
+        php${PHP}-fileinfo \
         php${PHP}-iconv \
         php${PHP}-mbstring \
         php${PHP}-mysqlnd \
@@ -19,8 +21,8 @@ RUN apk add --no-cache \
         php${PHP}-simplexml \
         php${PHP}-tokenizer \
         php${PHP}-xml \
-        php${PHP}-xmlwriter \
         php${PHP}-xmlreader \
+        php${PHP}-xmlwriter \
         php${PHP}-pecl-mongodb \
         php${PHP}-pecl-pcov \
         php${PHP}-pecl-rdkafka \
