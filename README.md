@@ -48,12 +48,17 @@ phpctl sh echo 'Hello, World!' # To run arbitrary sh commands inside the contain
 | `server [port] [directory]` | Runs PHP's built-in web-server (default port is `80` and default directory is current `.`). |
 
 ### Useful 
-| Command                      | Description                                                            |
-|------------------------------|------------------------------------------------------------------------|
-| `sh [commands]`              | Starts an interactive Shell session or runs `sh` commands.             |
-| `repl`                       | Starts a PHP REPL session (powered by [PsySH](https://psysh.org/)).    |
-| `fix [arguments]`            | Runs PHP CS Fixer on the given directory.                              |
-| `new [template] [directory]` | Creates a new project from a template (`composer create-project`).     |
+| Command         | Description                                                         |
+|-----------------|---------------------------------------------------------------------|
+| `phpunit`       | Runs PHPUnit.                                                       |
+| `sh [commands]` | Starts an interactive Shell session or runs `sh` commands.          |
+| `repl`          | Starts a PHP REPL session (powered by [PsySH](https://psysh.org/)). |
+| `php-cs-fixer`  | Runs PHP-CS-Fixer.                                                  |
+
+### Scaffolders
+| Command | Description |
+| --- | --- |
+| `init-phpunit` | Initializes a PHPUnit configuration. |
 
 ### Helpers
 | Command                      | Description                                                  |
