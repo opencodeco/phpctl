@@ -37,7 +37,3 @@ php-cs-fixer() {
 
     run -- vendor/bin/php-cs-fixer ${@}
 }
-
-couscous() {
-    run -- couscous ${@}
-}
