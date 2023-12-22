@@ -20,9 +20,6 @@ server() {
     at "$port" php -S 0.0.0.0:"$port" -t "$dir"
 }
 
-init-phpunit() {
-    cp "$PHPCTL_DIR/phpunit.template.xml" phpunit.xml
-}
 
 phpunit() {
     if [ ! -f vendor/bin/phpunit ]; then
