@@ -2,6 +2,10 @@ php() {
     run -- php ${@--v}
 }
 
+composer() {
+    run -- composer $@
+}
+
 repl() {
     run -- psysh
 }
