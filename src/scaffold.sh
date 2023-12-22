@@ -27,6 +27,9 @@ init() {
         "php-cs-fixer")
             skeleton=".php-cs-fixer.php"
             ;;
+        "phpstan")
+                    skeleton="phpstan.neon"
+                    ;;
         *)
             echo -e "\033[0;31mSkeleton ($skeleton_alias) not handled.\033[0m"
             exit 1

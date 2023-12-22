@@ -26,6 +26,7 @@ help() {
     echo -e "\033[0;32m  sh [commands]              \033[0m Starts an interactive Shell session or runs sh commands"
     echo -e "\033[0;32m  repl                       \033[0m Starts a PHP REPL session (powered by PsySH)"
     echo -e "\033[0;32m  php-cs-fixer               \033[0m Runs PHP-CS-Fixer"
+    echo -e "\033[0;32m  phpstan                    \033[0m Runs PHPStan"
     echo -e "\033[0;32m  create [framework] [dir]   \033[0m Creates a new project using the given framework (or package)"
     echo -e "\033[0;32m  init [skeleton]            \033[0m Initializes a skeleton configuration (phpunit, php-cs-fixer)"
     echo -e "\033[0;32m  help or man                \033[0m Displays this help message"

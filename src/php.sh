@@ -24,7 +24,7 @@ server() {
 phpunit() {
     if [ ! -f vendor/bin/phpunit ]; then
         echo "PHPUnit not found. Installing..."
-        composer require --dev phpunit/phpunit
+        run -- composer require --dev phpunit/phpunit
     fi;
 
     run -- vendor/bin/phpunit ${@}
@@ -33,8 +33,17 @@ phpunit() {
 php-cs-fixer() {
     if [ ! -f vendor/bin/php-cs-fixer ]; then
         echo "PHP-CS-Fixer not found. Installing..."
-        composer require --dev friendsofphp/php-cs-fixer
+        run -- composer require --dev friendsofphp/php-cs-fixer
     fi;
 
     run -- vendor/bin/php-cs-fixer ${@}
+}
+
+phpstan() {
+    if [ ! -f vendor/bin/phpstan ]; then
+        echo "PHPStan not found. Installing..."
+        run -- composer require --dev phpstan/phpstan
+    fi;
+
+    run -- vendor/bin/phpstan ${@}
 }

@@ -1,0 +1,10 @@
+parameters:
+  level: 9
+  paths:
+    - src
+  reportUnmatchedIgnoredErrors: false
+  ignoreErrors:
+    # Magic behaviour with __get, __set, __call and __callStatic is not exactly static analyser-friendly :)
+    # Fortunately, You can ignore it by the following config.
+    - '#Static call to instance method Hyperf\\HttpServer\\Router\\Router::[a-zA-Z0-9\\_]+\(\)#'
+    - '#Static call to instance method Hyperf\\DbConnection\\Db::[a-zA-Z0-9\\_]+\(\)#'

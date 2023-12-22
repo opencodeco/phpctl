@@ -59,6 +59,7 @@ phpctl sh echo 'Hello, World!' # To run arbitrary sh commands inside the contain
 | `sh [commands]` | Starts an interactive Shell session or runs `sh` commands.          |
 | `repl`          | Starts a PHP REPL session (powered by [PsySH](https://psysh.org/)). |
 | `php-cs-fixer`  | Runs PHP-CS-Fixer.                                                  |
+| `phpstan`       | Runs PHPStan.                                                       |
 
 ### Scaffolders
 | Command                    | Description                                                   |
@@ -69,6 +70,7 @@ phpctl sh echo 'Hello, World!' # To run arbitrary sh commands inside the contain
 #### Skeletons
 - `phpunit`
 - `php-cs-fixer`
+- `phpstan`
 
 ### Helpers
 | Command                      | Description                                                  |
