@@ -56,9 +56,14 @@ phpctl sh echo 'Hello, World!' # To run arbitrary sh commands inside the contain
 | `php-cs-fixer`  | Runs PHP-CS-Fixer.                                                  |
 
 ### Scaffolders
-| Command | Description |
-| --- | --- |
-| `init-phpunit` | Initializes a PHPUnit configuration. |
+| Command                    | Description                                                   |
+|----------------------------|---------------------------------------------------------------|
+| `create [framework] [dir]` | Creates a new project using the given framework (or package). |
+| `init [skeleton]`          | Initializes a skeleton configuration.                         |
+
+#### Skeletons
+- `phpunit`
+- `php-cs-fixer`
 
 ### Helpers
 | Command                      | Description                                                  |
