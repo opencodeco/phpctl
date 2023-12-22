@@ -126,9 +126,11 @@ PHPCTL_RUNTIME=podman phpctl php -v
 <pre>
 [PHP Modules]
 Core
+ctype
 curl
 date
 dom
+fileinfo
 filter
 hash
 iconv
@@ -136,33 +138,33 @@ igbinary
 json
 libxml
 mbstring
+mongodb
 msgpack
 mysqlnd
 openssl
 pcntl
+pcov
 pcre
 PDO
 pdo_mysql
 Phar
 posix
 random
+rdkafka
 readline
 redis
 Reflection
 session
+SimpleXML
 sockets
 SPL
 standard
 swoole
 tokenizer
-xdebug
 xml
+xmlreader
 xmlwriter
-zend_test
 zlib
-
-[Zend Modules]
-Xdebug
 </pre>
 </details>
 
