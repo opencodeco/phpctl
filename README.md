@@ -11,6 +11,11 @@
   </tr>
 </table>
 
+## Introduction
+
+**Frictionless PHP Development!** Seamlessly run and switch between different versions of PHP, with different installed extensions, thanks to the power of containers.
+Take the advantage of goodie commands like `phpctl create` to start a new project, `phpctl repl` to start a REPL, `phpclt init` to initialize a new configuration file **and a lot more**.
+
 ## Getting started
 
 ### Requirements
@@ -113,7 +118,6 @@ You can use Podman instead of Docker by setting the `PHPCTL_RUNTIME` variable to
 PHPCTL_RUNTIME=podman phpctl php -v
 ```
 
-
 ## Modules
 <details>
 <summary>For the default Docker image we have the following modules installed (click to expand).</summary>
@@ -161,6 +165,12 @@ Xdebug
 </details>
 
 You can always use your custom image with the `PHPCTL_IMAGE` variable, but feel free to ask for more essential extensions in the issues.
+
+## Why it exists?
+> [!TIP]
+> After some years struggling with different PHP distributions into different operating systems, dealing with different PHP versions and sets of extensions,
+> I came out with `phpctl` to use the power of containers to seamlessly run PHP :elephant: for developement environments. 
+
 
 ## Contributing
 
