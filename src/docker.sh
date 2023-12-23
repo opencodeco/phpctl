@@ -23,6 +23,7 @@ run() {
     echo -e "Running \033[0;32m$PHPCTL_IMAGE\033[0m"
     $PHPCTL_RUNTIME run \
         --rm "$PHPCTL_TTY" \
+        --name "phpctl_$(openssl rand -hex 6)" \
         -e COMPOSER_AUTH="$COMPOSER_AUTH" \
         -v /var/run/docker.sock:/var/run/docker.sock \
         -v ~/.gitconfig:/root/.gitconfig \
