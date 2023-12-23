@@ -1,0 +1,14 @@
+{
+  "name": "phpctl/examples",
+  "description": "Example on using box with phpctl",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "leocavalcante",
+      "email": "lc@leocavalcante.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "bin": ["main"]
+}
