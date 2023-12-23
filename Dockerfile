@@ -30,7 +30,6 @@ RUN apk add --update --no-cache \
         php${PHP}-pecl-swoole \
         php${PHP}-pecl-xdebug \
     && ln -sf /usr/bin/php${PHP} /usr/bin/php \
-    && mv /etc/php/php.ini /etc/php${PHP}/conf.d/99_phpctl.ini \
-    && rm -rf /var/cache/apk/*
+    && mv /etc/php/php.ini /etc/php${PHP}/conf.d/99_phpctl.ini
 ENTRYPOINT [ "/usr/bin/php" ]
 CMD [ "-v" ]
