@@ -9,6 +9,7 @@ symlink() {
     sudo ln -sf "${INSTALL_DIR}/bin/phpctl"       /usr/local/bin/pctl
     sudo ln -sf "${INSTALL_DIR}/bin/phpctl"       /usr/local/bin/phpctl
     sudo ln -sf "${INSTALL_DIR}/bin/phpstan"      /usr/local/bin/phpstan
+    sudo ln -sf "${INSTALL_DIR}/bin/infection"    /usr/local/bin/infection
     sudo ln -sf "${INSTALL_DIR}/bin/phpunit"      /usr/local/bin/phpunit
 }
 
@@ -33,5 +34,6 @@ else
     echo "  sudo ln -sf ${INSTALL_DIR}/bin/phpunit      /usr/local/bin/phpunit"
     echo "  sudo ln -sf ${INSTALL_DIR}/bin/php-cs-fixer /usr/local/bin/php-cs-fixer"
     echo "  sudo ln -sf ${INSTALL_DIR}/bin/phpstan      /usr/local/bin/phpstan"
+    echo "  sudo ln -sf ${INSTALL_DIR}/bin/infection    /usr/local/bin/infection"
     echo ""
 fi

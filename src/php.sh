@@ -47,3 +47,12 @@ phpstan() {
 
     run -- vendor/bin/phpstan ${@}
 }
+
+infection() {
+    if [ ! -f vendor/bin/infection ]; then
+        echo "Infection not found. Installing..."
+        run -- composer require --dev infection/infection
+    fi;
+
+    run -- vendor/bin/infection ${@}
+}
