@@ -2,7 +2,7 @@ ARG ALPINE=3.19
 FROM alpine:${ALPINE}
 ARG PHP
 COPY rootfs /
-RUN apk add --no-cache \
+RUN apk add --update --no-cache \
         git \
         docker-cli \
         php${PHP}-cli \
