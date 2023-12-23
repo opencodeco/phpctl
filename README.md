@@ -55,12 +55,13 @@ phpctl sh echo 'Hello, World!' # To run arbitrary sh commands inside the contain
 ### Useful 
 | Command         | Description                                                         |
 |-----------------|---------------------------------------------------------------------|
-| `phpunit`       | Runs PHPUnit.                                                       |
+| `phpunit`       | Runs [PHPUnit](https://phpunit.de/).                                |
 | `sh [commands]` | Starts an interactive Shell session or runs `sh` commands.          |
 | `repl`          | Starts a PHP REPL session (powered by [PsySH](https://psysh.org/)). |
-| `php-cs-fixer`  | Runs PHP-CS-Fixer.                                                  |
-| `phpstan`       | Runs PHPStan.                                                       |
+| `php-cs-fixer`  | Runs [PHP-CS-Fixer](https://cs.symfony.com/).                       |
+| `phpstan`       | Runs [PHPStan](https://phpstan.org/).                               |
 | `infection`     | Runs [Infection](https://infection.github.io/).                     |
+| `box`           | Runs [Box](https://github.com/box-project/box).                     |
 
 ### Scaffolders
 | Command                    | Description                                                   |
@@ -73,6 +74,7 @@ phpctl sh echo 'Hello, World!' # To run arbitrary sh commands inside the contain
 - `php-cs-fixer`
 - `phpstan`
 - `infection`
+- `box`
 
 ### Helpers
 | Command                      | Description                                                  |
