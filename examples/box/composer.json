@@ -10,5 +10,8 @@
     }
   ],
   "minimum-stability": "stable",
-  "bin": ["main"]
+  "bin": ["main"],
+  "require": {
+    "minicli/minicli": "^4.2"
+  }
 }

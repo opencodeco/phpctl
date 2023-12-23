@@ -1,6 +1,26 @@
 #!/usr/bin/env php
 <?php
 
-declare(strict_types=1);
+if(php_sapi_name() !== 'cli') {
+    exit;
+}
 
-echo "Hello, phpctl + box\n";
+require __DIR__ . '/vendor/autoload.php';
+
+use Minicli\App;
+
+$app = new App([
+    'app_path' => [
+        __DIR__ . '/app/Command',
+    ],
+    'theme' => '\Unicorn',
+    'debug' => false,
+]);
+
+$app->registerCommand('test', function () use ($app) {
+    $app->success('Hello World!' , false);
+    $app->info('With Background!' , true);
+    $app->error('Quitting!', false);
+});
+
+$app->runCommand($argv);
