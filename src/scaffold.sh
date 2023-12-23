@@ -33,6 +33,9 @@ init() {
         "infection")
             skeleton="infection.json5"
             ;;
+        "box")
+            skeleton="box.json"
+            ;;
         *)
             echo -e "\033[0;31mSkeleton ($skeleton_alias) not handled.\033[0m"
             exit 1
