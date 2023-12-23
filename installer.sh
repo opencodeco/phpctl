@@ -14,7 +14,9 @@ symlink() {
 }
 
 echo "\033[0;33mInstalling phpctl at \033[0m$INSTALL_DIR"
-rm -rf $INSTALL_DIR
+if [ -d "$INSTALL_DIR" ]; then
+    rm -ri $INSTALL_DIR
+fi
 git clone --quiet https://github.com/opencodeco/phpctl.git $INSTALL_DIR
 
 echo "Sudo will be prompted to symlink the phpctl files. \033[0;32mDo you want to continue? (y/n)\033[0m"
