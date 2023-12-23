@@ -2,7 +2,7 @@ ARG ALPINE=3.19
 FROM alpine:${ALPINE}
 ARG PHP
 COPY rootfs /
-RUN apk add --no-cache \
+RUN apk add --update --no-cache \
         git \
         docker-cli \
         php${PHP}-cli \
@@ -30,7 +30,6 @@ RUN apk add --no-cache \
         php${PHP}-pecl-swoole \
         php${PHP}-pecl-xdebug \
     && ln -sf /usr/bin/php${PHP} /usr/bin/php \
-    && mv /etc/php/php.ini /etc/php${PHP}/conf.d/99_phpctl.ini \
-    && rm -rf /var/cache/apk/*
+    && mv /etc/php/php.ini /etc/php${PHP}/conf.d/zzphp.ini
 ENTRYPOINT [ "/usr/bin/php" ]
 CMD [ "-v" ]
