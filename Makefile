@@ -18,3 +18,4 @@ install:
 	@sudo ln -sf $(shell pwd)/bin/phpctl        /usr/local/bin/phpctl
 	@sudo ln -sf $(shell pwd)/bin/phpstan       /usr/local/bin/phpstan
 	@sudo ln -sf $(shell pwd)/bin/phpunit       /usr/local/bin/phpunit
+	@sudo ln -sf $(shell pwd)/bin/infection     /usr/local/bin/infection

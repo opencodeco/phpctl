@@ -1,0 +1,13 @@
+{
+    "source": {
+        "directories": ["src"]
+    },
+    "timeout": 10,
+    "logs": {
+        "text": "infection.log"
+    },
+    "mutators": {},
+    "testFramework": "phpunit",
+    "bootstrap": "vendor/autoload.php",
+    "minMsi": 0
+}

@@ -30,6 +30,9 @@ init() {
         "phpstan")
                     skeleton="phpstan.neon"
                     ;;
+        "infection")
+            skeleton="infection.json5"
+            ;;
         *)
             echo -e "\033[0;31mSkeleton ($skeleton_alias) not handled.\033[0m"
             exit 1
