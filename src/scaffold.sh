@@ -28,8 +28,8 @@ init() {
             skeleton=".php-cs-fixer.php"
             ;;
         "phpstan")
-                    skeleton="phpstan.neon"
-                    ;;
+            skeleton="phpstan.neon"
+            ;;
         "infection")
             skeleton="infection.json5"
             ;;
