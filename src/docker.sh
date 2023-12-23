@@ -12,6 +12,7 @@ push() {
 }
 
 pull() {
+    echo -e "Pulling \033[0;32m$PHPCTL_IMAGE\033[0m"
     $PHPCTL_RUNTIME pull "$PHPCTL_IMAGE"
 }
 
