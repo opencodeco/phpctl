@@ -1,4 +1,4 @@
-IMAGE=docker.io/leocavalcante/phpctl-bundle-example
+IMAGE=docker.io/opencodeco/phpctl-bundle-example
 
 phpctl-bundle: clean
 	phpctl bundle $(IMAGE) phpctl-bundle main.php

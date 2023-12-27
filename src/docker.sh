@@ -28,7 +28,7 @@ run() {
         $(env | awk -F= '/^[[:alpha:]]/{print $1}' | sed 's/^/-e/') \
         -v /var/run/docker.sock:/var/run/docker.sock \
         -v ~/.gitconfig:/root/.gitconfig \
-        -v "$(pwd)":/opt -w /opt \
+        -v "$(pwd)":/usr/local/src -w /usr/local/src \
         --net host --entrypoint sh \
         ${args[@]} $1 "$PHPCTL_IMAGE" -c "${*:2}"
 }

@@ -7,8 +7,8 @@
     A good place would be /usr/local/bin.
 '
 docker run \
-    -w /workdir \
-    -v $PWD:/workdir \
+    -w /usr/local/src \
+    -v $PWD:/usr/local/src \
     --net host \
     $(env | awk -F= '/^[[:alpha:]]/{print $1}' | sed 's/^/-e/') \
     --rm -it IMAGE $@
