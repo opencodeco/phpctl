@@ -31,6 +31,7 @@ help() {
     echo -e "\033[0;32m  create [framework] [dir]   \033[0m Creates a new project using the given framework (or package)"
     echo -e "\033[0;32m  init [skeleton]            \033[0m Initializes a skeleton configuration (phpunit, php-cs-fixer)"
     echo -e "\033[0;32m  box                        \033[0m Runs Box (PHAR builder)"
+    echo -e "\033[0;32m  bundle                     \033[0m Bundles a PHP project into a Docker image"
     echo -e "\033[0;32m  help or man                \033[0m Displays this help message"
     echo -e "\033[0;32m  self-update                \033[0m Updates phpctl itself"
     echo -e "\033[0;32m  doctor                     \033[0m Inspects the current PHP_VERSION and PHPCTL_IMAGE"
