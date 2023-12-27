@@ -27,6 +27,12 @@ Take the advantage of goodie commands like `phpctl create` to start a new projec
 sh <(wget -qO- https://raw.githubusercontent.com/opencodeco/phpctl/main/installer.sh)
 ```
 
+#### Update
+You can re-run the installer or use the `self-update` command:
+```shell
+phpctl self-update
+```
+
 ## Usage
 Then you can use `phpctl` or `pctl` with a subcommand:
 ```shell
@@ -77,12 +83,13 @@ phpctl sh echo 'Hello, World!' # To run arbitrary sh commands inside the contain
 - `box`
 
 ### Helpers
-| Command                      | Description                                                  |
-|------------------------------|--------------------------------------------------------------|
-| `help` or `man`              | Displays a help message.                                     |
-| `doctor`                     | Inspects the current `PHP_VERSION` and `PHPCTL_IMAGE`.       |
-| `build`                      | Builds the current `Dockerfile` (useful for custom images).  |
-| `images`                     | Shows local `phpctl` images.                                 |
+| Command         | Description                                                 |
+|-----------------|-------------------------------------------------------------|
+| `help` or `man` | Displays a help message.                                    |
+| `self-update`   | Updates `phpctl` iself.                                     |
+| `doctor`        | Inspects the current `PHP_VERSION` and `PHPCTL_IMAGE`.      |
+| `build`         | Builds the current `Dockerfile` (useful for custom images). |
+| `images`        | Shows local `phpctl` images.                                |
 
 ## The `.phpctlrc` file
 You can also add a `.phpctlrc` file at project's root directory with some overrides like:
