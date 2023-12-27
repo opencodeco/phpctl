@@ -5,7 +5,7 @@ box() {
 bundle() {
     image="$1"
     alias="${image##*/}"
-    alias="${2-alias}"
+    alias="${2-$alias}"
     command="${3-index.php}"
     entrypoint="${4-php}"
     from="${5-opencodeco/phpctl:php82}"
