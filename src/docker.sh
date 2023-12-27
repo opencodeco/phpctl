@@ -25,7 +25,7 @@ run() {
     $PHPCTL_RUNTIME run \
         --rm "$PHPCTL_TTY" \
         --name "phpctl_$(openssl rand -hex 6)" \
-        -e COMPOSER_AUTH="$COMPOSER_AUTH" \
+        $(env | awk -F= '/^[[:alpha:]]/{print $1}' | sed 's/^/-e/') \
         -v /var/run/docker.sock:/var/run/docker.sock \
         -v ~/.gitconfig:/root/.gitconfig \
         -v "$(pwd)":/opt -w /opt \
