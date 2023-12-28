@@ -18,6 +18,9 @@ Take the advantage of goodie commands like `phpctl create` to start a new projec
 
 ## Getting started
 
+> [!TIP]  
+> Pro-tip: use it with [`stack`](https://github.com/opencodeco/stack) to spin up infrastructure components like MySQL, Redis, RabbitMQ etc.
+
 ### Requirements
 - Git
 - Docker
