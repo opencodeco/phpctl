@@ -6,7 +6,7 @@
     Move this script file to somewhere in your PATH to make it available as a command.
     A good place would be /usr/local/bin.
 '
-docker run \
+${CONTAINER_RUNTIME-docker} run \
     -w /usr/local/src \
     -v $PWD:/usr/local/src \
     --net host \
