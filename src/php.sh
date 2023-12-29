@@ -51,3 +51,12 @@ infection() {
 
     run -- vendor/bin/infection ${@}
 }
+
+pest() {
+    if [ ! -f vendor/bin/pest ]; then
+        echo "Pest not found. Installing..."
+        run -- composer require --dev pestphp/pest
+    fi;
+
+    run -- vendor/bin/pest ${@}
+}

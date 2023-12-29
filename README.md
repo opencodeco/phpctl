@@ -69,6 +69,7 @@ phpctl sh echo 'Hello, World!' # To run arbitrary sh commands inside the contain
 | `php-cs-fixer`  | Runs [PHP-CS-Fixer](https://cs.symfony.com/).                         |
 | `phpstan`       | Runs [PHPStan](https://phpstan.org/).                                 |
 | `infection`     | Runs [Infection](https://infection.github.io/).                       |
+| `pest`          | Runs [Pest](https://pestphp.com/).                                    |
 | `box`           | Runs [Box](https://github.com/box-project/box).                       |
 | `bundle`        | Bundles a project into an image and ships it as a single binary file. |
 

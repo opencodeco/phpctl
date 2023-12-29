@@ -19,3 +19,4 @@ install:
 	@sudo ln -sf $(shell pwd)/bin/phpstan       /usr/local/bin/phpstan
 	@sudo ln -sf $(shell pwd)/bin/phpunit       /usr/local/bin/phpunit
 	@sudo ln -sf $(shell pwd)/bin/infection     /usr/local/bin/infection
+	@sudo ln -sf $(shell pwd)/bin/pest          /usr/local/bin/pest
