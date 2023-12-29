@@ -10,16 +10,11 @@ repl() {
     run -- psysh
 }
 
-at() {
-    run "-p$1:$1" ${@:2}
-}
-
 server() {
     port=${1:-80}
     dir=${2:-.}
-    at "$port" php -S 0.0.0.0:"$port" -t "$dir"
+    run -- php -S 0.0.0.0:"$port" -t "$dir"
 }
-
 
 phpunit() {
     if [ ! -f vendor/bin/phpunit ]; then

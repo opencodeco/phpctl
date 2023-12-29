@@ -20,7 +20,6 @@ help() {
     echo -e "\033[0;33mAvailable commands:\033[0m"
     echo -e "\033[0;32m  php                        \033[0m Runs PHP commands"
     echo -e "\033[0;32m  composer                   \033[0m Runs Composer commands"
-    echo -e "\033[0;32m  at [port] [command]        \033[0m Runs commands within a bound port"
     echo -e "\033[0;32m  server [port] [directory]  \033[0m Runs PHP's built-in web server (default port is 80 and default directory is current .)"
     echo -e "\033[0;32m  phpunit                    \033[0m Runs PHPUnit)"
     echo -e "\033[0;32m  sh [commands]              \033[0m Starts an interactive Shell session or runs sh commands"

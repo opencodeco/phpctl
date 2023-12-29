@@ -58,7 +58,6 @@ phpctl sh echo 'Hello, World!' # To run arbitrary sh commands inside the contain
 |-----------------------------|---------------------------------------------------------------------------------------------|
 | `php`                       | **Runs PHP commands** (`phpctl php -v` or `phpctl php -m`).                                 |
 | `composer`                  | Runs Composer commands (`phpctl composer install` or `pctl composer validate`).             |
-| `at [port] [command]`       | Runs commands within a bound port (default port is `80`).                                   |
 | `server [port] [directory]` | Runs PHP's built-in web-server (default port is `80` and default directory is current `.`). |
 
 ### Useful 
