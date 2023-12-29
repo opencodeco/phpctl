@@ -1,13 +1,15 @@
+# shellcheck disable=SC2068
+
 php() {
     run -- php ${@--v}
 }
 
 composer() {
-    run -- composer $@
+    run -- composer ${@}
 }
 
 repl() {
-    run -- psysh
+    run -- psysh ${@}
 }
 
 server() {
@@ -59,4 +61,8 @@ pest() {
     fi;
 
     run -- vendor/bin/pest ${@}
+}
+
+pint() {
+    run -- pint ${@}
 }

@@ -28,6 +28,7 @@ help() {
     echo -e "\033[0;32m  phpstan                    \033[0m Runs PHPStan"
     echo -e "\033[0;32m  infection                  \033[0m Runs Infection, a PHP Mutation Testing Framework"
     echo -e "\033[0;32m  pest                       \033[0m Runs Pest"
+    echo -e "\033[0;32m  pint                       \033[0m Runs Pint"
     echo -e "\033[0;32m  create [framework] [dir]   \033[0m Creates a new project using the given framework (or package)"
     echo -e "\033[0;32m  init [skeleton]            \033[0m Initializes a skeleton configuration (phpunit, php-cs-fixer)"
     echo -e "\033[0;32m  box                        \033[0m Runs Box (PHAR builder)"

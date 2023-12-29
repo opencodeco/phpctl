@@ -68,8 +68,9 @@ phpctl sh echo 'Hello, World!' # To run arbitrary sh commands inside the contain
 | `repl`          | Starts a PHP REPL session (powered by [PsySH](https://psysh.org/)).   |
 | `php-cs-fixer`  | Runs [PHP-CS-Fixer](https://cs.symfony.com/).                         |
 | `phpstan`       | Runs [PHPStan](https://phpstan.org/).                                 |
-| `infection`     | Runs [Infection](https://infection.github.io/).                       |
-| `pest`          | Runs [Pest](https://pestphp.com/).                                    |
+| `infection`     | Runs [Infection](https://infection.github.io).                        |
+| `pest`          | Runs [Pest](https://pestphp.com).                                     |
+| `pint`          | Runs [Pint](https://github.com/laravel/pint).                         |
 | `box`           | Runs [Box](https://github.com/box-project/box).                       |
 | `bundle`        | Bundles a project into an image and ships it as a single binary file. |
 
