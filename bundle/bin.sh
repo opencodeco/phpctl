@@ -6,9 +6,10 @@
     Move this script file to somewhere in your PATH to make it available as a command.
     A good place would be /usr/local/bin.
 '
+# shellcheck disable=SC2046
 ${CONTAINER_RUNTIME-docker} run \
     -w /usr/local/src \
-    -v $PWD:/usr/local/src \
+    -v "$PWD":/usr/local/src \
     --net host \
     $(env | awk -F= '/^[[:alpha:]]/{print $1}' | sed 's/^/-e/') \
     --rm -it IMAGE $@

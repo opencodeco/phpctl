@@ -1,5 +1,6 @@
 build() {
     echo -e "Building \033[0;32m$PHPCTL_IMAGE\033[0m"
+    # shellcheck disable=SC2154
     $PHPCTL_RUNTIME build \
         --build-arg PHP="$PHP_VERSION" \
         --build-arg COMPOSER_AUTH="$COMPOSER_AUTH" \
@@ -22,6 +23,8 @@ images() {
 
 run() {
     echo -e "Running \033[0;32m$PHPCTL_IMAGE\033[0m"
+    # shellcheck disable=SC2046
+    # shellcheck disable=SC2154
     $PHPCTL_RUNTIME run \
         --rm "$PHPCTL_TTY" \
         --name "phpctl_$(openssl rand -hex 6)" \
@@ -30,5 +33,5 @@ run() {
         -v ~/.gitconfig:/root/.gitconfig \
         -v "$(pwd)":/usr/local/src -w /usr/local/src \
         --net host --entrypoint sh \
-        ${args[@]} $1 "$PHPCTL_IMAGE" -c "${*:2}"
+        ${args[@]} "$1" "$PHPCTL_IMAGE" -c "${*:2}"
 }

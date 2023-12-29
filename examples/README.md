@@ -4,5 +4,5 @@ Welcome to the `phpctl` examples page.
 
 Feel free to pick one to see how it is done:
  
-- [box](box/)
-- [bundle](bundle/)
+- [box](box)
+- [bundle](bundle)

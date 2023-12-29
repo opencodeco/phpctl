@@ -20,7 +20,7 @@ fi
 git clone --quiet https://github.com/opencodeco/phpctl.git $INSTALL_DIR
 
 echo "Sudo will be prompted to symlink the phpctl files. \033[0;32mDo you want to continue? (y/n)\033[0m"
-read answer
+read -r answer
 if [ "$answer" != "${answer#[Yy]}" ]; then
     symlink
 else

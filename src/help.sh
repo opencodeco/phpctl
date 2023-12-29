@@ -12,7 +12,7 @@ help() {
     echo -e "| . |   | . |  _|  _| |"
     echo -e "|  _|_|_|  _|___|_| |_|"
     echo -e "|_|     |_|            "
-    echo -e $(doctor)
+    echo -e "$(doctor)"
     echo -e ""
     echo -e "\033[0;33mUsage:\033[0m             "
     echo -e "  phpctl <command> [arguments]      "
