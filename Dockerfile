@@ -19,6 +19,7 @@ RUN apk add --update --no-cache \
         php${PHP}-phar \
         php${PHP}-posix \
         php${PHP}-simplexml \
+        php${PHP}-sqlite3 \
         php${PHP}-tokenizer \
         php${PHP}-xml \
         php${PHP}-xmlreader \
