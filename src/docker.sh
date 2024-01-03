@@ -26,6 +26,7 @@ run() {
     # shellcheck disable=SC2046
     # shellcheck disable=SC2154
     $PHPCTL_RUNTIME run \
+        --platform linux/x86_64 \
         --rm "$PHPCTL_TTY" \
         --name "phpctl_$(openssl rand -hex 6)" \
         $(env | awk -F= '/^[[:alpha:]]/{print $1}' | sed 's/^/-e/') \
