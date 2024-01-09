@@ -1,7 +1,3 @@
-box() {
-    run -- box $@
-}
-
 bundle() {
     image="$1"
     alias="${image##*/}"
