@@ -6,6 +6,10 @@ function test_couscous() {
     assert_contains "Couscous 1.10.0" "$(./bin/phpctl couscous --version)"
 }
 
+function test_exakat() {
+    assert_contains "Version : 2.6.2" "$(./bin/phpctl exakat version)"
+}
+
 function test_infection() {
     assert_contains "Infection - PHP Mutation Testing Framework version 0.27.9" "$(./bin/phpctl infection --version)"
 }
