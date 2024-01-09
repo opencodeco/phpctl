@@ -1,0 +1,77 @@
+#!/usr/bin/env sh
+
+box() {
+    echo "Installing Box"
+    wget -q https://github.com/box-project/box/releases/download/4.5.1/box.phar -O /usr/local/bin/box
+    chmod a+x /usr/local/bin/box
+}
+
+composer() {
+    echo "Installing Composer"
+    wget https://raw.githubusercontent.com/composer/getcomposer.org/76a7060ccb93902cd7576b67264ad91c8a2700e2/web/installer -O - -q | php -- --quiet
+    mv composer.phar /usr/local/bin/composer
+    chmod a+x /usr/local/bin/composer
+}
+
+couscous() {
+    echo "Installing Couscous"
+    wget -q https://github.com/CouscousPHP/Couscous/releases/download/1.10.0/couscous.phar -O /usr/local/bin/couscous
+    chmod a+x /usr/local/bin/couscous
+}
+
+exakat() {
+    echo "Installing Exakat"
+    wget -q https://www.exakat.io/versions/index.php?file=exakat-2.6.2.phar -O /usr/local/bin/exakat
+    chmod a+x /usr/local/bin/exakat
+}
+
+infection() {
+    echo "Installing Infection"
+    wget -q https://github.com/infection/infection/releases/download/0.27.9/infection.phar -O /usr/local/bin/infection
+    chmod a+x /usr/local/bin/infection
+}
+
+php_cs_fixer() {
+    echo "Installing PHP CS Fixer"
+    wget -q https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/releases/download/v3.46.0/php-cs-fixer.phar -O /usr/local/bin/php-cs-fixer
+    chmod a+x /usr/local/bin/php-cs-fixer
+}
+
+phpstan() {
+    echo "Installing PHPStan"
+    wget -q https://github.com/phpstan/phpstan/releases/download/1.10.55/phpstan.phar -O /usr/local/bin/phpstan
+    chmod a+x /usr/local/bin/phpstan
+}
+
+phpunit() {
+    echo "Installing PHPUnit"
+    wget -q https://phar.phpunit.de/phpunit-10.phar -O /usr/local/bin/phpunit
+    chmod a+x /usr/local/bin/phpunit
+}
+
+pint() {
+    echo "Installing Pint"
+    wget -q https://github.com/laravel/pint/releases/download/v1.13.7/pint.phar -O /usr/local/bin/pint
+    chmod a+x /usr/local/bin/pint
+}
+
+psysh() {
+    echo "Installing PsySH"
+    wget -q https://psysh.org/psysh -O /usr/local/bin/psysh
+    chmod a+x /usr/local/bin/psysh
+}
+
+install() {
+    box
+    composer
+    couscous
+    exakat
+    infection
+    php_cs_fixer
+    phpstan
+    phpunit
+    pint
+    psysh
+}
+
+install
