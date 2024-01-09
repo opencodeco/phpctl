@@ -14,6 +14,14 @@ couscous() {
     fi;
 }
 
+exakat() {
+    if [ -f vendor/bin/exakat ]; then
+        run -- vendor/bin/exakat ${@}
+    else
+        run -- exakat ${@}
+    fi;
+}
+
 infection() {
     if [ -f vendor/bin/infection ]; then
         run -- vendor/bin/infection ${@}
