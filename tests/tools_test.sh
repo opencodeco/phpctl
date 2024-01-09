@@ -7,7 +7,7 @@ function test_couscous() {
 }
 
 function test_infection() {
-    assert_contains "Infection - PHP Mutation Testing Framework version 0.27.0" "$(./bin/phpctl infection --version)"
+    assert_contains "Infection - PHP Mutation Testing Framework version 0.27.9" "$(./bin/phpctl infection --version)"
 }
 
 function test_php_cs_fixer() {
