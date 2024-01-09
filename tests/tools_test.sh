@@ -1,5 +1,5 @@
 function test_box() {
-    assert_contains "Box version 4.6.1" "$(./bin/phpctl box --version)"
+    assert_contains "Box version 4.5.1" "$(./bin/phpctl box --version)"
 }
 
 function test_couscous() {
