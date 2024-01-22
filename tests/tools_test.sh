@@ -23,7 +23,7 @@ function test_phpstan() {
 }
 
 function test_phpunit() {
-    assert_contains "PHPUnit 10.5.5" "$(./bin/phpctl phpunit --version)"
+    assert_contains "PHPUnit 10.5.8" "$(./bin/phpctl phpunit --version)"
 }
 
 function test_pint() {
