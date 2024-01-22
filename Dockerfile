@@ -25,6 +25,7 @@ RUN apk add --update --no-cache \
         php${PHP}-xml \
         php${PHP}-xmlreader \
         php${PHP}-xmlwriter \
+        php${PHP}-zip \
         php${PHP}-pecl-mongodb \
         php${PHP}-pecl-pcov \
         php${PHP}-pecl-rdkafka \
