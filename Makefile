@@ -22,3 +22,4 @@ install:
 	@sudo ln -sf $(shell pwd)/bin/pest          /usr/local/bin/pest
 	@sudo ln -sf $(shell pwd)/bin/pint          /usr/local/bin/pint
 	@sudo ln -sf $(shell pwd)/bin/exakat        /usr/local/bin/exakat
+	@sudo ln -sf $(shell pwd)/bin/frankenphp    /usr/local/bin/frankenphp

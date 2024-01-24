@@ -14,6 +14,7 @@ symlink() {
     sudo ln -sf "${INSTALL_DIR}/bin/pest"         /usr/local/bin/pest
     sudo ln -sf "${INSTALL_DIR}/bin/pint"         /usr/local/bin/pint
     sudo ln -sf "${INSTALL_DIR}/bin/exakat"       /usr/local/bin/exakat
+    sudo ln -sf "${INSTALL_DIR}/bin/frankenphp"   /usr/local/bin/frankenphp
 }
 
 echo "\033[0;33mInstalling phpctl at \033[0m$INSTALL_DIR"
@@ -43,5 +44,6 @@ else
     echo "  sudo ln -sf ${INSTALL_DIR}/bin/pest         /usr/local/bin/pest"
     echo "  sudo ln -sf ${INSTALL_DIR}/bin/pint         /usr/local/bin/pint"
     echo "  sudo ln -sf ${INSTALL_DIR}/bin/exakat       /usr/local/bin/exakat"
+    echo "  sudo ln -sf ${INSTALL_DIR}/bin/frankenphp   /usr/local/bin/frankenphp"
     echo ""
 fi
