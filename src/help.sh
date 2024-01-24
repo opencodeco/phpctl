@@ -42,4 +42,5 @@ help() {
     echo -e "\033[0;32m  box                        \033[0m Runs Box (PHAR builder)"
     echo -e "\033[0;32m  exakat                     \033[0m Runs Exakat"
     echo -e "\033[0;32m  frankenphp                 \033[0m Runs FrankenPHP"
+    echo -e ""
 }

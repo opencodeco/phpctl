@@ -59,13 +59,9 @@ phpctl sh echo 'Hello, World!' # To run arbitrary sh commands inside the contain
 | `php`                       | **Runs PHP commands** (`phpctl php -v` or `phpctl php -m`).                                 |
 | `composer`                  | Runs Composer commands (`phpctl composer install` or `pctl composer validate`).             |
 | `server [port] [directory]` | Runs PHP's built-in web-server (default port is `80` and default directory is current `.`). |
-
-### Useful 
-| Command         | Description                                                           |
-|-----------------|-----------------------------------------------------------------------|
-| `sh [commands]` | Starts an interactive Shell session or runs `sh` commands.            |
-| `repl`          | Starts a PHP REPL session (powered by [PsySH](https://psysh.org/)).   |
-| `bundle`        | Bundles a project into an image and ships it as a single binary file. |
+| `sh [commands]`             | Starts an interactive Shell session or runs `sh` commands.                                  |
+| `repl`                      | Starts a PHP REPL session (powered by [PsySH](https://psysh.org/)).                         |
+| `bundle`                    | Bundles a project into an image and ships it as a single binary file.                       |
 
 ### Tools
 | Command        | Description                                     |
