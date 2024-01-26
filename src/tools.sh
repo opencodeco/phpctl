@@ -65,3 +65,7 @@ pint() {
         run -- pint ${@}
     fi;
 }
+
+rector() {
+    run -- vendor/bin/rector ${@}
+}
