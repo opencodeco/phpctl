@@ -75,6 +75,7 @@ phpctl sh echo 'Hello, World!' # To run arbitrary sh commands inside the contain
 | `box`          | Runs [Box](https://github.com/box-project/box). |
 | `exakat`       | Runs [Exakat](https://www.exakat.io)            |
 | `frankenphp`   | Runs [FrankenPHP](https://frankenphp.dev)       |
+| `rector`       | Runs [Rector](https://getrector.com)            |
 
 ### Scaffolders
 | Command                    | Description                                                   |
