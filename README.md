@@ -14,7 +14,7 @@
 ## Introduction
 
 **Frictionless PHP Development!** Seamlessly run and switch between different versions of PHP, with different installed extensions, thanks to the power of containers.
-Take the advantage of goodie commands like `phpctl create` to start a new project, `phpctl repl` to start a REPL, `phpclt init` to initialize a new configuration file **and a lot more**.
+Take the advantage of goodie commands like `phpctl create` to start a new project, `phpctl repl` to start a REPL, `phpctl init` to initialize a new configuration file **and a lot more**.
 
 ## Getting started
 

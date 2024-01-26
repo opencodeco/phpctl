@@ -1,6 +1,6 @@
 # Box
 
-To use `box` with `phpctl` you can simply `phpclt box` like:
+To use `box` with `phpctl` you can simply `phpctl box` like:
 ```shell
 phpctl box compile
 ```

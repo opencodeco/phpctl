@@ -28,7 +28,7 @@ read -r answer
 if [ "$answer" != "${answer#[Yy]}" ]; then
     symlink
 else
-    echo "\033[0;31mTo use phpclt globally, link the cloned script to your bin directory, like:\033[0m"
+    echo "\033[0;31mTo use phpctl globally, link the cloned script to your bin directory, like:\033[0m"
     echo ""
     echo "  sudo ln -sf ${INSTALL_DIR}/bin/php          /usr/local/bin/php"
     echo "  sudo ln -sf ${INSTALL_DIR}/bin/composer     /usr/local/bin/composer"
