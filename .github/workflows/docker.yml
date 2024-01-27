@@ -1,4 +1,4 @@
-name: CI
+name: Docker
 
 on:
   pull_request:
@@ -54,11 +54,3 @@ jobs:
           push: true
           build-args: PHP=${{ matrix.php }}
           tags: opencodeco/phpctl:php${{ matrix.php }}
-      -
-        name: Build and push (FrankenPHP)
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: frankenphp.Dockerfile
-          push: true
-          tags: opencodeco/phpctl:frankenphp
