@@ -4,7 +4,11 @@
       <img alt="phpctl logo" src="https://github.com/opencodeco/phpctl/assets/183722/f241cca0-aa1d-4776-b4f7-ff17c3f11955">
     </td>
     <td>
-      <h1>phpctl <a href="https://github.com/opencodeco/phpctl/actions/workflows/ci.yml"><img alt="phpctl ci badge" src="https://github.com/opencodeco/phpctl/actions/workflows/ci.yml/badge.svg"></a></h1>
+      <h1>
+        phpctl
+        <a href="https://github.com/opencodeco/phpctl/actions/workflows/docker.yml"><img alt="phpctl docker badge" src="https://github.com/opencodeco/phpctl/actions/workflows/docker.yml/badge.svg"></a>
+        <a href="https://github.com/opencodeco/phpctl/actions/workflows/frankenphp.yml"><img alt="phpctl frankenphp badge" src="https://github.com/opencodeco/phpctl/actions/workflows/frankenphp.yml/badge.svg"></a>
+      </h1>
       <p>🐳 A Docker-based development environment for PHP 🐘</p>
       <blockquote>Heavily inspired by <a href="https://github.com/opencodeco/hfctl">opencodeco/hfctl</a>.</blockquote>
     </td>
