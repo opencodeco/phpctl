@@ -68,18 +68,18 @@ phpctl sh echo 'Hello, World!' # To run arbitrary sh commands inside the contain
 | `bundle`                    | Bundles a project into an image and ships it as a single binary file.                       |
 
 ### Tools
-| Command        | Description                                     |
-|----------------|-------------------------------------------------|
-| `phpunit`      | Runs [PHPUnit](https://phpunit.de/).            |
-| `php-cs-fixer` | Runs [PHP-CS-Fixer](https://cs.symfony.com/).   |
-| `phpstan`      | Runs [PHPStan](https://phpstan.org/).           |
-| `infection`    | Runs [Infection](https://infection.github.io).  |
-| `pest`         | Runs [Pest](https://pestphp.com).               |
-| `pint`         | Runs [Pint](https://github.com/laravel/pint).   |
-| `box`          | Runs [Box](https://github.com/box-project/box). |
-| `exakat`       | Runs [Exakat](https://www.exakat.io)            |
-| `frankenphp`   | Runs [FrankenPHP](https://frankenphp.dev)       |
-| `rector`       | Runs [Rector](https://getrector.com)            |
+| Command        | Description                                                                                                                   |
+|----------------|-------------------------------------------------------------------------------------------------------------------------------|
+| `phpunit`      | [PHPUnit](https://phpunit.de) is a programmer-oriented testing framework for PHP.                                             |
+| `php-cs-fixer` | [PHP Coding Standards Fixer (PHP CS Fixer)](https://cs.symfony.com/) fixes your code to follow standards.                     |
+| `phpstan`      | [PHPStan](https://phpstan.org/) finds bugs in your code without writing tests. It's open-source and free.                     |
+| `infection`    | [Infection](https://infection.github.io) is a Mutation Testing Framework.                                                     |
+| `pest`         | [Pest](https://pestphp.com) is a testing framework with a focus on simplicity.                                                |
+| `pint`         | [Pint](https://github.com/laravel/pint) is an opinionated PHP code style fixer for minimalists.                               |
+| `box`          | [Box](https://github.com/box-project/box): fast, zero config application bundler with PHARs.                                  |
+| `exakat`       | [Exakat](https://www.exakat.io) is a real time customizable static analyzer engine that analyse and fix code.                 |
+| `frankenphp`   | [FrankenPHP](https://frankenphp.dev): the Modern PHP App Server, written in Go.                                               |
+| `rector`       | [Rector](https://getrector.com) is a tool that you can run on any project to get an instant upgrade or automated refactoring. |
 
 ### Scaffolders
 | Command                    | Description                                                   |
