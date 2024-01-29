@@ -30,8 +30,14 @@ Take the advantage of goodie commands like `phpctl create` to start a new projec
 - Docker
 
 ### Install
+If you want to install it system-wide (at `/usr/local/bin`), run:
 ```shell
 sh <(wget -qO- https://raw.githubusercontent.com/opencodeco/phpctl/main/installer.sh)
+```
+
+You can also pass an argument to install at a custom location (e.g. `~/bin`), but you have to make sure that folder is in your `$PATH` variable.
+```shell
+sh <(wget -qO- https://raw.githubusercontent.com/opencodeco/phpctl/main/installer.sh) ~/bin
 ```
 
 #### Update
