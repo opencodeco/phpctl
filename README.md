@@ -149,6 +149,17 @@ You can use Podman instead of Docker by setting the `PHPCTL_RUNTIME` variable to
 PHPCTL_RUNTIME=podman phpctl php -v
 ```
 
+## The `phpctl.ini` file
+You can also add a `phpctl.ini` file at project's root directory to set any [`php.ini` directive](https://www.php.net/manual/en/ini.list.php).
+```ini
+memory_limit = 128M
+```
+
+```shell
+$ phpctl php -i | grep memory_limit
+memory_limit => 1337M => 1337M
+```
+
 ## Modules
 <details>
 <summary>For the default Docker image we have the following modules installed (click to expand).</summary>
