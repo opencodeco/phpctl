@@ -152,7 +152,7 @@ PHPCTL_RUNTIME=podman phpctl php -v
 ## The `phpctl.ini` file
 You can also add a `phpctl.ini` file at project's root directory to set any [`php.ini` directive](https://www.php.net/manual/en/ini.list.php).
 ```ini
-memory_limit = 128M
+memory_limit = 1337M
 ```
 
 ```shell
