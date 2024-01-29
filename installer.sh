@@ -30,8 +30,18 @@ if [ -d "$INSTALL_DIR" ]; then
     echo "The install directory is not empty. Attempting to remove it..."
     rm -rI $INSTALL_DIR
 fi
-git clone --quiet https://github.com/opencodeco/phpctl.git $INSTALL_DIR
 
+echo -n ""
+git clone --quiet https://github.com/opencodeco/phpctl.git $INSTALL_DIR &
+PID=$!
+while kill -0 $PID 2> /dev/null; do
+    for CHAR in '-' '/' '|' '\'; do
+        printf "\b$CHAR"
+        sleep 0.1
+    done
+done
+
+echo "\b "
 if [ -z "$1" ]; then
     echo -n "Sudo will be prompted to symlink the phpctl files."
 else
