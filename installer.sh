@@ -1,51 +1,74 @@
 #!/usr/bin/env sh
 
 INSTALL_DIR=~/.phpctl
+if [ -z "$1" ]; then
+    SUDO=sudo
+    SYMLINK_DIR=/usr/local/bin/
+else
+    SUDO=""
+    SYMLINK_DIR=$1
+fi
 
 symlink() {
-    sudo ln -sf "${INSTALL_DIR}/bin/composer"     /usr/local/bin/composer
-    sudo ln -sf "${INSTALL_DIR}/bin/php"          /usr/local/bin/php
-    sudo ln -sf "${INSTALL_DIR}/bin/php-cs-fixer" /usr/local/bin/php-cs-fixer
-    sudo ln -sf "${INSTALL_DIR}/bin/phpctl"       /usr/local/bin/pctl
-    sudo ln -sf "${INSTALL_DIR}/bin/phpctl"       /usr/local/bin/phpctl
-    sudo ln -sf "${INSTALL_DIR}/bin/phpstan"      /usr/local/bin/phpstan
-    sudo ln -sf "${INSTALL_DIR}/bin/infection"    /usr/local/bin/infection
-    sudo ln -sf "${INSTALL_DIR}/bin/phpunit"      /usr/local/bin/phpunit
-    sudo ln -sf "${INSTALL_DIR}/bin/pest"         /usr/local/bin/pest
-    sudo ln -sf "${INSTALL_DIR}/bin/pint"         /usr/local/bin/pint
-    sudo ln -sf "${INSTALL_DIR}/bin/exakat"       /usr/local/bin/exakat
-    sudo ln -sf "${INSTALL_DIR}/bin/frankenphp"   /usr/local/bin/frankenphp
-    sudo ln -sf "${INSTALL_DIR}/bin/rector"       /usr/local/bin/rector
+    $SUDO ln -sf "${INSTALL_DIR}/bin/composer"     "${SYMLINK_DIR}/composer"
+    $SUDO ln -sf "${INSTALL_DIR}/bin/php"          "${SYMLINK_DIR}/php"
+    $SUDO ln -sf "${INSTALL_DIR}/bin/php-cs-fixer" "${SYMLINK_DIR}/php-cs-fixer"
+    $SUDO ln -sf "${INSTALL_DIR}/bin/phpctl"       "${SYMLINK_DIR}/pctl"
+    $SUDO ln -sf "${INSTALL_DIR}/bin/phpctl"       "${SYMLINK_DIR}/phpctl"
+    $SUDO ln -sf "${INSTALL_DIR}/bin/phpstan"      "${SYMLINK_DIR}/phpstan"
+    $SUDO ln -sf "${INSTALL_DIR}/bin/infection"    "${SYMLINK_DIR}/infection"
+    $SUDO ln -sf "${INSTALL_DIR}/bin/phpunit"      "${SYMLINK_DIR}/phpunit"
+    $SUDO ln -sf "${INSTALL_DIR}/bin/pest"         "${SYMLINK_DIR}/pest"
+    $SUDO ln -sf "${INSTALL_DIR}/bin/pint"         "${SYMLINK_DIR}/pint"
+    $SUDO ln -sf "${INSTALL_DIR}/bin/exakat"       "${SYMLINK_DIR}/exakat"
+    $SUDO ln -sf "${INSTALL_DIR}/bin/frankenphp"   "${SYMLINK_DIR}/frankenphp"
+    $SUDO ln -sf "${INSTALL_DIR}/bin/rector"       "${SYMLINK_DIR}/rector"
 }
 
 echo "\033[0;33mInstalling phpctl at \033[0m$INSTALL_DIR"
 if [ -d "$INSTALL_DIR" ]; then
-    rm -ri $INSTALL_DIR
+    echo "The install directory is not empty. Attempting to remove it..."
+    rm -rI $INSTALL_DIR
 fi
-git clone --quiet https://github.com/opencodeco/phpctl.git $INSTALL_DIR
 
-echo "Sudo will be prompted to symlink the phpctl files. \033[0;32mDo you want to continue? (y/n)\033[0m"
+echo -n ""
+git clone --quiet https://github.com/opencodeco/phpctl.git $INSTALL_DIR &
+PID=$!
+while kill -0 $PID 2> /dev/null; do
+    for CHAR in '-' '/' '|' '\'; do
+        printf "\b$CHAR"
+        sleep 0.1
+    done
+done
+
+echo "\b "
+if [ -z "$1" ]; then
+    echo -n "Sudo will be prompted to symlink the phpctl files."
+else
+    echo -n "Files will be symlinked to ${SYMLINK_DIR}."
+fi
+echo -n " \033[0;32mDo you want to continue? (y/n)\033[0m "
 read -r answer
 if [ "$answer" != "${answer#[Yy]}" ]; then
     symlink
 else
     echo "\033[0;31mTo use phpctl globally, link the cloned script to your bin directory, like:\033[0m"
     echo ""
-    echo "  sudo ln -sf ${INSTALL_DIR}/bin/php          /usr/local/bin/php"
-    echo "  sudo ln -sf ${INSTALL_DIR}/bin/composer     /usr/local/bin/composer"
-    echo "  sudo ln -sf ${INSTALL_DIR}/bin/phpctl       /usr/local/bin/phpctl"
-    echo "  sudo ln -sf ${INSTALL_DIR}/bin/phpctl       /usr/local/bin/pctl"
+    echo "  ${SUDO} ln -sf ${INSTALL_DIR}/bin/php          ${SYMLINK_DIR}/php"
+    echo "  ${SUDO} ln -sf ${INSTALL_DIR}/bin/composer     ${SYMLINK_DIR}/composer"
+    echo "  ${SUDO} ln -sf ${INSTALL_DIR}/bin/phpctl       ${SYMLINK_DIR}/phpctl"
+    echo "  ${SUDO} ln -sf ${INSTALL_DIR}/bin/phpctl       ${SYMLINK_DIR}/pctl"
     echo ""
     echo "\033[0;31mYou can also complement with another useful binaries:\033[0m"
     echo ""
-    echo "  sudo ln -sf ${INSTALL_DIR}/bin/phpunit      /usr/local/bin/phpunit"
-    echo "  sudo ln -sf ${INSTALL_DIR}/bin/php-cs-fixer /usr/local/bin/php-cs-fixer"
-    echo "  sudo ln -sf ${INSTALL_DIR}/bin/phpstan      /usr/local/bin/phpstan"
-    echo "  sudo ln -sf ${INSTALL_DIR}/bin/infection    /usr/local/bin/infection"
-    echo "  sudo ln -sf ${INSTALL_DIR}/bin/pest         /usr/local/bin/pest"
-    echo "  sudo ln -sf ${INSTALL_DIR}/bin/pint         /usr/local/bin/pint"
-    echo "  sudo ln -sf ${INSTALL_DIR}/bin/exakat       /usr/local/bin/exakat"
-    echo "  sudo ln -sf ${INSTALL_DIR}/bin/frankenphp   /usr/local/bin/frankenphp"
-    echo "  sudo ln -sf ${INSTALL_DIR}/bin/rector       /usr/local/bin/rector"
+    echo "  ${SUDO} ln -sf ${INSTALL_DIR}/bin/phpunit      ${SYMLINK_DIR}/phpunit"
+    echo "  ${SUDO} ln -sf ${INSTALL_DIR}/bin/php-cs-fixer ${SYMLINK_DIR}/php-cs-fixer"
+    echo "  ${SUDO} ln -sf ${INSTALL_DIR}/bin/phpstan      ${SYMLINK_DIR}/phpstan"
+    echo "  ${SUDO} ln -sf ${INSTALL_DIR}/bin/infection    ${SYMLINK_DIR}/infection"
+    echo "  ${SUDO} ln -sf ${INSTALL_DIR}/bin/pest         ${SYMLINK_DIR}/pest"
+    echo "  ${SUDO} ln -sf ${INSTALL_DIR}/bin/pint         ${SYMLINK_DIR}/pint"
+    echo "  ${SUDO} ln -sf ${INSTALL_DIR}/bin/exakat       ${SYMLINK_DIR}/exakat"
+    echo "  ${SUDO} ln -sf ${INSTALL_DIR}/bin/frankenphp   ${SYMLINK_DIR}/frankenphp"
+    echo "  ${SUDO} ln -sf ${INSTALL_DIR}/bin/rector       ${SYMLINK_DIR}/rector"
     echo ""
 fi
