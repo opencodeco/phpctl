@@ -33,6 +33,7 @@ run() {
         -v /var/run/docker.sock:/var/run/docker.sock \
         -v ~/.gitconfig:/root/.gitconfig:ro \
         -v "$(pwd)":/usr/local/src -w /usr/local/src \
+        -v "$(pwd)"/phpctl.ini:/etc/php"$PHP_VERSION"/conf.d/zzzphp.ini \
         --net host --entrypoint sh \
         ${args[@]} "$1" "$PHPCTL_IMAGE" -c "${*:2}"
 }
