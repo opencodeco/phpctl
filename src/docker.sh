@@ -23,6 +23,12 @@ images() {
 
 run() {
     echo -e "Running \033[0;32m$PHPCTL_IMAGE\033[0m"
+
+    local phpctlini=""
+    if [ -s phpctl.ini ]; then
+        phpctlini="-v $(pwd)/phpctl.ini:/etc/php$PHP_VERSION/conf.d/zzzphp.ini"
+    fi
+
     # shellcheck disable=SC2046
     # shellcheck disable=SC2154
     $PHPCTL_RUNTIME run \
@@ -33,7 +39,7 @@ run() {
         -v /var/run/docker.sock:/var/run/docker.sock \
         -v ~/.gitconfig:/root/.gitconfig:ro \
         -v "$(pwd)":/usr/local/src -w /usr/local/src \
-        -v "$(pwd)"/phpctl.ini:/etc/php"$PHP_VERSION"/conf.d/zzzphp.ini \
+        $phpctlini \
         --net host --entrypoint sh \
         ${args[@]} "$1" "$PHPCTL_IMAGE" -c "${*:2}"
 }
