@@ -1,5 +1,6 @@
 build() {
     echo -e "Building \033[0;32m$PHPCTL_IMAGE\033[0m"
+    # shellcheck disable=SC2068
     # shellcheck disable=SC2154
     $PHPCTL_RUNTIME build \
         --build-arg PHP="$PHP_VERSION" \
@@ -24,12 +25,20 @@ images() {
 run() {
     echo -e "Running \033[0;32m$PHPCTL_IMAGE\033[0m"
 
-    local phpctlini=""
+    local phpctl_ini=""
     if [ -s phpctl.ini ]; then
-        phpctlini="-v $(pwd)/phpctl.ini:/etc/php$PHP_VERSION/conf.d/zzzphp.ini"
+        phpctl_ini="-v $(pwd)/phpctl.ini:/etc/php$PHP_VERSION/conf.d/zzzphp.ini"
+    fi
+
+    local composer_home=""
+    composer_home="$(composer-home)"
+    if [ -n "$composer_home" ]; then
+        composer_home="-v $composer_home:$composer_home"
     fi
 
     # shellcheck disable=SC2046
+    # shellcheck disable=SC2068
+    # shellcheck disable=SC2086
     # shellcheck disable=SC2154
     $PHPCTL_RUNTIME run \
         --platform linux/x86_64 \
@@ -39,7 +48,8 @@ run() {
         -v /var/run/docker.sock:/var/run/docker.sock \
         -v ~/.gitconfig:/root/.gitconfig:ro \
         -v "$(pwd)":/usr/local/src -w /usr/local/src \
-        $phpctlini \
+        $phpctl_ini \
+        $composer_home \
         --net host --entrypoint sh \
         ${args[@]} "$1" "$PHPCTL_IMAGE" -c "${*:2}"
 }
