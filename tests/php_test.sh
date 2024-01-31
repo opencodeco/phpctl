@@ -10,3 +10,9 @@ function test_php_accepts_arguments() {
 function test_composer() {
     assert_contains "version" "$(./bin/phpctl composer --version)"
 }
+
+function test_phpctl_ini() {
+    echo "memory_limit=1337M" > phpctl.ini
+    assert_contains "memory_limit => 1337M => 1337M" "$(./bin/phpctl php -i | grep memory_limit)"
+    rm phpctl.ini
+}
