@@ -23,7 +23,9 @@ images() {
 }
 
 run() {
-    echo -e "Running \033[0;32m$PHPCTL_IMAGE\033[0m"
+    if [ -n "$PHPCTL_VERBOSE" ]; then
+        echo -e "Running \033[0;32m$PHPCTL_IMAGE\033[0m"
+    fi
 
     local phpctl_ini=""
     if [ -s phpctl.ini ]; then
