@@ -11,7 +11,7 @@ run:
 
 .PHONY: install
 install:
-	sh <(wget -qO- https://raw.githubusercontent.com/opencodeco/phpctl/main/installer.sh)
+	sh <(wget -qO- https://phpctl.dev/install.sh)
 
 .PHONY: test
 test:
