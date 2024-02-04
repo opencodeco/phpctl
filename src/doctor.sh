@@ -1,4 +1,9 @@
 doctor() {
-    echo -e "\033[0;32mPHP_VERSION\033[0m=$PHP_VERSION"
-    echo -e "PHPCTL_IMAGE=\033[0;33m$PHPCTL_IMAGE\033[0m"
+    echo -e "PHP_VERSION=\033[0;32m$PHP_VERSION\033[0m"
+
+    for var in $(set | awk -F= '/^[[:alpha:]]/{print $1}'); do
+        if [[ $var == PHPCTL_* ]]; then
+            echo -e "$var=\033[0;32m${!var}\033[0m"
+        fi
+    done
 }
