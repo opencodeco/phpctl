@@ -38,7 +38,7 @@ if [ "$answer" != "${answer#[Yy]}" ]; then
 else
     echo "\033[0;31mTo use phpctl globally, link the cloned script to your bin directory, like:\033[0m"
     echo ""
-    for file in ./bin/*; do
+    for file in "${INSTALL_DIR}"/bin/*; do
         bin=$(basename "$file")
         echo "  ${SUDO} ln -sf ${INSTALL_DIR}/bin/$bin ${SYMLINK_DIR}/$bin"
     done
