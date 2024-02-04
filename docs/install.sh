@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 INSTALL_DIR=~/.phpctl
 if [ -z "$1" ]; then
