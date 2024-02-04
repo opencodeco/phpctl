@@ -35,5 +35,10 @@ RUN apk add --update --no-cache \
     && ln -sf /usr/bin/php${PHP} /usr/bin/php \
     && mv /etc/php/php.ini /etc/php${PHP}/conf.d/zzphp.ini \
     && /usr/local/bin/install-tools
+ARG HOST_USER
+RUN apk add doas; \
+    adduser ${HOST_USER}; \
+    echo "${HOST_USER}" | chpasswd; \
+    echo "permit ${HOST_USER} as root" > /etc/doas.d/doas.conf
 ENTRYPOINT [ "/usr/bin/php" ]
 CMD [ "-v" ]

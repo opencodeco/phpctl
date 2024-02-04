@@ -5,6 +5,7 @@ build() {
     $PHPCTL_RUNTIME build \
         --build-arg PHP="$PHP_VERSION" \
         --build-arg COMPOSER_AUTH="$COMPOSER_AUTH" \
+        --build-arg HOST_USER="$(whoami)" \
         ${build[@]} -t "$PHPCTL_IMAGE" .
 }
 
@@ -51,6 +52,7 @@ run() {
         --platform linux/x86_64 \
         --rm "$PHPCTL_TTY" \
         --name "phpctl_$(openssl rand -hex 6)" \
+        --user "$PHPCTL_USER" \
         $(env | awk -F= '/^[[:alpha:]]/{print $1}' | sed 's/^/-e/') \
         -v /var/run/docker.sock:/var/run/docker.sock \
         -v ~/.gitconfig:/root/.gitconfig:ro \

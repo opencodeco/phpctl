@@ -149,6 +149,13 @@ You can use Podman instead of Docker by setting the `PHPCTL_RUNTIME` variable to
 PHPCTL_RUNTIME=podman phpctl php -v
 ```
 
+### Host user
+
+By default, `phpctl` creates an user considering host user. You can change from `root` to host user through `PHPCTL_USER` variable.
+```shell
+PHPCTL_USER=your_user phpctl sh whoami
+```
+
 ## The `phpctl.ini` file
 You can also add a `phpctl.ini` file at project's root directory to set any [`php.ini` directive](https://www.php.net/manual/en/ini.list.php).
 ```ini
