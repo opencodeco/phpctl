@@ -34,7 +34,7 @@ fi
 echo -n " \033[0;32mDo you want to continue? (y/n)\033[0m "
 read -r answer
 if [ "$answer" != "${answer#[Yy]}" ]; then
-    $SUDO ${INSTALL_DIR}/scripts/symlink-bins.sh
+    $SUDO ${INSTALL_DIR}/scripts/symlink-bins.sh ${INSTALL_DIR}
 else
     echo "\033[0;31mTo use phpctl globally, link the cloned script to your bin directory, like:\033[0m"
     echo ""
