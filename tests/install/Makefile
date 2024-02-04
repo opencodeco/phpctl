@@ -3,7 +3,7 @@ default: build run
 
 .PHONY: build
 build:
-	docker build -t phpctl-alpine-test .
+	docker build -t phpctl-install-test -f ${OS}.Dockerfile .
 
 .PHONY: run
 run:
