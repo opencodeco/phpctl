@@ -10,6 +10,7 @@ PHP_VERSION=${PHP_VERSION:-82}
 PHPCTL_IMAGE=${PHPCTL_IMAGE:-opencodeco/phpctl:php$PHP_VERSION}
 PHPCTL_TTY=${PHPCTL_TTY:--it}
 PHPCTL_RUNTIME=${PHPCTL_RUNTIME:-docker}
+PHPCTL_USER=${PHPCTL_USER:-root}
 
 for file in "$PHPCTL_DIR"/src/*.sh; do
     # shellcheck source=src/php.sh
