@@ -11,9 +11,8 @@ run:
 
 .PHONY: install
 install:
-	wget -q https://phpctl.dev/phpctl-installer.sh
-	bash phpctl-installer.sh
-	rm phpctl-installer.sh
+	wget -q https://phpctl.dev/phpctl-installer.sh && \
+	bash phpctl-installer.sh && rm phpctl-installer.sh
 
 .PHONY: test
 test:

@@ -33,9 +33,8 @@ Take the advantage of goodie commands like `phpctl create` to start a new projec
 ### Install
 If you want to install it system-wide (at `/usr/local/bin`), run:
 ```shell
-wget -q https://phpctl.dev/phpctl-installer.sh
-bash phpctl-installer.sh
-rm phpctl-installer.sh
+wget -q https://phpctl.dev/phpctl-installer.sh && \
+bash phpctl-installer.sh && rm phpctl-installer.sh
 ```
 
 > [!TIP]
