@@ -3,15 +3,17 @@ default: build run
 
 .PHONY: build
 build:
-	docker build -t phpctl-install-test -f ${OS}.Dockerfile .
+	docker build -t phpctl-${OS}-test -f ${OS}.Dockerfile .
 
 .PHONY: run
 run:
-	docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock phpctl-alpine-test sh
+	docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock phpctl-${OS}-test bash
 
 .PHONY: install
 install:
-	sh <(wget -qO- https://phpctl.dev/install.sh)
+	wget -q https://phpctl.dev/phpctl-installer.sh
+	bash phpctl-installer.sh
+	rm phpctl-installer.sh
 
 .PHONY: test
 test:

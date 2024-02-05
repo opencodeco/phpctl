@@ -22,23 +22,27 @@ Take the advantage of goodie commands like `phpctl create` to start a new projec
 
 ## Getting started
 
-> [!TIP]  
+> [!TIP]
 > Pro-tip: use it with [`stack`](https://github.com/opencodeco/stack) to spin up infrastructure components like MySQL, Redis, RabbitMQ etc.
 
 ### Requirements
+- Bash
 - Git
 - Docker
 
 ### Install
 If you want to install it system-wide (at `/usr/local/bin`), run:
 ```shell
-sh <(wget -qO- https://phpctl.dev/install.sh)
+wget -q https://phpctl.dev/phpctl-installer.sh
+bash phpctl-installer.sh
+rm phpctl-installer.sh
 ```
 
-You can also pass an argument to install at a custom location (e.g. `~/bin`), but you have to make sure that folder is in your `$PATH` variable.
-```shell
-sh <(wget -qO- https://phpctl.dev/install.sh) ~/bin
-```
+> [!TIP]
+> You can also pass an argument to install at a custom location (e.g. `~/bin`), but you have to make sure that folder is in your `$PATH` variable.
+> ```shell
+> bash phpctl-installer.sh ~/bin
+> ```
 
 #### Update
 You can re-run the installer or use the `self-update` command:
