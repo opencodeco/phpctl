@@ -31,7 +31,7 @@ Take the advantage of goodie commands like `phpctl create` to start a new projec
 - Docker
 
 ### Install
-If you want to install it system-wide (at `/usr/local/bin`), run:
+You can install with default installer script for a system-wide (at `/usr/local/bin`), run:
 ```shell
 wget -q https://phpctl.dev/phpctl-installer.sh && \
 bash phpctl-installer.sh && rm phpctl-installer.sh
@@ -43,11 +43,18 @@ bash phpctl-installer.sh && rm phpctl-installer.sh
 > bash phpctl-installer.sh ~/bin
 > ```
 
+Homebrew
+`brew install opencodeco/phpctl/phpctl`
+
+Or add the `oppencodeco` tap with `brew tap opencodeco/phpctl` and then `brew install phpctl`
+
 #### Update
 You can re-run the installer or use the `self-update` command:
 ```shell
 phpctl self-update
 ```
+
+For those using Homebrew `brew upgrade opencodeco/phpctl/phpctl` or when run `brew update`
 
 ## Usage
 Then you can use `phpctl` or `pctl` with a subcommand:
