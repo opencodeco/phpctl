@@ -43,8 +43,10 @@ bash phpctl-installer.sh && rm phpctl-installer.sh
 > bash phpctl-installer.sh ~/bin
 > ```
 
-Homebrew
-`brew install opencodeco/phpctl/phpctl`
+#### Homebrew
+```shell
+brew install opencodeco/phpctl/phpctl
+```
 
 Or add the `oppencodeco` tap with `brew tap opencodeco/phpctl` and then `brew install phpctl`
 
