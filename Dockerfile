@@ -1,10 +1,8 @@
 ARG ALPINE=3.19
 FROM alpine:${ALPINE}
 ARG PHP
-ARG HOST_USER
 COPY rootfs /
 RUN apk add --update --no-cache \
-        doas \
         git \
         docker-cli \
         php${PHP}-cli \
@@ -36,10 +34,11 @@ RUN apk add --update --no-cache \
         php${PHP}-pecl-xdebug \
     && ln -sf /usr/bin/php${PHP} /usr/bin/php \
     && mv /etc/php/php.ini /etc/php${PHP}/conf.d/zzphp.ini \
-    && /usr/local/bin/install-tools \
-    && adduser ${HOST_USER} \
-    && echo "${HOST_USER}" | chpasswd \
-    && echo "permit ${HOST_USER} as root" > /etc/doas.d/doas.conf \
-    && stty -onocr
+    && /usr/local/bin/install-tools
+ARG HOST_USER
+RUN apk add doas; \
+    adduser ${HOST_USER}; \
+    echo "${HOST_USER}" | chpasswd; \
+    echo "permit ${HOST_USER} as root" > /etc/doas.d/doas.conf
 ENTRYPOINT [ "/usr/bin/php" ]
 CMD [ "-v" ]
