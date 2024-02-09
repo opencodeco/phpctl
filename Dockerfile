@@ -38,7 +38,7 @@ RUN apk add --update --no-cache \
     && mv /etc/php/php.ini /etc/php${PHP}/conf.d/zzphp.ini \
     && /usr/local/bin/install-tools \
     && adduser ${HOST_USER} \
-    && "${HOST_USER}" | chpasswd \
+    && echo "${HOST_USER}" | chpasswd \
     && echo "permit ${HOST_USER} as root" > /etc/doas.d/doas.conf \
     && stty -onocr
 ENTRYPOINT [ "/usr/bin/php" ]
