@@ -7,7 +7,7 @@ build:
 
 .PHONY: test
 test:
-	@PHPCTL_TTY=--label=no-tty COMPOSER_AUTH= TERM= ./lib/bashunit ./tests/
+	@COMPOSER_AUTH= TERM= notty ./lib/bashunit ./tests/
 
 .PHONY: install
 install:
