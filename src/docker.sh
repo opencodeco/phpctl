@@ -57,6 +57,7 @@ run() {
         -v /var/run/docker.sock:/var/run/docker.sock \
         -v ~/.gitconfig:/root/.gitconfig:ro \
         -v "$(pwd)":/usr/local/src -w /usr/local/src \
+        -v "$PHPCTL_DIR/php.ini:/etc/php$PHP_VERSION/conf.d/zphp.ini" \
         $phpctl_ini \
         $composer_home \
         --net host --entrypoint sh \
