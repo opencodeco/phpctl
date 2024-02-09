@@ -34,7 +34,8 @@ RUN apk add --update --no-cache \
         php${PHP}-pecl-xdebug \
     && ln -sf /usr/bin/php${PHP} /usr/bin/php \
     && mv /etc/php/php.ini /etc/php${PHP}/conf.d/zzphp.ini \
-    && /usr/local/bin/install-tools
+    && /usr/local/bin/install-tools \
+    && stty -onlcr
 ARG HOST_USER
 RUN apk add doas; \
     adduser ${HOST_USER}; \
