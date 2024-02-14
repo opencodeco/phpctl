@@ -49,6 +49,7 @@ run() {
     # shellcheck disable=SC2086
     # shellcheck disable=SC2154
     $PHPCTL_RUNTIME run \
+        --init \
         --platform linux/x86_64 \
         --rm "$PHPCTL_TTY" \
         --name "phpctl_$(openssl rand -hex 6)" \
