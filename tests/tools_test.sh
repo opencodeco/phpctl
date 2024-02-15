@@ -7,7 +7,9 @@ function test_couscous() {
 }
 
 function test_exakat() {
-    assert_contains "Version : 2.6" "$(./bin/phpctl exakat version)"
+    if [ -n "$WITH_EXAKAT" ]; then
+        assert_contains "Version : 2.6" "$(./bin/phpctl exakat version)"
+    fi
 }
 
 function test_infection() {
@@ -28,4 +30,10 @@ function test_phpunit() {
 
 function test_pint() {
     assert_contains "Pint 1.13" "$(./bin/phpctl pint --version)"
+}
+
+function test_watchr() {
+    if [ -z "$WITHOUT_WATCHR" ]; then
+        assert_contains "watchr command-line utility v0.4.1@b1b8dd5" "$(./bin/phpctl watchr --version)"
+    fi
 }

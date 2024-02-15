@@ -61,17 +61,25 @@ psysh() {
     chmod a+x /usr/local/bin/psysh
 }
 
+watchr() {
+    echo "Installing watchr"
+    wget -q https://github.com/flavioheleno/watchr/releases/download/v0.4.1/watchr.phar -O /usr/local/bin/watchr
+    chmod a+x /usr/local/bin/watchr
+}
+
 install() {
     box
     composer
     couscous
-    exakat
+    [ -n "$WITH_EXAKAT" ] && exakat
     infection
     php_cs_fixer
     phpstan
     phpunit
     pint
     psysh
+    [ -z "$WITHOUT_WATCHR" ] && watchr
+    echo "Done!"
 }
 
 install

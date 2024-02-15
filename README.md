@@ -98,6 +98,7 @@ phpctl sh echo 'Hello, World!' # To run arbitrary sh commands inside the contain
 | `exakat`       | [Exakat](https://www.exakat.io) is a real time customizable static analyzer engine that analyse and fix code.                 |
 | `frankenphp`   | [FrankenPHP](https://frankenphp.dev): the Modern PHP App Server, written in Go.                                               |
 | `rector`       | [Rector](https://getrector.com) is a tool that you can run on any project to get an instant upgrade or automated refactoring. |
+| `watchr`       | [watchr](https://github.com/flavioheleno/watchr): command-line utility to explore and validate domain names and certificates. |
 
 ### Scaffolders
 | Command                    | Description                                                   |
@@ -235,7 +236,7 @@ You can always use your custom image with the `PHPCTL_IMAGE` variable, but feel 
 ## Why it exists?
 > [!TIP]
 > After some years struggling with different PHP distributions into different operating systems, dealing with different PHP versions and sets of extensions,
-> I came out with `phpctl` to use the power of containers to seamlessly run PHP :elephant: for developement environments. 
+> I came out with `phpctl` to use the power of containers to seamlessly run PHP :elephant: for developement environments.
 
 ## Contributing
 Click here to read the [contributing guidelines](CONTRIBUTING.md).

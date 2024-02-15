@@ -43,5 +43,6 @@ help() {
     echo -e "\033[0;32m  exakat                     \033[0m Runs Exakat"
     echo -e "\033[0;32m  frankenphp                 \033[0m Runs FrankenPHP"
     echo -e "\033[0;32m  rector                     \033[0m Runs Rector"
+    echo -e "\033[0;32m  watchr                     \033[0m Runs watchr"
     echo -e ""
 }

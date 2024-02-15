@@ -69,3 +69,7 @@ pint() {
 rector() {
     run -- vendor/bin/rector ${@}
 }
+
+watchr() {
+    run -- watchr ${@}
+}
