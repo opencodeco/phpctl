@@ -29,3 +29,7 @@ function test_phpunit() {
 function test_pint() {
     assert_contains "Pint 1.13" "$(./bin/phpctl pint --version)"
 }
+
+function test_watchr() {
+    assert_contains "watchr command-line utility v0.4.1@b1b8dd5" "$(./bin/phpctl watchr --version)"
+}

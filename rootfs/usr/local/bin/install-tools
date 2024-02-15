@@ -61,6 +61,12 @@ psysh() {
     chmod a+x /usr/local/bin/psysh
 }
 
+watchr() {
+    echo "Installing watchr"
+    wget -q https://github.com/flavioheleno/watchr/releases/download/v0.4.1/watchr.phar -O /usr/local/bin/watchr
+    chmod a+x /usr/local/bin/watchr
+}
+
 install() {
     box
     composer
@@ -72,6 +78,7 @@ install() {
     phpunit
     pint
     psysh
+    watchr
 }
 
 install
