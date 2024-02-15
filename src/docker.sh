@@ -1,4 +1,14 @@
 build() {
+    local with_exakat=""
+    if [[ "$*" == *--with-exakat* ]]; then
+        with_exakat="--build-arg WITH_EXAKAT=1"
+    fi
+
+    local without_watchr=""
+    if [[ "$*" == *--without-watchr* ]]; then
+        without_watchr="--build-arg WITHOUT_WATCHR=1"
+    fi
+
     echo -e "Building \033[0;32m$PHPCTL_IMAGE\033[0m"
     # shellcheck disable=SC2068
     # shellcheck disable=SC2154
@@ -6,6 +16,8 @@ build() {
         --build-arg PHP="$PHP_VERSION" \
         --build-arg COMPOSER_AUTH="$COMPOSER_AUTH" \
         --build-arg HOST_USER="$(whoami)" \
+        $with_exakat \
+        $without_watchr \
         ${build[@]} -t "$PHPCTL_IMAGE" .
 }
 

@@ -11,10 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php:
-          - 81
-          - 82
-          - 83
+        include:
+          - php: 81
+            without-watchr: 1
+          - php: 82
+            without-watchr: ''
+          - php: 83
+            without-watchr: ''
     steps:
       -
         name: Checkout
@@ -37,13 +40,16 @@ jobs:
         with:
           context: .
           load: true
-          build-args: PHP=${{ matrix.php }}
+          build-args: |
+            PHP=${{ matrix.php }}
+            WITHOUT_WATCHR=${{ matrix.without-watchr }}
           tags: opencodeco/phpctl:php${{ matrix.php }}
       -
         name: Test
         env:
           PHP_VERSION: ${{ matrix.php }}
           PHPCTL_TTY: --label=no-tty
+          WITHOUT_WATCHR: ${{ matrix.without-watchr }}
         run: |
           ./lib/bashunit ./tests/
       -

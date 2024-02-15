@@ -71,14 +71,15 @@ install() {
     box
     composer
     couscous
-    exakat
+    [ -n "$WITH_EXAKAT" ] && exakat
     infection
     php_cs_fixer
     phpstan
     phpunit
     pint
     psysh
-    watchr
+    [ -z "$WITHOUT_WATCHR" ] && watchr
+    echo "Done!"
 }
 
 install
