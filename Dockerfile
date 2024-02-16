@@ -43,21 +43,21 @@ RUN apk add --update --no-cache \
     && mv /etc/php/php.ini /etc/php${PHP}/conf.d/zzphp.ini \
     && /usr/local/bin/install-tools
 
-#SQL Server (Only PHP82)
-ENV PATCH_SHARE=/usr/local/share
+#SQL Server (Only PHP 8.2)
+ENV PATH_SHARE=/usr/local/share
 RUN if [ "$PHP" = "82" ]; then \
     apk add --update --no-cache php${PHP}-pear php${PHP}-dev build-base && \
-    wget --no-check-certificate http://pecl.php.net/get/pdo_sqlsrv -O ${PATCH_SHARE}/pdo_sqlsrv.tgz && \
-    wget --no-check-certificate http://pecl.php.net/get/sqlsrv -O ${PATCH_SHARE}/sqlsrv.tgz && \
+    wget --no-check-certificate http://pecl.php.net/get/pdo_sqlsrv -O ${PATH_SHARE}/pdo_sqlsrv.tgz && \
+    wget --no-check-certificate http://pecl.php.net/get/sqlsrv -O ${PATH_SHARE}/sqlsrv.tgz && \
     wget https://download.microsoft.com/download/3/5/5/355d7943-a338-41a7-858d-53b259ea33f5/msodbcsql18_18.3.2.1-1_amd64.apk && \
     wget https://download.microsoft.com/download/3/5/5/355d7943-a338-41a7-858d-53b259ea33f5/mssql-tools18_18.3.1.1-1_amd64.apk && \
     apk add --allow-untrusted msodbcsql18_18.3.2.1-1_amd64.apk && \
     apk add --allow-untrusted mssql-tools18_18.3.1.1-1_amd64.apk && \
     apk del $PHPIZE_DEPS &&  rm msodbcsql18_18.3.2.1-1_amd64.apk && rm mssql-tools18_18.3.1.1-1_amd64.apk && \
     apk add --no-cache --virtual .phpize-deps $PHPIZE_DEPS unixodbc-dev && \
-    pecl install -O ${PATCH_SHARE}/pdo_sqlsrv.tgz && echo "extension=pdo_sqlsrv.so" > /etc/php${PHP}/conf.d/pdo_sqlsrv.ini && \
-    pecl install -O ${PATCH_SHARE}/sqlsrv.tgz && echo "extension=sqlsrv.so" > /etc/php${PHP}/conf.d/sqlsrv.ini && \
-    rm ${PATCH_SHARE}/pdo_sqlsrv.tgz && rm ${PATCH_SHARE}/sqlsrv.tgz \
+    pecl install -O ${PATH_SHARE}/pdo_sqlsrv.tgz && echo "extension=pdo_sqlsrv.so" > /etc/php${PHP}/conf.d/pdo_sqlsrv.ini && \
+    pecl install -O ${PATH_SHARE}/sqlsrv.tgz && echo "extension=sqlsrv.so" > /etc/php${PHP}/conf.d/sqlsrv.ini && \
+    rm ${PATH_SHARE}/pdo_sqlsrv.tgz && rm ${PATH_SHARE}/sqlsrv.tgz \
     ;fi
 
 ARG HOST_USER
