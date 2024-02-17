@@ -42,6 +42,14 @@ php-cs-fixer() {
     fi;
 }
 
+phpmd() {
+    if [ -f vendor/bin/phpmd ]; then
+        run -- vendor/bin/phpmd ${@}
+    else
+        run -- phpmd ${@}
+    fi;
+}
+
 phpstan() {
     if [ -f vendor/bin/phpstan ]; then
         run -- vendor/bin/phpstan ${@}

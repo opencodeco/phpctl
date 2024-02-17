@@ -37,6 +37,12 @@ php_cs_fixer() {
     chmod a+x /usr/local/bin/php-cs-fixer
 }
 
+phpmd() {
+    echo "Installing PHP Mess Detector"
+    wget -q https://github.com/phpmd/phpmd/releases/download/2.15.0/phpmd.phar -O /usr/local/bin/phpmd
+    chmod a+x /usr/local/bin/phpmd
+}
+
 phpstan() {
     echo "Installing PHPStan"
     wget -q https://github.com/phpstan/phpstan/releases/download/1.10.55/phpstan.phar -O /usr/local/bin/phpstan
@@ -74,6 +80,7 @@ install() {
     [ -n "$WITH_EXAKAT" ] && exakat
     infection
     php_cs_fixer
+    phpmd
     phpstan
     phpunit
     pint
