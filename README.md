@@ -202,12 +202,15 @@ mbstring
 mongodb
 msgpack
 mysqlnd
+oci8
 openssl
 pcntl
 pcov
 pcre
 PDO
 pdo_mysql
+pdo_sqlsrv
+pdo_oci* (only php8.3)
 Phar
 posix
 random
@@ -221,6 +224,7 @@ sockets
 sodium
 SPL
 sqlite3
+sqlsrv
 standard
 swoole
 tokenizer
