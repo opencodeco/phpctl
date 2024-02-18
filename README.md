@@ -211,6 +211,9 @@ PDO
 pdo_mysql
 pdo_sqlsrv
 pdo_oci* (only php8.3)
+pdo_odbc
+pdo_pgsql 
+pdo_sqlite
 Phar
 posix
 random
