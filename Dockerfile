@@ -17,6 +17,7 @@ RUN apk add --update --no-cache \
         php${PHP}-dom \
         php${PHP}-fileinfo \
         php${PHP}-iconv \
+        php${PHP}-ldap \
         php${PHP}-mbstring \
         php${PHP}-mysqlnd \
         php${PHP}-openssl \
