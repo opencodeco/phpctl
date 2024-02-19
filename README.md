@@ -90,6 +90,7 @@ phpctl sh echo 'Hello, World!' # To run arbitrary sh commands inside the contain
 |----------------|-------------------------------------------------------------------------------------------------------------------------------|
 | `phpunit`      | [PHPUnit](https://phpunit.de) is a programmer-oriented testing framework for PHP.                                             |
 | `php-cs-fixer` | [PHP Coding Standards Fixer (PHP CS Fixer)](https://cs.symfony.com/) fixes your code to follow standards.                     |
+| `phpmd`        | [PHP Mess Detector](https://phpmd.org/) looks for several potential problems within your source code.                         |
 | `phpstan`      | [PHPStan](https://phpstan.org/) finds bugs in your code without writing tests. It's open-source and free.                     |
 | `infection`    | [Infection](https://infection.github.io) is a Mutation Testing Framework.                                                     |
 | `pest`         | [Pest](https://pestphp.com) is a testing framework with a focus on simplicity.                                                |

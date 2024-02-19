@@ -35,6 +35,7 @@ help() {
     echo -e "\033[0;33mTools:\033[0m"
     echo -e "\033[0;32m  phpunit                    \033[0m Runs PHPUnit"
     echo -e "\033[0;32m  php-cs-fixer               \033[0m Runs PHP-CS-Fixer"
+    echo -e "\033[0;32m  phpmd                      \033[0m Runs PHP Mess Detector"
     echo -e "\033[0;32m  phpstan                    \033[0m Runs PHPStan"
     echo -e "\033[0;32m  infection                  \033[0m Runs Infection, a PHP Mutation Testing Framework"
     echo -e "\033[0;32m  pest                       \033[0m Runs Pest"

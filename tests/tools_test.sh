@@ -20,6 +20,10 @@ function test_php_cs_fixer() {
     assert_contains "PHP CS Fixer 3.46" "$(./bin/phpctl php-cs-fixer --version)"
 }
 
+function test_phpmd() {
+    assert_contains "PHPMD 2.15" "$(./bin/phpctl phpmd --version)"
+}
+
 function test_phpstan() {
     assert_contains "PHPStan - PHP Static Analysis Tool 1.10" "$(./bin/phpctl phpstan --version)"
 }
