@@ -197,6 +197,7 @@ hash
 iconv
 igbinary
 json
+ldap
 libxml
 mbstring
 mongodb
