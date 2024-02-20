@@ -2,8 +2,7 @@
 
 box() {
     echo "Installing Box"
-    wget -q https://github.com/box-project/box/releases/download/4.5.1/box.phar -O /usr/local/bin/box
-    chmod a+x /usr/local/bin/box
+	mkdir -p /usr/local/bin/box && wget --no-check-certificate -qO box.phar $(wget -qO- https://api.github.com/repos/box-project/box/releases/latest | grep "browser_download_url.*\.phar" | cut -d : -f 2,3 | tr -d '," ') && mv box.phar /usr/local/bin/box && chmod a+x /usr/local/bin/box/box.phar
 }
 
 composer() {
@@ -15,8 +14,7 @@ composer() {
 
 couscous() {
     echo "Installing Couscous"
-    wget -q https://github.com/CouscousPHP/Couscous/releases/download/1.10.0/couscous.phar -O /usr/local/bin/couscous
-    chmod a+x /usr/local/bin/couscous
+	mkdir -p /usr/local/bin/couscous && wget --no-check-certificate -qO couscous.phar $(wget -qO- https://api.github.com/repos/CouscousPHP/Couscous/releases/latest | grep "browser_download_url.*\.phar" | cut -d : -f 2,3 | tr -d '," ') && mv couscous.phar /usr/local/bin/couscous && chmod a+x /usr/local/bin/couscous/couscous.phar
 }
 
 exakat() {
@@ -27,26 +25,22 @@ exakat() {
 
 infection() {
     echo "Installing Infection"
-    wget -q https://github.com/infection/infection/releases/download/0.27.9/infection.phar -O /usr/local/bin/infection
-    chmod a+x /usr/local/bin/infection
+    mkdir -p /usr/local/bin/infection && wget --no-check-certificate -qO infection.phar $(wget -qO- https://api.github.com/repos/infection/infection/releases/latest | grep "browser_download_url.*\.phar" | cut -d : -f 2,3 | tr -d '," ') && mv infection.phar /usr/local/bin/infection && chmod a+x /usr/local/bin/infection/infection.phar
 }
 
 php_cs_fixer() {
     echo "Installing PHP CS Fixer"
-    wget -q https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/releases/download/v3.46.0/php-cs-fixer.phar -O /usr/local/bin/php-cs-fixer
-    chmod a+x /usr/local/bin/php-cs-fixer
+    mkdir -p /usr/local/bin/php-cs-fixer && wget --no-check-certificate -qO php-cs-fixer.phar $(wget -qO- https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/releases/latest | grep "browser_download_url.*\.phar" | cut -d : -f 2,3 | tr -d '," ') && mv php-cs-fixer.phar /usr/local/bin/php-cs-fixer && chmod a+x /usr/local/bin/php-cs-fixer/php-cs-fixer.phar
 }
 
 phpmd() {
     echo "Installing PHP Mess Detector"
-    wget -q https://github.com/phpmd/phpmd/releases/download/2.15.0/phpmd.phar -O /usr/local/bin/phpmd
-    chmod a+x /usr/local/bin/phpmd
+    mkdir -p /usr/local/bin/phpmd && wget --no-check-certificate -qO phpmd.phar $(wget -qO- https://api.github.com/repos/phpmd/phpmd/releases/latest | grep "browser_download_url.*\.phar" | cut -d : -f 2,3 | tr -d '," ') && mv phpmd.phar /usr/local/bin/phpmd && chmod a+x /usr/local/bin/phpmd/phpmd.phar
 }
 
 phpstan() {
     echo "Installing PHPStan"
-    wget -q https://github.com/phpstan/phpstan/releases/download/1.10.55/phpstan.phar -O /usr/local/bin/phpstan
-    chmod a+x /usr/local/bin/phpstan
+    mkdir -p /usr/local/bin/phpstan && wget --no-check-certificate -qO phpstan.phar $(wget -qO- https://api.github.com/repos/phpstan/phpstan/releases/latest | grep "browser_download_url.*\.phar" | cut -d : -f 2,3 | tr -d '," ') && mv phpstan.phar /usr/local/bin/phpstan && chmod a+x /usr/local/bin/phpstan/phpstan.phar
 }
 
 phpunit() {
@@ -57,8 +51,7 @@ phpunit() {
 
 pint() {
     echo "Installing Pint"
-    wget -q https://github.com/laravel/pint/releases/download/v1.13.7/pint.phar -O /usr/local/bin/pint
-    chmod a+x /usr/local/bin/pint
+    mkdir -p /usr/local/bin/pint && wget --no-check-certificate -qO pint.phar $(wget -qO- https://api.github.com/repos/laravel/pint/releases/latest | grep "browser_download_url.*\.phar" | cut -d : -f 2,3 | tr -d '," ') && mv pint.phar /usr/local/bin/pint && chmod a+x /usr/local/bin/pint/pint.phar
 }
 
 psysh() {
@@ -69,8 +62,7 @@ psysh() {
 
 watchr() {
     echo "Installing watchr"
-    wget -q https://github.com/flavioheleno/watchr/releases/download/v0.4.1/watchr.phar -O /usr/local/bin/watchr
-    chmod a+x /usr/local/bin/watchr
+    mkdir -p /usr/local/bin/watchr && wget --no-check-certificate -qO watchr.phar $(wget -qO- https://api.github.com/repos/flavioheleno/watchr/releases/latest | grep "browser_download_url.*\.phar" | cut -d : -f 2,3 | tr -d '," ') && mv watchr.phar /usr/local/bin/watchr && chmod a+x /usr/local/bin/watchr/watchr.phar
 }
 
 install() {
