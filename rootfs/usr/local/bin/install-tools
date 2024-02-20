@@ -2,7 +2,7 @@
 
 box() {
     echo "Installing Box"
-	mkdir -p /usr/local/bin/box && wget --no-check-certificate -qO box.phar $(wget -qO- https://api.github.com/repos/box-project/box/releases/latest | grep "browser_download_url.*\.phar" | cut -d : -f 2,3 | tr -d '," ') && mv box.phar /usr/local/bin/box && chmod a+x /usr/local/bin/box/box.phar
+    mkdir -p /usr/local/bin/box && wget --no-check-certificate -qO box.phar $(wget -qO- https://api.github.com/repos/box-project/box/releases/latest | grep "browser_download_url.*\.phar" | cut -d : -f 2,3 | tr -d '," ') && mv box.phar /usr/local/bin/box && chmod a+x /usr/local/bin/box/box.phar
 }
 
 composer() {
@@ -14,7 +14,7 @@ composer() {
 
 couscous() {
     echo "Installing Couscous"
-	mkdir -p /usr/local/bin/couscous && wget --no-check-certificate -qO couscous.phar $(wget -qO- https://api.github.com/repos/CouscousPHP/Couscous/releases/latest | grep "browser_download_url.*\.phar" | cut -d : -f 2,3 | tr -d '," ') && mv couscous.phar /usr/local/bin/couscous && chmod a+x /usr/local/bin/couscous/couscous.phar
+    mkdir -p /usr/local/bin/couscous && wget --no-check-certificate -qO couscous.phar $(wget -qO- https://api.github.com/repos/CouscousPHP/Couscous/releases/latest | grep "browser_download_url.*\.phar" | cut -d : -f 2,3 | tr -d '," ') && mv couscous.phar /usr/local/bin/couscous && chmod a+x /usr/local/bin/couscous/couscous.phar
 }
 
 exakat() {
