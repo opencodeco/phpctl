@@ -33,14 +33,19 @@ php_cs_fixer() {
     mkdir -p /usr/local/bin/php-cs-fixer && wget --no-check-certificate -qO php-cs-fixer.phar $(wget -qO- https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/releases/latest | grep "browser_download_url.*\.phar" | cut -d : -f 2,3 | tr -d '," ') && mv php-cs-fixer.phar /usr/local/bin/php-cs-fixer && chmod a+x /usr/local/bin/php-cs-fixer/php-cs-fixer.phar
 }
 
-phpmd() {
-    echo "Installing PHP Mess Detector"
-    mkdir -p /usr/local/bin/phpmd && wget --no-check-certificate -qO phpmd.phar $(wget -qO- https://api.github.com/repos/phpmd/phpmd/releases/latest | grep "browser_download_url.*\.phar" | cut -d : -f 2,3 | tr -d '," ') && mv phpmd.phar /usr/local/bin/phpmd && chmod a+x /usr/local/bin/phpmd/phpmd.phar
+phinx() {
+    echo "Installing Phinx"
+    mkdir -p /usr/local/bin/phinx && wget --no-check-certificate -qO phinx.phar $(wget -qO- https://api.github.com/repos/cakephp/phinx/releases/latest | grep "browser_download_url.*\.phar" | cut -d : -f 2,3 | tr -d '," ') && mv phinx.phar /usr/local/bin/phinx && chmod a+x /usr/local/bin/phinx/phinx.phar
 }
 
 phpstan() {
     echo "Installing PHPStan"
     mkdir -p /usr/local/bin/phpstan && wget --no-check-certificate -qO phpstan.phar $(wget -qO- https://api.github.com/repos/phpstan/phpstan/releases/latest | grep "browser_download_url.*\.phar" | cut -d : -f 2,3 | tr -d '," ') && mv phpstan.phar /usr/local/bin/phpstan && chmod a+x /usr/local/bin/phpstan/phpstan.phar
+}
+
+phpmd() {
+    echo "Installing PHP Mess Detector"
+    mkdir -p /usr/local/bin/phpmd && wget --no-check-certificate -qO phpmd.phar $(wget -qO- https://api.github.com/repos/phpmd/phpmd/releases/latest | grep "browser_download_url.*\.phar" | cut -d : -f 2,3 | tr -d '," ') && mv phpmd.phar /usr/local/bin/phpmd && chmod a+x /usr/local/bin/phpmd/phpmd.phar
 }
 
 phpunit() {
@@ -72,6 +77,7 @@ install() {
     [ -n "$WITH_EXAKAT" ] && exakat
     infection
     php_cs_fixer
+    phinx
     phpmd
     phpstan
     phpunit
