@@ -42,6 +42,14 @@ php-cs-fixer() {
     fi;
 }
 
+phinx() {
+    if [ -f vendor/bin/phinx ]; then
+        run -- vendor/bin/phinx ${@}
+    else
+        run -- phinx ${@}
+    fi;
+}
+
 phpmd() {
     if [ -f vendor/bin/phpmd ]; then
         run -- vendor/bin/phpmd ${@}
