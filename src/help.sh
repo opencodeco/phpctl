@@ -33,6 +33,7 @@ help() {
     echo -e "\033[0;32m  images                     \033[0m Shows local phpctl images"
     echo -e ""
     echo -e "\033[0;33mTools:\033[0m"
+    echo -e "\033[0;32m  phinx                      \033[0m Runs Phinx"
     echo -e "\033[0;32m  phpunit                    \033[0m Runs PHPUnit"
     echo -e "\033[0;32m  php-cs-fixer               \033[0m Runs PHP-CS-Fixer"
     echo -e "\033[0;32m  phpmd                      \033[0m Runs PHP Mess Detector"
