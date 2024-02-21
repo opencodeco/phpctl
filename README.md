@@ -94,6 +94,7 @@ phpctl sh echo 'Hello, World!' # To run arbitrary sh commands inside the contain
 | `phpstan`      | [PHPStan](https://phpstan.org/) finds bugs in your code without writing tests. It's open-source and free.                     |
 | `infection`    | [Infection](https://infection.github.io) is a Mutation Testing Framework.                                                     |
 | `pest`         | [Pest](https://pestphp.com) is a testing framework with a focus on simplicity.                                                |
+| `phinx`        | [Phinx](https://phinx.org/) is a migration tool for managing and automating database schema changes.                          |
 | `pint`         | [Pint](https://github.com/laravel/pint) is an opinionated PHP code style fixer for minimalists.                               |
 | `box`          | [Box](https://github.com/box-project/box): fast, zero config application bundler with PHARs.                                  |
 | `exakat`       | [Exakat](https://www.exakat.io) is a real time customizable static analyzer engine that analyse and fix code.                 |
