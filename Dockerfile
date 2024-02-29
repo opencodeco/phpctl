@@ -14,7 +14,6 @@ RUN apk add --update --no-cache \
         docker-cli \
         php${PHP}-cli \
         php${PHP}-ctype \
-        php${PHP}-pecl-decimal \
         php${PHP}-dom \
         php${PHP}-fileinfo \
         php${PHP}-iconv \
@@ -34,6 +33,7 @@ RUN apk add --update --no-cache \
         php${PHP}-xmlreader \
         php${PHP}-xmlwriter \
         php${PHP}-zip \
+        php${PHP}-pecl-decimal \
         php${PHP}-pecl-mongodb \
         php${PHP}-pecl-pcov \
         php${PHP}-pecl-rdkafka \
