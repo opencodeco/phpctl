@@ -190,6 +190,7 @@ Core
 ctype
 curl
 date
+decimal
 dom
 fileinfo
 filter
