@@ -33,6 +33,7 @@ RUN apk add --update --no-cache \
         php${PHP}-xmlreader \
         php${PHP}-xmlwriter \
         php${PHP}-zip \
+        php${PHP}-pecl-decimal \
         php${PHP}-pecl-mongodb \
         php${PHP}-pecl-pcov \
         php${PHP}-pecl-rdkafka \
