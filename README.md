@@ -209,6 +209,9 @@ pcov
 pcre
 PDO
 pdo_mysql
+pdo_odbc
+pdo_pgsql
+pdo_sqlite
 Phar
 posix
 random
