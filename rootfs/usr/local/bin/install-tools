@@ -46,6 +46,20 @@ php_cs_fixer() {
     chmod a+x /usr/local/bin/php-cs-fixer
 }
 
+phpcbf() {
+    local version="3.7.2"
+    echo "Installing PHP CodeSniffer $version (phpcbf)"
+    wget -q "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/$version/phpcbf.phar" -O /usr/local/bin/phpcbf
+    chmod a+x /usr/local/bin/phpcbf
+}
+
+phpcs() {
+    local version="3.7.2"
+    echo "Installing PHP CodeSniffer $version (phpcs)"
+    wget -q "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/$version/phpcs.phar" -O /usr/local/bin/phpcs
+    chmod a+x /usr/local/bin/phpcs
+}
+
 phpmd() {
     local version="2.15.0"
     echo "Installing PHP Mess Detector $version"
@@ -97,6 +111,8 @@ install() {
     [ -n "$WITH_EXAKAT" ] && exakat
     infection
     php_cs_fixer
+    phpcbf
+    phpcs
     phpmd
     phpstan
     phpunit

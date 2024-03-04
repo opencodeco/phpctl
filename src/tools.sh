@@ -42,6 +42,22 @@ php-cs-fixer() {
     fi;
 }
 
+phpcbf() {
+    if [ -f vendor/bin/phpcbf ]; then
+        run -- vendor/bin/phpcbf ${@}
+    else
+        run -- phpcbf ${@}
+    fi;
+}
+
+phpcs() {
+    if [ -f vendor/bin/phpcs ]; then
+        run -- vendor/bin/phpcs ${@}
+    else
+        run -- phpcs ${@}
+    fi;
+}
+
 phpmd() {
     if [ -f vendor/bin/phpmd ]; then
         run -- vendor/bin/phpmd ${@}
