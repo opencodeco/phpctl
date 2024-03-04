@@ -20,6 +20,14 @@ function test_php_cs_fixer() {
     assert_matches "PHP CS Fixer 3\." "$(./bin/phpctl php-cs-fixer --version)"
 }
 
+function test_phpcbf() {
+    assert_matches "PHP_CodeSniffer version 3\." "$(./bin/phpctl phpcbf --version)"
+}
+
+function test_phpcs() {
+    assert_matches "PHP_CodeSniffer version 3\." "$(./bin/phpctl phpcs --version)"
+}
+
 function test_phpmd() {
     assert_matches "PHPMD 2\." "$(./bin/phpctl phpmd --version)"
 }
