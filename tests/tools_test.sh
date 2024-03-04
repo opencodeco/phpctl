@@ -29,7 +29,11 @@ function test_phpstan() {
 }
 
 function test_phpunit() {
-    assert_matches "PHPUnit 11\." "$(./bin/phpctl phpunit --version)"
+    if [ "$PHP_VERSION" = "81" ]; then
+        assert_matches "PHPUnit 10\." "$(./bin/phpctl phpunit --version)"
+    else
+        assert_matches "PHPUnit 11\." "$(./bin/phpctl phpunit --version)"
+    fi
 }
 
 function test_pint() {
@@ -37,7 +41,7 @@ function test_pint() {
 }
 
 function test_watchr() {
-    if [ -z "$WITHOUT_WATCHR" ]; then
+    if [ -z "$WITHOUT_WATCHR" ] && ! [ "$PHP_VERSION" = "81" ]; then
         assert_matches "watchr command-line utility v0\.5\." "$(./bin/phpctl watchr --version)"
     fi
 }

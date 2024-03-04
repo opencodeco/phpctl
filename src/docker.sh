@@ -5,14 +5,14 @@ build() {
     fi
 
     local without_watchr=""
-    if [[ "$*" == *--without-watchr* ]]; then
+    if [[ "$*" == *--without-watchr* ]] || [ "$PHP_VERSION" = "81" ]; then
         without_watchr="--build-arg WITHOUT_WATCHR=1"
     fi
 
     echo -e "Building \033[0;32m$PHPCTL_IMAGE\033[0m"
     # shellcheck disable=SC2068
     # shellcheck disable=SC2154
-    $PHPCTL_RUNTIME build \
+    $PHPCTL_RUNTIME buildx build --no-cache \
         --build-arg PHP="$PHP_VERSION" \
         --build-arg COMPOSER_AUTH="$COMPOSER_AUTH" \
         --build-arg HOST_USER="$(whoami)" \

@@ -1,63 +1,79 @@
-#!/usr/bin/env sh
+#!/usr/bin/env ash
 
 box() {
-    echo "Installing Box"
-    wget -q https://github.com/box-project/box/releases/download/4.6.1/box.phar -O /usr/local/bin/box
+    local version="4.6.1"
+    if [ "$PHP_VERSION" = "81" ]; then
+        version="4.5.1"
+    fi
+    echo "Installing Box $version"
+    wget -q "https://github.com/box-project/box/releases/download/$version/box.phar" -O /usr/local/bin/box
     chmod a+x /usr/local/bin/box
 }
 
 composer() {
-    echo "Installing Composer"
-    wget https://raw.githubusercontent.com/composer/getcomposer.org/2034a5455a11de09418e4c944e6eb0518e4b0d5d/web/installer -O - -q | php -- --quiet
+    local version="2034a5455a11de09418e4c944e6eb0518e4b0d5d"
+    echo "Installing Composer $version"
+    wget "https://raw.githubusercontent.com/composer/getcomposer.org/$version/web/installer" -O - -q | php -- --quiet
     mv composer.phar /usr/local/bin/composer
     chmod a+x /usr/local/bin/composer
 }
 
 couscous() {
-    echo "Installing Couscous"
-    wget -q https://github.com/CouscousPHP/Couscous/releases/download/1.10.0/couscous.phar -O /usr/local/bin/couscous
+    local version="1.10.0"
+    echo "Installing Couscous $version"
+    wget -q "https://github.com/CouscousPHP/Couscous/releases/download/$version/couscous.phar" -O /usr/local/bin/couscous
     chmod a+x /usr/local/bin/couscous
 }
 
 exakat() {
-    echo "Installing Exakat"
-    wget -q https://www.exakat.io/versions/index.php?file=exakat-2.6.2.phar -O /usr/local/bin/exakat
+    local version="2.6.2"
+    echo "Installing Exakat $version"
+    wget -q "https://www.exakat.io/versions/index.php?file=exakat-$version.phar" -O /usr/local/bin/exakat
     chmod a+x /usr/local/bin/exakat
 }
 
 infection() {
-    echo "Installing Infection"
-    wget -q https://github.com/infection/infection/releases/download/0.27.10/infection.phar -O /usr/local/bin/infection
+    local version="0.27.10"
+    echo "Installing Infection $version"
+    wget -q "https://github.com/infection/infection/releases/download/$version/infection.phar" -O /usr/local/bin/infection
     chmod a+x /usr/local/bin/infection
 }
 
 php_cs_fixer() {
-    echo "Installing PHP CS Fixer"
-    wget -q https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/releases/download/v3.51.0/php-cs-fixer.phar -O /usr/local/bin/php-cs-fixer
+    local version="3.51.0"
+    echo "Installing PHP CS Fixer $version"
+    wget -q "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/releases/download/v$version/php-cs-fixer.phar" -O /usr/local/bin/php-cs-fixer
     chmod a+x /usr/local/bin/php-cs-fixer
 }
 
 phpmd() {
-    echo "Installing PHP Mess Detector"
-    wget -q https://github.com/phpmd/phpmd/releases/download/2.15.0/phpmd.phar -O /usr/local/bin/phpmd
+    local version="2.15.0"
+    echo "Installing PHP Mess Detector $version"
+    wget -q "https://github.com/phpmd/phpmd/releases/download/$version/phpmd.phar" -O /usr/local/bin/phpmd
     chmod a+x /usr/local/bin/phpmd
 }
 
 phpstan() {
-    echo "Installing PHPStan"
-    wget -q https://github.com/phpstan/phpstan/releases/download/1.10.59/phpstan.phar -O /usr/local/bin/phpstan
+    local version="1.10.59"
+    echo "Installing PHPStan $version"
+    wget -q "https://github.com/phpstan/phpstan/releases/download/$version/phpstan.phar" -O /usr/local/bin/phpstan
     chmod a+x /usr/local/bin/phpstan
 }
 
 phpunit() {
-    echo "Installing PHPUnit"
-    wget -q https://phar.phpunit.de/phpunit-11.phar -O /usr/local/bin/phpunit
+    local version="11"
+    if [ "$PHP_VERSION" = "81" ]; then
+        version="10"
+    fi
+    echo "Installing PHPUnit $version"
+    wget -q "https://phar.phpunit.de/phpunit-$version.phar" -O /usr/local/bin/phpunit
     chmod a+x /usr/local/bin/phpunit
 }
 
 pint() {
-    echo "Installing Pint"
-    wget -q https://github.com/laravel/pint/releases/download/v1.14.0/pint.phar -O /usr/local/bin/pint
+    local version="1.14.0"
+    echo "Installing Pint $version"
+    wget -q "https://github.com/laravel/pint/releases/download/v$version/pint.phar" -O /usr/local/bin/pint
     chmod a+x /usr/local/bin/pint
 }
 
@@ -68,8 +84,9 @@ psysh() {
 }
 
 watchr() {
-    echo "Installing watchr"
-    wget -q https://github.com/flavioheleno/watchr/releases/download/v0.5.2/watchr.phar -O /usr/local/bin/watchr
+    local version="0.5.2"
+    echo "Installing watchr $version"
+    wget -q "https://github.com/flavioheleno/watchr/releases/download/v$version/watchr.phar" -O /usr/local/bin/watchr
     chmod a+x /usr/local/bin/watchr
 }
 
