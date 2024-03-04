@@ -2,13 +2,13 @@
 
 box() {
     echo "Installing Box"
-    wget -q https://github.com/box-project/box/releases/download/4.5.1/box.phar -O /usr/local/bin/box
+    wget -q https://github.com/box-project/box/releases/download/4.6.1/box.phar -O /usr/local/bin/box
     chmod a+x /usr/local/bin/box
 }
 
 composer() {
     echo "Installing Composer"
-    wget https://raw.githubusercontent.com/composer/getcomposer.org/76a7060ccb93902cd7576b67264ad91c8a2700e2/web/installer -O - -q | php -- --quiet
+    wget https://raw.githubusercontent.com/composer/getcomposer.org/2034a5455a11de09418e4c944e6eb0518e4b0d5d/web/installer -O - -q | php -- --quiet
     mv composer.phar /usr/local/bin/composer
     chmod a+x /usr/local/bin/composer
 }
@@ -27,13 +27,13 @@ exakat() {
 
 infection() {
     echo "Installing Infection"
-    wget -q https://github.com/infection/infection/releases/download/0.27.9/infection.phar -O /usr/local/bin/infection
+    wget -q https://github.com/infection/infection/releases/download/0.27.10/infection.phar -O /usr/local/bin/infection
     chmod a+x /usr/local/bin/infection
 }
 
 php_cs_fixer() {
     echo "Installing PHP CS Fixer"
-    wget -q https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/releases/download/v3.46.0/php-cs-fixer.phar -O /usr/local/bin/php-cs-fixer
+    wget -q https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/releases/download/v3.51.0/php-cs-fixer.phar -O /usr/local/bin/php-cs-fixer
     chmod a+x /usr/local/bin/php-cs-fixer
 }
 
@@ -45,19 +45,19 @@ phpmd() {
 
 phpstan() {
     echo "Installing PHPStan"
-    wget -q https://github.com/phpstan/phpstan/releases/download/1.10.55/phpstan.phar -O /usr/local/bin/phpstan
+    wget -q https://github.com/phpstan/phpstan/releases/download/1.10.59/phpstan.phar -O /usr/local/bin/phpstan
     chmod a+x /usr/local/bin/phpstan
 }
 
 phpunit() {
     echo "Installing PHPUnit"
-    wget -q https://phar.phpunit.de/phpunit-10.phar -O /usr/local/bin/phpunit
+    wget -q https://phar.phpunit.de/phpunit-11.phar -O /usr/local/bin/phpunit
     chmod a+x /usr/local/bin/phpunit
 }
 
 pint() {
     echo "Installing Pint"
-    wget -q https://github.com/laravel/pint/releases/download/v1.13.7/pint.phar -O /usr/local/bin/pint
+    wget -q https://github.com/laravel/pint/releases/download/v1.14.0/pint.phar -O /usr/local/bin/pint
     chmod a+x /usr/local/bin/pint
 }
 
@@ -69,7 +69,7 @@ psysh() {
 
 watchr() {
     echo "Installing watchr"
-    wget -q https://github.com/flavioheleno/watchr/releases/download/v0.4.1/watchr.phar -O /usr/local/bin/watchr
+    wget -q https://github.com/flavioheleno/watchr/releases/download/v0.5.2/watchr.phar -O /usr/local/bin/watchr
     chmod a+x /usr/local/bin/watchr
 }
 
