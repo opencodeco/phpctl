@@ -98,7 +98,7 @@ psysh() {
 }
 
 watchr() {
-    local version="0.5.2"
+    local version="0.5.3"
     echo "Installing watchr $version"
     wget -q "https://github.com/flavioheleno/watchr/releases/download/v$version/watchr.phar" -O /usr/local/bin/watchr
     chmod a+x /usr/local/bin/watchr
