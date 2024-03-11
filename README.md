@@ -89,6 +89,7 @@ phpctl sh echo 'Hello, World!' # To run arbitrary sh commands inside the contain
 | Command        | Description                                                                                                                                           |
 |----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `box`          | [Box](https://github.com/box-project/box): fast, zero config application bundler with PHARs.                                                          |
+| `couscous`     | [Couscous](https://github.com/CouscousPHP/Couscous): Couscous generates a GitHub pages website from your markdown documentation.                      |
 | `exakat`       | [Exakat](https://www.exakat.io) is a real time customizable static analyzer engine that analyse and fix code.                                         |
 | `frankenphp`   | [FrankenPHP](https://frankenphp.dev): the Modern PHP App Server, written in Go.                                                                       |
 | `infection`    | [Infection](https://infection.github.io) is a Mutation Testing Framework.                                                                             |
