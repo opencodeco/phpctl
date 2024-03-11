@@ -20,6 +20,9 @@ composer() {
 
 composer_require_checker() {
     local version="4.10.0"
+    if [ "$PHP_VERSION" = "81" ]; then
+        version="4.7.1"
+    fi
     echo "Installing ComposerRequireChecker $version"
     wget -q "https://github.com/maglnet/ComposerRequireChecker/releases/download/$version/composer-require-checker.phar" -O /usr/local/bin/composer-require-checker
     chmod a+x /usr/local/bin/composer-require-checker

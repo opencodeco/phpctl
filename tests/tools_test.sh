@@ -3,7 +3,7 @@ function test_box() {
 }
 
 function test_composer_require_checker() {
-    assert_matches "ComposerRequireChecker 4\.10\." "$(./bin/phpctl composer-require-checker --version)"
+    assert_matches "ComposerRequireChecker 4\." "$(./bin/phpctl composer-require-checker --version)"
 }
 
 function test_couscous() {
