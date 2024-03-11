@@ -11,7 +11,7 @@ box() {
 }
 
 composer() {
-    local version="2034a5455a11de09418e4c944e6eb0518e4b0d5d"
+    local version="993f9fec74930f32f7015e71543243bf6d9b9e93"
     echo "Installing Composer $version"
     wget "https://raw.githubusercontent.com/composer/getcomposer.org/$version/web/installer" -O - -q | php -- --quiet
     mv composer.phar /usr/local/bin/composer
