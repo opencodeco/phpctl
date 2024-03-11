@@ -6,6 +6,10 @@ box() {
     fi;
 }
 
+composer-require-checker() {
+    run -- composer-require-checker ${@}
+}
+
 couscous() {
     if [ -f vendor/bin/couscous ]; then
         run -- vendor/bin/couscous ${@}
