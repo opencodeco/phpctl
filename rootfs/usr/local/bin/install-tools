@@ -11,11 +11,21 @@ box() {
 }
 
 composer() {
-    local version="2034a5455a11de09418e4c944e6eb0518e4b0d5d"
+    local version="993f9fec74930f32f7015e71543243bf6d9b9e93"
     echo "Installing Composer $version"
     wget "https://raw.githubusercontent.com/composer/getcomposer.org/$version/web/installer" -O - -q | php -- --quiet
     mv composer.phar /usr/local/bin/composer
     chmod a+x /usr/local/bin/composer
+}
+
+composer_require_checker() {
+    local version="4.10.0"
+    if [ "$PHP_VERSION" = "81" ]; then
+        version="4.7.1"
+    fi
+    echo "Installing ComposerRequireChecker $version"
+    wget -q "https://github.com/maglnet/ComposerRequireChecker/releases/download/$version/composer-require-checker.phar" -O /usr/local/bin/composer-require-checker
+    chmod a+x /usr/local/bin/composer-require-checker
 }
 
 couscous() {
@@ -98,7 +108,7 @@ psysh() {
 }
 
 watchr() {
-    local version="0.5.2"
+    local version="0.5.3"
     echo "Installing watchr $version"
     wget -q "https://github.com/flavioheleno/watchr/releases/download/v$version/watchr.phar" -O /usr/local/bin/watchr
     chmod a+x /usr/local/bin/watchr
@@ -107,6 +117,7 @@ watchr() {
 install() {
     box
     composer
+    composer_require_checker
     couscous
     [ -n "$WITH_EXAKAT" ] && exakat
     infection

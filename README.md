@@ -86,22 +86,24 @@ phpctl sh echo 'Hello, World!' # To run arbitrary sh commands inside the contain
 | `bundle`                    | Bundles a project into an image and ships it as a single binary file.                       |
 
 ### Tools
-| Command        | Description                                                                                                                                           |
-|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `box`          | [Box](https://github.com/box-project/box): fast, zero config application bundler with PHARs.                                                          |
-| `exakat`       | [Exakat](https://www.exakat.io) is a real time customizable static analyzer engine that analyse and fix code.                                         |
-| `frankenphp`   | [FrankenPHP](https://frankenphp.dev): the Modern PHP App Server, written in Go.                                                                       |
-| `infection`    | [Infection](https://infection.github.io) is a Mutation Testing Framework.                                                                             |
-| `pest`         | [Pest](https://pestphp.com) is a testing framework with a focus on simplicity.                                                                        |
-| `php-cs-fixer` | [PHP Coding Standards Fixer (PHP CS Fixer)](https://cs.symfony.com/) fixes your code to follow standards.                                             |
-| `phpcbf`       | [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) is an essential development tool that ensures your code remains clean and consistent. |
-| `phpcs`        | [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) is an essential development tool that ensures your code remains clean and consistent. |
-| `phpmd`        | [PHP Mess Detector](https://phpmd.org/) looks for several potential problems within your source code.                                                 |
-| `phpstan`      | [PHPStan](https://phpstan.org/) finds bugs in your code without writing tests. It's open-source and free.                                             |
-| `phpunit`      | [PHPUnit](https://phpunit.de) is a programmer-oriented testing framework for PHP.                                                                     |
-| `pint`         | [Pint](https://github.com/laravel/pint) is an opinionated PHP code style fixer for minimalists.                                                       |
-| `rector`       | [Rector](https://getrector.com) is a tool that you can run on any project to get an instant upgrade or automated refactoring.                         |
-| `watchr`       | [watchr](https://github.com/flavioheleno/watchr): command-line utility to explore and validate domain names and certificates.                         |
+| Command                    | Description                                                                                                                                                                                       |
+|----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `box`                      | [Box](https://github.com/box-project/box): fast, zero config application bundler with PHARs.                                                                                                      |
+| `composer-require-checker` | [ComposerRequireChecker](https://github.com/maglnet/ComposerRequireChecker): A CLI tool to analyze composer dependencies and verify that no unknown symbols are used in the sources of a package. |
+| `couscous`                 | [Couscous](https://github.com/CouscousPHP/Couscous): Couscous generates a GitHub pages website from your markdown documentation.                                                                  |
+| `exakat`                   | [Exakat](https://www.exakat.io) is a real time customizable static analyzer engine that analyse and fix code.                                                                                     |
+| `frankenphp`               | [FrankenPHP](https://frankenphp.dev): the Modern PHP App Server, written in Go.                                                                                                                   |
+| `infection`                | [Infection](https://infection.github.io) is a Mutation Testing Framework.                                                                                                                         |
+| `pest`                     | [Pest](https://pestphp.com) is a testing framework with a focus on simplicity.                                                                                                                    |
+| `php-cs-fixer`             | [PHP Coding Standards Fixer (PHP CS Fixer)](https://cs.symfony.com/) fixes your code to follow standards.                                                                                         |
+| `phpcbf`                   | [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) is an essential development tool that ensures your code remains clean and consistent.                                             |
+| `phpcs`                    | [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) is an essential development tool that ensures your code remains clean and consistent.                                             |
+| `phpmd`                    | [PHP Mess Detector](https://phpmd.org/) looks for several potential problems within your source code.                                                                                             |
+| `phpstan`                  | [PHPStan](https://phpstan.org/) finds bugs in your code without writing tests. It's open-source and free.                                                                                         |
+| `phpunit`                  | [PHPUnit](https://phpunit.de) is a programmer-oriented testing framework for PHP.                                                                                                                 |
+| `pint`                     | [Pint](https://github.com/laravel/pint) is an opinionated PHP code style fixer for minimalists.                                                                                                   |
+| `rector`                   | [Rector](https://getrector.com) is a tool that you can run on any project to get an instant upgrade or automated refactoring.                                                                     |
+| `watchr`                   | [watchr](https://github.com/flavioheleno/watchr): command-line utility to explore and validate domain names and certificates.                                                                     |
 
 ### Scaffolders
 | Command                    | Description                                                   |

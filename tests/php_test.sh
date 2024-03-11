@@ -8,7 +8,7 @@ function test_php_accepts_arguments() {
 }
 
 function test_composer() {
-    assert_contains "version" "$(./bin/phpctl composer --version)"
+    assert_contains "Composer version 2" "$(./bin/phpctl composer)"
 }
 
 function test_phpctl_ini() {

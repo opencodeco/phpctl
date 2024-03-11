@@ -2,6 +2,10 @@ function test_box() {
     assert_matches "Box version 4\." "$(./bin/phpctl box --version)"
 }
 
+function test_composer_require_checker() {
+    assert_matches "ComposerRequireChecker 4\." "$(./bin/phpctl composer-require-checker --version)"
+}
+
 function test_couscous() {
     assert_matches "Couscous 1\." "$(./bin/phpctl couscous --version)"
 }
