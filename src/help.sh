@@ -36,6 +36,7 @@ help() {
     echo -e "\033[0;32m  box                        \033[0m Runs Box (PHAR builder)"
     echo -e "\033[0;32m  composer-require-checker   \033[0m Runs ComposerRequireChecker"
     echo -e "\033[0;32m  couscous                   \033[0m Runs Couscous"
+    echo -e "\033[0;32m  deptrac                    \033[0m Runs Deptrac"
     echo -e "\033[0;32m  exakat                     \033[0m Runs Exakat"
     echo -e "\033[0;32m  frankenphp                 \033[0m Runs FrankenPHP"
     echo -e "\033[0;32m  infection                  \033[0m Runs Infection, a PHP Mutation Testing Framework"

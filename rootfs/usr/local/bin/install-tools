@@ -35,6 +35,13 @@ couscous() {
     chmod a+x /usr/local/bin/couscous
 }
 
+deptrac() {
+    local version="1.0.2"
+    echo "Installing Deptrac $version"
+    wget -q "https://github.com/qossmic/deptrac/releases/download/$version/deptrac.phar" -O /usr/local/bin/deptrac
+    chmod a+x /usr/local/bin/deptrac
+}
+
 exakat() {
     local version="2.6.2"
     echo "Installing Exakat $version"
@@ -119,6 +126,7 @@ install() {
     composer
     composer_require_checker
     couscous
+    deptrac
     [ -n "$WITH_EXAKAT" ] && exakat
     infection
     php_cs_fixer
