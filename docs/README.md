@@ -18,6 +18,27 @@ bash phpctl-installer.sh && rm phpctl-installer.sh
 
 **That is it!** Now you have `phpctl` available in your system.
 
+#### Custom installation
+You can also pass an argument to install at a custom location (e.g. `~/bin`), but you have to make sure that folder is in your `$PATH` variable.
+```shell
+bash phpctl-installer.sh ~/bin
+```
+
+#### Homebrew
+```shell
+brew install opencodeco/phpctl/phpctl
+```
+
+Or add the `oppencodeco` tap with `brew tap opencodeco/phpctl` and then `brew install phpctl`.
+
+### Update
+You can re-run the installer or use the `self-update` command:
+```shell
+phpctl self-update
+```
+
+For those using Homebrew `brew upgrade opencodeco/phpctl/phpctl` or when run `brew update`.
+
 ### Usage
 
 Simple as calling any other command in your terminal:
