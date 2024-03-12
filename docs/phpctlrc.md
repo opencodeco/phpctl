@@ -1,7 +1,11 @@
-## The `.phpctlrc` file
+---
+nav_order: 3
+---
+
+# The `.phpctlrc` file
 You can also add a `.phpctlrc` file at project's root directory with some overrides like:
 
-### Environment variables
+## Environment variables
 | Variable       | Description                       |
 |----------------|-----------------------------------|
 | `PHP_VERSION`  | Values can be `82` and `83`       |
@@ -12,9 +16,9 @@ For example:
 PHP_VERSION=83
 ```
 
-### Docker behaviour
+## Docker behaviour
 
-#### Run options
+### Run options
 
 You can also provide any additional [Docker `run` arguments](https://docs.docker.com/engine/reference/commandline/run/#options) using the `args` variable.
 
@@ -24,21 +28,21 @@ you can add the following to your `.phpctlrc` file:
 args=(-p 9501:9501)
 ```
 
-#### Build options
+### Build options
 
 You can also provide [build options](https://docs.docker.com/engine/reference/commandline/build/) to the build command using the `build` variable:
 ```shell
 build=(--build-arg APP_ENV=dev --label phprocks)
 ```
 
-### Podman
+## Podman
 
 You can use Podman instead of Docker by setting the `PHPCTL_RUNTIME` variable to `podman` in your environment variables or at `.phpctlrc` file.
 ```shell
 PHPCTL_RUNTIME=podman phpctl php -v
 ```
 
-### Host user
+## Host user
 
 By default, `phpctl` creates an user considering host user. You can change from `root` to host user through `PHPCTL_USER` variable.
 ```shell

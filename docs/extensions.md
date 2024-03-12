@@ -1,15 +1,18 @@
-## Modules
+---
+nav_order: 5
+---
+
+# Available extensions
 <details>
 <summary>For the default Docker image we have the following modules installed (click to expand).</summary>
 <pre>
-[PHP Modules]
 Core
 ctype
 curl
 date
 decimal
-ds
 dom
+ds
 fileinfo
 filter
 hash

@@ -1,6 +1,10 @@
-## Command list
+---
+nav_order: 2
+---
 
-### Developing
+# Available commands
+
+## Developing
 | Command                     | Description                                                                                 |
 |-----------------------------|---------------------------------------------------------------------------------------------|
 | `php`                       | **Runs PHP commands** (`phpctl php -v` or `phpctl php -m`).                                 |
@@ -10,7 +14,7 @@
 | `repl`                      | Starts a PHP REPL session (powered by [PsySH](https://psysh.org/)).                         |
 | `bundle`                    | Bundles a project into an image and ships it as a single binary file.                       |
 
-### Tools
+## Tools
 | Command                    | Description                                                                                                                                                                                       |
 |----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `box`                      | [Box](https://github.com/box-project/box): fast, zero config application bundler with PHARs.                                                                                                      |
@@ -32,20 +36,20 @@
 | `rector`                   | [Rector](https://getrector.com) is a tool that you can run on any project to get an instant upgrade or automated refactoring.                                                                     |
 | `watchr`                   | [watchr](https://github.com/flavioheleno/watchr): command-line utility to explore and validate domain names and certificates.                                                                     |
 
-### Scaffolders
+## Scaffolders
 | Command                    | Description                                                   |
 |----------------------------|---------------------------------------------------------------|
 | `create [framework] [dir]` | Creates a new project using the given framework (or package). |
 | `init [skeleton]`          | Initializes a skeleton configuration.                         |
 
-#### Skeletons
+### Skeletons
 - `phpunit`
 - `php-cs-fixer`
 - `phpstan`
 - `infection`
 - `box`
 
-### Helpers
+## Helpers
 | Command         | Description                                                 |
 |-----------------|-------------------------------------------------------------|
 | `help` or `man` | Displays a help message.                                    |

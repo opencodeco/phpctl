@@ -1,4 +1,8 @@
-## The `phpctl.ini` file
+---
+nav_order: 4
+---
+
+# The `phpctl.ini` file
 You can also add a `phpctl.ini` file at project's root directory to set any [`php.ini` directive](https://www.php.net/manual/en/ini.list.php).
 ```ini
 memory_limit = 1337M
