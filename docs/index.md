@@ -1,4 +1,5 @@
 --- 
+title: Frictionless PHP Development
 nav_order: 1
 permalink: /
 ---

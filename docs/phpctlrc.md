@@ -7,10 +7,10 @@ You can also add a `.phpctlrc` file at project's root directory with some overri
 
 ## Environment variables
 
-| Variable       | Description                       |
-|----------------|-----------------------------------|
-| `PHP_VERSION`  | Values can be `82` and `83`       |
-| `PHPCTL_IMAGE` | Use to name your own custom image |
+| Variable        | Description                        |
+|:----------------|:-----------------------------------|
+| `PHP_VERSION`   | Values can be `82` and `83`        |
+| `PHPCTL_IMAGE`  | Use to name your own custom image  |
 
 For example:
 ```shell
