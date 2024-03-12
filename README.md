@@ -196,6 +196,7 @@ ctype
 curl
 date
 decimal
+ds
 dom
 fileinfo
 filter
