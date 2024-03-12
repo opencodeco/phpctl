@@ -2,5 +2,30 @@ title: phpctl
 description: Frictionless PHP Development
 remote_theme: just-the-docs/just-the-docs
 url: https://phpctl.dev
+repository: https://github.com/opencodeco/phpctl
+permalink: pretty
+
+aux_links:
+  phpctl on GitHub:
+    - https://github.com/opencodeco/phpctl
+
+nav_external_links:
+  - title: phpctl on GitHub
+    url: https://github.com/opencodeco/phpctl
+
+
+back_to_top: true
+back_to_top_text: "Back to top"
+
+gh_edit_link: true
+gh_edit_link_text: Edit this page on GitHub
+gh_edit_repository: https://github.com/opencodeco/phpctl
+gh_edit_branch: main
+gh_edit_source: docs
+gh_edit_view_mode: tree
+
 plugins:
   - jekyll-remote-theme
+  - jekyll-seo-tag
+  - jekyll-github-metadata
+  - jekyll-include-cache
