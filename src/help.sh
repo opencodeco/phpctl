@@ -34,6 +34,7 @@ help() {
     echo -e ""
     echo -e "\033[0;33mTools:\033[0m"
     echo -e "\033[0;32m  box                        \033[0m Runs Box (PHAR builder)"
+    echo -e "\033[0;32m  co-phpunit                 \033[0m Runs co-phpunit (Coroutine-aware PHPUnit for Hyperf)"
     echo -e "\033[0;32m  composer-require-checker   \033[0m Runs ComposerRequireChecker"
     echo -e "\033[0;32m  couscous                   \033[0m Runs Couscous"
     echo -e "\033[0;32m  deptrac                    \033[0m Runs Deptrac"

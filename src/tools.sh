@@ -6,6 +6,14 @@ box() {
     fi;
 }
 
+co-phpunit() {
+    if [ -f vendor/bin/co-phpunit ]; then
+        run -- vendor/bin/co-phpunit ${@}
+    else
+        run -- co-phpunit ${@}
+    fi;
+}
+
 composer-require-checker() {
     run -- composer-require-checker ${@}
 }

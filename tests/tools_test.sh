@@ -2,6 +2,10 @@ function test_box() {
     assert_matches "Box version 4\." "$(./bin/phpctl box --version)"
 }
 
+function test_co_phpunit() {
+    assert_contains "Swoole\Coroutine\run" "$(./bin/phpctl sh cat /usr/local/bin/co-phpunit)"
+}
+
 function test_composer_require_checker() {
     assert_matches "ComposerRequireChecker 4\." "$(./bin/phpctl composer-require-checker --version)"
 }
