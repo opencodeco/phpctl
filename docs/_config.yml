@@ -1,4 +1,6 @@
+title: phpctl
+description: Frictionless PHP Development
+remote_theme: just-the-docs/just-the-docs
+url: https://phpctl.dev
 plugins:
   - jekyll-remote-theme
-
-remote_theme: just-the-docs/just-the-docs
