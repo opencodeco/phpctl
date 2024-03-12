@@ -5,6 +5,7 @@ nav_order: 2
 # Available commands
 
 ## Developing
+
 | Command                     | Description                                                                                 |
 |-----------------------------|---------------------------------------------------------------------------------------------|
 | `php`                       | **Runs PHP commands** (`phpctl php -v` or `phpctl php -m`).                                 |
@@ -15,6 +16,7 @@ nav_order: 2
 | `bundle`                    | Bundles a project into an image and ships it as a single binary file.                       |
 
 ## Tools
+
 | Command                    | Description                                                                                                                                                                                       |
 |----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `box`                      | [Box](https://github.com/box-project/box): fast, zero config application bundler with PHARs.                                                                                                      |
@@ -37,6 +39,7 @@ nav_order: 2
 | `watchr`                   | [watchr](https://github.com/flavioheleno/watchr): command-line utility to explore and validate domain names and certificates.                                                                     |
 
 ## Scaffolders
+
 | Command                    | Description                                                   |
 |----------------------------|---------------------------------------------------------------|
 | `create [framework] [dir]` | Creates a new project using the given framework (or package). |
@@ -50,6 +53,7 @@ nav_order: 2
 - `box`
 
 ## Helpers
+
 | Command         | Description                                                 |
 |-----------------|-------------------------------------------------------------|
 | `help` or `man` | Displays a help message.                                    |

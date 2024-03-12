@@ -6,6 +6,7 @@ nav_order: 3
 You can also add a `.phpctlrc` file at project's root directory with some overrides like:
 
 ## Environment variables
+
 | Variable       | Description                       |
 |----------------|-----------------------------------|
 | `PHP_VERSION`  | Values can be `82` and `83`       |
