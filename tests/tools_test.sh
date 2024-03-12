@@ -10,6 +10,10 @@ function test_couscous() {
     assert_matches "Couscous 1\." "$(./bin/phpctl couscous --version)"
 }
 
+function test_deptrac() {
+    assert_matches "deptrac 1\." "$(./bin/phpctl deptrac --version)"
+}
+
 function test_exakat() {
     if [ -n "$WITH_EXAKAT" ]; then
         assert_matches "Version : 2\." "$(./bin/phpctl exakat version)"
