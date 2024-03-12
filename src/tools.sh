@@ -18,6 +18,10 @@ couscous() {
     fi;
 }
 
+deptrac() {
+    run -- deptrac ${@}
+}
+
 exakat() {
     if [ -f vendor/bin/exakat ]; then
         run -- vendor/bin/exakat ${@}
