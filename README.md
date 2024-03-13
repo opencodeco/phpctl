@@ -20,11 +20,25 @@
 Seamlessly run and switch between different versions of PHP, with different installed extensions, thanks to the power of containers.
 Take the advantage of goodie commands like `phpctl create` to start a new project, `phpctl repl` to start a REPL, `phpctl init` to initialize a new configuration file **and a lot more**.
 
+### Just install
+```shell
+/bin/bash -c "$(curl -fsSL https://phpctl.dev/install.sh)"
+```
+### And that is it!
+Try it out:
+```shell
+phpctl doctor
+php --version
+composer --version
+```
+
 ## Getting started
 
-- [Installation](https://phpctl.dev/#installation)
-- [Usage](https://phpctl.dev/#usage)
+- [Installation guide](https://phpctl.dev/#installation)
+- [How to use](https://phpctl.dev/#usage)
 - [Available commands](https://phpctl.dev/commands)
+- [The `.phpctlrc` file](https://phpctl.dev/phpctlrc)
+- [The `phpctl.ini` file](https://phpctl.dev/phpctlini)
 - [Available extensions](https://phpctl.dev/extensions)
 - [Why it exists?](https://phpctl.dev/why)
 

@@ -18,8 +18,7 @@ Take the advantage of goodies commands like `phpctl create` to start a new proje
 ### Installation
 
 ```shell
-wget -q https://phpctl.dev/phpctl-installer.sh && \
-bash phpctl-installer.sh && rm phpctl-installer.sh
+/bin/bash -c "$(curl -fsSL https://phpctl.dev/install.sh)"
 ```
 
 **That is it!** Now you have `phpctl` available in your system.
@@ -27,7 +26,7 @@ bash phpctl-installer.sh && rm phpctl-installer.sh
 #### Custom installation
 You can also pass an argument to install at a custom location (e.g. `~/bin`), but you have to make sure that folder is in your `$PATH` variable.
 ```shell
-bash phpctl-installer.sh ~/bin
+/bin/bash -c "$(curl -fsSL https://phpctl.dev/install.sh)" ~/bin
 ```
 
 #### Homebrew
