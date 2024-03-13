@@ -12,7 +12,7 @@ fi
 echo -e "\033[0;33mInstalling phpctl at \033[0m$INSTALL_DIR"
 if [ -d "$INSTALL_DIR" ]; then
     echo "The install directory is not empty. Attempting to remove it..."
-    rm -rI $INSTALL_DIR
+    rm -rf $INSTALL_DIR
 fi
 
 echo -n ""
@@ -32,15 +32,15 @@ if [ -z "$1" ]; then
 else
     echo -n "Files will be symlinked to ${SYMLINK_DIR}."
 fi
-echo -e -n " \033[0;32mDo you want to continue? (y/n)\033[0m "
+echo -e -n " \033[0;32mDo you want to continue? (Y/n)\033[0m "
 read -r answer
-if [ "$answer" != "${answer#[Yy]}" ]; then
-    $SUDO ${INSTALL_DIR}/scripts/symlink-bins.sh ${INSTALL_DIR}
-else
+if [ "$answer" != "${answer#[Nn]}" ]; then
     echo -e "\033[0;31mTo use phpctl globally, link the cloned script to your bin directory, like:\033[0m"
     echo ""
     for file in "${INSTALL_DIR}"/bin/*; do
         bin=$(basename "$file")
         echo "  ${SUDO} ln -sf ${INSTALL_DIR}/bin/$bin ${SYMLINK_DIR}/$bin"
     done
+else
+    $SUDO ${INSTALL_DIR}/scripts/symlink-bins.sh ${INSTALL_DIR}
 fi
