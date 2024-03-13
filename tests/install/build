@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+echo -e "[$1] \033[0;32mBuilding...\033[0m"
+docker build -t "phpctl-$1-test" -f "$1.Dockerfile" . &> /dev/null
+echo -e "[$1] \033[0;32mDone!\033[0m"
