@@ -3,15 +3,11 @@ default: build
 
 .PHONY: build
 build:
-	@PHP_VERSION=81 phpctl build
-	@PHP_VERSION=82 phpctl build
-	@PHP_VERSION=83 phpctl build
+	@parallel --line-buffer PHP_VERSION={} phpctl build ::: 81 82 83
 
 .PHONY: test
 test:
-	@PHP_VERSION=81 COMPOSER_AUTH= TERM= notty ./lib/bashunit ./tests/
-	@PHP_VERSION=82 COMPOSER_AUTH= TERM= notty ./lib/bashunit ./tests/
-	@PHP_VERSION=83 COMPOSER_AUTH= TERM= notty ./lib/bashunit ./tests/
+	@parallel --line-buffer PHP_VERSION={} COMPOSER_AUTH= TERM= notty ./lib/bashunit ./tests/ ::: 81 82 83
 
 .PHONY: install
 install:
