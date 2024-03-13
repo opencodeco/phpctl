@@ -13,7 +13,6 @@ nav_external_links:
   - title: phpctl on GitHub
     url: https://github.com/opencodeco/phpctl
 
-
 back_to_top: true
 back_to_top_text: "Back to top"
 
@@ -28,4 +27,3 @@ plugins:
   - jekyll-remote-theme
   - jekyll-seo-tag
   - jekyll-github-metadata
-  - jekyll-include-cache
