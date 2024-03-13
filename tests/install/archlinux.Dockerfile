@@ -1,4 +1,4 @@
 FROM archlinux
-RUN pacman -Syu --noconfirm docker make wget sudo git
-WORKDIR /usr/local/src
-COPY Makefile .
+RUN pacman -Syu --noconfirm curl docker git make neofetch sudo
+COPY docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]

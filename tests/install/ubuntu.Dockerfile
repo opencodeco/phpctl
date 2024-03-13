@@ -1,4 +1,4 @@
 FROM ubuntu
-RUN apt update && apt install -y bash docker.io git make openssl sudo wget
-WORKDIR /usr/local/src
-COPY Makefile .
+RUN apt update && apt install -y bash curl docker.io git make neofetch openssl sudo
+COPY docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]

@@ -1,4 +1,4 @@
 FROM alpine
-RUN apk add bash docker git make openssl sudo
-WORKDIR /usr/local/src
-COPY Makefile .
+RUN apk add bash curl docker git make neofetch openssl sudo
+COPY docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]
