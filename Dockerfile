@@ -12,7 +12,6 @@ ENV WITHOUT_WATCHR=$WITHOUT_WATCHR
 
 COPY rootfs /
 RUN apk add --update --no-cache \
-        bash \
         git \
         docker-cli \
         php${PHP}-cli \
