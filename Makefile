@@ -12,3 +12,8 @@ test:
 .PHONY: install
 install:
 	@sudo ./scripts/symlink-bins.sh
+
+.PHONY: debian
+debian:
+	@docker buildx build -t opencodeco/phpctl:php-debian -f debian.Dockerfile .
+	@docker push opencodeco/phpctl:php-debian
