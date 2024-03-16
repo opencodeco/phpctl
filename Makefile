@@ -13,7 +13,7 @@ test:
 install:
 	@sudo ./scripts/symlink-bins.sh
 
-.PHONY: devcontainers
-devcontainers:
-	@docker buildx build -t opencodeco/phpctl:php83-devcontainers -f devcontainers.Dockerfile .
-	@docker push opencodeco/phpctl:php83-devcontainers
+.PHONY: devcontainer
+devcontainer:
+	@docker buildx build -t opencodeco/phpctl:php83-devcontainer -f devcontainer.Dockerfile .
+	@docker push opencodeco/phpctl:php83-devcontainer

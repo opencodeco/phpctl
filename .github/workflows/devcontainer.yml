@@ -1,4 +1,4 @@
-name: Dev containers
+name: Dev Container
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  devcontainers:
+  devcontainer:
     runs-on: ubuntu-latest
     steps:
       -
@@ -30,6 +30,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: devcontainers.Dockerfile
+          file: devcontainer.Dockerfile
           push: true
-          tags: opencodeco/phpctl:php83-devcontainers
+          tags: opencodeco/phpctl:php83-devcontainer
