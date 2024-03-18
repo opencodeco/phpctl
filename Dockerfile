@@ -18,6 +18,7 @@ RUN apk add --update --no-cache \
         php${PHP}-ctype \
         php${PHP}-dom \
         php${PHP}-fileinfo \
+        php${PHP}-gd \
         php${PHP}-iconv \
         php${PHP}-mbstring \
         php${PHP}-mysqlnd \
