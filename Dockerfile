@@ -25,6 +25,7 @@ RUN apk add --update --no-cache \
         php${PHP}-pcntl \
         php${PHP}-pdo \
         php${PHP}-pdo_mysql \
+        php${PHP}-pdo_pgsql \
         php${PHP}-phar \
         php${PHP}-posix \
         php${PHP}-simplexml \
