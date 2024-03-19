@@ -6,6 +6,9 @@ Feel free to contribute to this project by submitting a pull request to the `mai
 
 You can use `make` to simplify the development process.
 
+> [!NOTE]
+> Make sure you have [GNU/Parallel](https://www.gnu.org/software/parallel/) installed to speed up processes for each PHP version.
+
 ### Building
 You can build the default image using `make build` or just `make`, the `build` target is the default:
 ```shell
