@@ -1,13 +1,22 @@
 {
-    "build": {
-        "context": "..",
-        "dockerfile": "../devcontainer.Dockerfile"
-    },
+    "image": "opencodeco/phpctl:php83-devcontainer",
     "features": {
-        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+        "ghcr.io/devcontainers/features/sshd:1": {},
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {},    
+        "ghcr.io/devcontainers/features/github-cli:1": {}
+    
     },
     "mounts": [
         "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
     ],
-    "containerUser": "vscode"
+    "containerUser": "vscode",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.makefile-tools",
+                "timonwong.shellcheck",
+                "ms-azuretools.vscode-docker"
+            ]
+        }
+    }
 }
