@@ -5,5 +5,9 @@
     },
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {}
-    }
+    },
+    "mounts": [
+        "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+    ],
+    "containerUser": "vscode"
 }
