@@ -29,6 +29,6 @@ jobs:
         name: Build and run dev container task
         uses: devcontainers/ci@v0.3
         with:
-          subFolder: devcontainer
+          subFolder: src-devc
           imageName: opencodeco/phpctl:php83-devcontainer
           push: always
