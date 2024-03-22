@@ -1,5 +1,9 @@
 {
     "image": "opencodeco/phpctl:php83-devcontainer",
+    "postCreateCommand": "make install",
+    "containerEnv": {
+        "PHP_VERSION": "83"
+    },
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},
         "ghcr.io/devcontainers-contrib/features/devcontainers-cli:1": {},
