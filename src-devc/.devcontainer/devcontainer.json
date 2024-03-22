@@ -2,7 +2,7 @@
     "image": "mcr.microsoft.com/devcontainers/php:8.3-bookworm",
     "features": {
         "ghcr.io/opencodeco/devcontainers/install-php-extensions:latest": {
-            "extensions": "swoole"
+            "extensions": "decimal gd intl mongodb pcntl pcov pdo_mysql pdo_pgsql pdo_sqlite rdkafka redis sockets swoole"
         }
     }
 }
