@@ -7,6 +7,7 @@
       <h1>
         phpctl
         <a href="https://github.com/opencodeco/phpctl/actions/workflows/docker.yml"><img alt="phpctl docker badge" src="https://github.com/opencodeco/phpctl/actions/workflows/docker.yml/badge.svg"></a>
+        <a href="https://github.com/opencodeco/phpctl/actions/workflows/devcontainer.yml"><img alt="phpctl docker badge" src="https://github.com/opencodeco/phpctl/actions/workflows/devcontainer.yml/badge.svg"></a>
         <a href="https://github.com/opencodeco/phpctl/actions/workflows/frankenphp.yml"><img alt="phpctl frankenphp badge" src="https://github.com/opencodeco/phpctl/actions/workflows/frankenphp.yml/badge.svg"></a>
       </h1>
       <p>🐳 A Docker-based development environment for PHP 🐘</p>
