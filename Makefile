@@ -15,5 +15,4 @@ install:
 
 .PHONY: devcontainer
 devcontainer:
-	@docker buildx build -t opencodeco/phpctl:php83-devcontainer -f devcontainer.Dockerfile .
-	@docker push opencodeco/phpctl:php83-devcontainer
+	@devcontainer build --no-cache --workspace-folder devcontainer --push true --image-name opencodeco/phpctl:php83-devcontainer

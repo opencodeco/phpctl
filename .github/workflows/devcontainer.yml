@@ -26,10 +26,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build and push
-        uses: docker/build-push-action@v5
+        name: Build and run dev container task
+        uses: devcontainers/ci@v0.3
         with:
-          context: .
-          file: devcontainer.Dockerfile
-          push: true
-          tags: opencodeco/phpctl:php83-devcontainer
+          subFolder: devcontainer
+          imageName: opencodeco/phpctl:php83-devcontainer
+          push: always
