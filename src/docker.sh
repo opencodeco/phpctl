@@ -51,6 +51,11 @@ run() {
         composer_home="-v $composer_home:$composer_home"
     fi
 
+    local gitconfig=""
+    if [ -f ~/.gitconfig ]; then
+        gitconfig="-v ~/.gitconfig:/root/.gitconfig:ro"
+    fi
+
     if [ -n "$GIT_EXEC_PATH" ]; then
         # In a Git hook environment, we need to disable TTY allocation
         PHPCTL_TTY="--label=no-tty"
@@ -68,7 +73,7 @@ run() {
         --user "$PHPCTL_USER" \
         $(env | awk -F= '/^[[:alpha:]]/{print $1}' | sed 's/^/-e/') \
         -v /var/run/docker.sock:/var/run/docker.sock \
-        -v ~/.gitconfig:/root/.gitconfig:ro \
+        $gitconfig \
         -v "$(pwd)":/usr/local/src -w /usr/local/src \
         -v "$PHPCTL_DIR/php.ini:/etc/php$PHP_VERSION/conf.d/zphp.ini" \
         $phpctl_ini \
