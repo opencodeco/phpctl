@@ -30,5 +30,6 @@ jobs:
         uses: devcontainers/ci@v0.3
         with:
           subFolder: src-devc
-          imageName: opencodeco/phpctl:php83-devcontainer
+          imageName: opencodeco/phpctl
+	  imageTag: php83-devcontainer
           push: always
