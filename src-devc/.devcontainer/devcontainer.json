@@ -1,17 +1,8 @@
 {
-    "build": {
-        "dockerfile": "./Dockerfile",
-        "context": "../.."
-    },
+    "image": "mcr.microsoft.com/devcontainers/php:8.3-bookworm",
     "features": {
-        "ghcr.io/devcontainers/features/common-utils:2": {
-            "installZsh": "true",
-            "username": "phpctl",
-            "userUid": "1000",
-            "userGid": "1000",
-            "upgradePackages": "true"
-        },
-        "ghcr.io/devcontainers/features/github-cli:1": {}
-    },
-    "remoteUser": "phpctl"
+        "ghcr.io/opencodeco/devcontainers/install-php-extensions:latest": {
+            "extensions": "swoole"
+        }
+    }
 }
