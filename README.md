@@ -34,6 +34,15 @@ php --version
 composer --version
 ```
 
+Using [Dev Containers](https://containers.dev/)? We have a pre-built image:
+```json
+{
+  "image": "opencodeco/phpctl:php83-devcontainer"
+}
+```
+In fact, we use it ourselves to develop `phpctl` itself: [devcontainer.json](.devcontainer/devcontainer.json).
+
+
 ## Getting started
 
 - [Installation guide](https://phpctl.dev/#installation)
