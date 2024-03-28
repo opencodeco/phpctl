@@ -12,6 +12,7 @@
       </h1>
       <p>🐳 A Docker-based development environment for PHP 🐘</p>
       <blockquote>Heavily inspired by <a href="https://github.com/opencodeco/hfctl">opencodeco/hfctl</a>.</blockquote>
+      <p><a href="https://codespaces.new/opencodeco/phpctl?machine=standardLinux32gb"><img alt="Open in GitHub Codespaces" src="https://github.com/codespaces/badge.svg"></a></p>
     </td>
   </tr>
 </table>
