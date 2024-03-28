@@ -12,7 +12,7 @@ build() {
     echo -e "Building \033[0;32m$PHPCTL_IMAGE\033[0m"
     # shellcheck disable=SC2068
     # shellcheck disable=SC2154
-    $PHPCTL_RUNTIME buildx build --no-cache \
+    $PHPCTL_RUNTIME buildx build \
         --build-arg PHP="$PHP_VERSION" \
         --build-arg COMPOSER_AUTH="$COMPOSER_AUTH" \
         --build-arg HOST_USER="$(whoami)" \
