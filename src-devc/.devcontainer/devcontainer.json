@@ -1,8 +1,22 @@
 {
-    "image": "mcr.microsoft.com/devcontainers/php:8.3-bookworm",
+    "build": {
+        "dockerfile": "./Dockerfile",
+        "context": "../.."
+    },
     "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": "true",
+            "username": "phpctl",
+            "userUid": "1000",
+            "userGid": "1000",
+            "upgradePackages": "true"
+        },
         "ghcr.io/opencodeco/devcontainers/install-php-extensions:latest": {
-            "extensions": "decimal gd intl mongodb pcntl pcov pdo_mysql pdo_pgsql rdkafka redis sockets swoole"
+            "extensions": "decimal gd intl mongodb pcntl pcov pdo_mysql pdo_pgsql rdkafka redis sockets swoole xdebug"
         }
-    }
+    },
+    "overrideFeatureInstallOrder": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ],
+    "remoteUser": "phpctl"
 }

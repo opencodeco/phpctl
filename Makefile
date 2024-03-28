@@ -15,4 +15,4 @@ install:
 
 .PHONY: devcontainer
 devcontainer:
-	@devcontainer build --no-cache --workspace-folder devcontainer --push true --image-name opencodeco/phpctl:php83-devcontainer
+	@devcontainer build --workspace-folder src-devc --push true --image-name opencodeco/phpctl:php83-devcontainer
