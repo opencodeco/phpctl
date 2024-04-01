@@ -53,7 +53,7 @@ run() {
 
     local gitconfig=""
     if [ -f ~/.gitconfig ]; then
-        gitconfig="-v ~/.gitconfig:/root/.gitconfig:ro"
+        gitconfig="-v $HOME/.gitconfig:/root/.gitconfig:ro"
     fi
 
     if [ -n "$GIT_EXEC_PATH" ]; then
