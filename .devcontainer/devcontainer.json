@@ -7,7 +7,7 @@
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},
         "ghcr.io/devcontainers-contrib/features/devcontainers-cli:1": {},
         "ghcr.io/devcontainers/features/sshd:1": {},
-        "ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+        "ghcr.io/devcontainers-contrib/features/apt-get-packages:1": {
             "packages": "parallel"
         }
     }
