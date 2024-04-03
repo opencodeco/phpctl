@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+set -e
 
 box() {
     local version="4.6.1"
