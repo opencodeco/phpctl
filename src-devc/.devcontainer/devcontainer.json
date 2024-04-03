@@ -12,7 +12,7 @@
             "upgradePackages": "true"
         },
         "ghcr.io/opencodeco/devcontainers/install-php-extensions:latest": {
-            "extensions": "decimal gd intl mongodb pcntl pcov pdo_mysql pdo_pgsql rdkafka redis sockets swoole xdebug"
+            "extensions": "decimal gd intl mongodb pcntl pcov pdo_mysql pdo_pgsql rdkafka redis xdebug"
         }
     },
     "overrideFeatureInstallOrder": [
