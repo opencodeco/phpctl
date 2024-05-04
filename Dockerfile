@@ -45,6 +45,8 @@ RUN apk add --upgrade --update --no-cache \
         php${PHP}-pecl-redis \
         php${PHP}-pecl-swoole \
         php${PHP}-pecl-xdebug \
+        icu-dev \
+        php${PHP}-intl \
     && ln -sf /usr/bin/php${PHP} /usr/bin/php \
     && mv /etc/php/php.ini /etc/php${PHP}/conf.d/zzphp.ini \
     && /usr/local/bin/install-tools
