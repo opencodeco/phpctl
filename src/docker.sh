@@ -54,7 +54,7 @@ run() {
     if [ -n "$GIT_EXEC_PATH" ]; then
         # In a Git hook environment, we need to disable TTY allocation
         PHPCTL_TTY="--label=no-tty"
-    fi
+	fi
 
     # shellcheck disable=SC2046
     # shellcheck disable=SC2068

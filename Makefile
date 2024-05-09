@@ -13,6 +13,6 @@ test:
 install:
 	@sudo ./scripts/symlink-bins.sh
 
-.PHONY: devcontainer
-devcontainer:
-	@devcontainer build --no-cache --workspace-folder devcontainer --push true --image-name opencodeco/phpctl:php83-devcontainer
+.PHONY: devcontainers
+devcontainers:
+	@parallel --line-buffer PHP_VERSION={} ./src-devc/build.sh ::: 81 82 83

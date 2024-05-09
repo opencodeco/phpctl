@@ -9,6 +9,16 @@ on:
 jobs:
   devcontainer:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - php: 81
+            php-str: 8.1
+          - php: 82
+            php-str: 8.2
+          - php: 83
+            php-str: 8.3
+    
     steps:
       -
         name: Checkout
@@ -28,8 +38,11 @@ jobs:
       -
         name: Build and run dev container task
         uses: devcontainers/ci@v0.3
+        env:
+          PHP_VERSION: ${{ matrix.php }}
+          PHP_VERSION_STR: ${{ matrix.php-str }}
         with:
           subFolder: src-devc
           imageName: opencodeco/phpctl
-          imageTag: php83-devcontainer
+          imageTag: php${{ matrix.php }}-devcontainer
           push: always
