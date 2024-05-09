@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 PHPCTL_DIR=$(dirname "$(realpath "$0")")/../
+
+if [ -s "$HOME/.phpctlrc" ]; then
+    set -a
+    . "$HOME/.phpctlrc"
+    set +a
+fi
+
 if [ -s .phpctlrc ]; then
     set -a
     . .phpctlrc

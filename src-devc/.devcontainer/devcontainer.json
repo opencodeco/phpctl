@@ -14,7 +14,13 @@
             "userUid": "1000",
             "userGid": "1000",
             "upgradePackages": "true"
+        },
+        "ghcr.io/opencodeco/devcontainers/install-php-extensions:latest": {
+            "extensions": "decimal gd intl mongodb pcntl pcov pdo_mysql pdo_pgsql rdkafka redis xdebug"
         }
     },
+    "overrideFeatureInstallOrder": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ],
     "remoteUser": "phpctl"
 }

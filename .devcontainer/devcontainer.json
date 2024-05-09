@@ -1,17 +1,14 @@
 {
     "image": "opencodeco/phpctl:php83-devcontainer",
+    "containerEnv": {
+        "PHP_VERSION": "83"
+    },
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},
         "ghcr.io/devcontainers-contrib/features/devcontainers-cli:1": {},
-        "ghcr.io/devcontainers/features/sshd:1": {}
-    },
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "ms-vscode.makefile-tools",
-                "ms-azuretools.vscode-docker",
-                "timonwong.shellcheck"
-            ]
+        "ghcr.io/devcontainers/features/sshd:1": {},
+        "ghcr.io/devcontainers-contrib/features/apt-get-packages:1": {
+            "packages": "parallel"
         }
     }
 }

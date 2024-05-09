@@ -8,6 +8,7 @@ build:
 .PHONY: test
 test:
 	@parallel --line-buffer PHP_VERSION={} COMPOSER_AUTH= TERM= ./bin/notty ./lib/bashunit ./tests/ ::: 81 82 83
+	@[ -f phpctl.ini ] && rm phpctl.ini
 
 .PHONY: install
 install:

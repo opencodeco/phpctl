@@ -7,10 +7,12 @@
       <h1>
         phpctl
         <a href="https://github.com/opencodeco/phpctl/actions/workflows/docker.yml"><img alt="phpctl docker badge" src="https://github.com/opencodeco/phpctl/actions/workflows/docker.yml/badge.svg"></a>
+        <a href="https://github.com/opencodeco/phpctl/actions/workflows/devcontainer.yml"><img alt="phpctl docker badge" src="https://github.com/opencodeco/phpctl/actions/workflows/devcontainer.yml/badge.svg"></a>
         <a href="https://github.com/opencodeco/phpctl/actions/workflows/frankenphp.yml"><img alt="phpctl frankenphp badge" src="https://github.com/opencodeco/phpctl/actions/workflows/frankenphp.yml/badge.svg"></a>
       </h1>
       <p>🐳 A Docker-based development environment for PHP 🐘</p>
       <blockquote>Heavily inspired by <a href="https://github.com/opencodeco/hfctl">opencodeco/hfctl</a>.</blockquote>
+      <p><a href="https://codespaces.new/opencodeco/phpctl?machine=standardLinux32gb"><img alt="Open in GitHub Codespaces" src="https://github.com/codespaces/badge.svg"></a></p>
     </td>
   </tr>
 </table>
@@ -31,6 +33,15 @@ phpctl doctor
 php --version
 composer --version
 ```
+
+Using [Dev Containers](https://containers.dev/)? We have a pre-built image:
+```json
+{
+  "image": "opencodeco/phpctl:php83-devcontainer"
+}
+```
+In fact, we use it ourselves to develop `phpctl` itself: [devcontainer.json](.devcontainer/devcontainer.json).
+
 
 ## Getting started
 

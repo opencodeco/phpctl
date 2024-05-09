@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+set -e
+
+SWOOLE_VERSION="5.1.2"
+echo "Installing Swoole $SWOOLE_VERSION"
+
+# Download
+cd /usr/local/src
+wget -q "https://github.com/swoole/swoole-src/archive/refs/tags/v${SWOOLE_VERSION}.zip"
+unzip -q "v${SWOOLE_VERSION}.zip"
+
+# Install
+cd "swoole-src-${SWOOLE_VERSION}"
+phpize
+./configure --enable-sockets --enable-openssl --enable-brotli --enable-mysqlnd --enable-cares --enable-swoole-curl --enable-swoole-pgsql --enable-swoole-sqlite
+make -j$(nproc)
+make install
+echo "extension=swoole.so" >> /usr/local/etc/php/conf.d/docker-php-ext-swoole.ini
+
+# Clean up
+cd ..
+rm "v${SWOOLE_VERSION}.zip"
+rm -r "swoole-src-${SWOOLE_VERSION}"

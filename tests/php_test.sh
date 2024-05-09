@@ -14,7 +14,4 @@ function test_composer() {
 function test_phpctl_ini() {
     echo "memory_limit=1337M" > phpctl.ini
     assert_contains "memory_limit => 1337M => 1337M" "$(./bin/phpctl php -i | grep memory_limit)"
-    if [ -f phpctl.ini ]; then
-        rm phpctl.ini
-    fi
 }
