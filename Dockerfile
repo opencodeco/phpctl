@@ -11,12 +11,14 @@ ARG WITHOUT_WATCHR
 ENV WITHOUT_WATCHR=$WITHOUT_WATCHR
 
 COPY rootfs /
-RUN apk add --upgrade --update --no-cache \
+RUN apk update && apk upgrade && apk add --no-cache \
         git \
         docker-cli \
         php${PHP}-cli \
         php${PHP}-ctype \
+        php${PHP}-curl \
         php${PHP}-dom \
+        php${PHP}-ffi \
         php${PHP}-fileinfo \
         php${PHP}-gd \
         php${PHP}-iconv \

@@ -1,7 +1,11 @@
 {
     "build": {
         "dockerfile": "./Dockerfile",
-        "context": "../.."
+        "context": "../..",
+        "args": {
+            "PHP_VERSION": "${localEnv:PHP_VERSION}",
+            "PHP_VERSION_STR": "${localEnv:PHP_VERSION_STR}"
+        }
     },
     "features": {
         "ghcr.io/devcontainers/features/common-utils:2": {
