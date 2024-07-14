@@ -1,11 +1,22 @@
 #!/bin/bash
+# src/assert.sh
+
+function fail() {
+  local message=$1
+
+  local label
+  label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
+  state::add_assertions_failed
+  console_results::print_failure_message "${label}" "$message"
+}
 
 function assert_equals() {
   local expected="$1"
   local actual="$2"
-  local label="${3:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
 
   if [[ "$expected" != "$actual" ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
     state::add_assertions_failed
     console_results::print_failed_test "${label}" "${expected}" "but got" "${actual}"
     return
@@ -17,19 +28,27 @@ function assert_equals() {
 function assert_equals_ignore_colors() {
   local expected="$1"
   local actual="$2"
-  local label="${3:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
 
   local actual_without_colors
   actual_without_colors=$(echo -e "$actual" | sed "s/\x1B\[[0-9;]*[JKmsu]//g")
 
-  assert_equals "$expected" "$actual_without_colors" "$label"
+  if [[ "$expected" != "$actual_without_colors" ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
+    state::add_assertions_failed
+    console_results::print_failed_test "${label}" "${expected}" "but got" "${actual_without_colors}"
+    return
+  fi
+
+  state::add_assertions_passed
 }
 
 function assert_empty() {
   local expected="$1"
-  local label="${2:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
 
   if [[ "$expected" != "" ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
     state::add_assertions_failed
     console_results::print_failed_test "${label}" "to be empty" "but got" "${expected}"
     return
@@ -40,9 +59,10 @@ function assert_empty() {
 
 function assert_not_empty() {
   local expected="$1"
-  local label="${2:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
 
   if [[ "$expected" == "" ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
     state::add_assertions_failed
     console_results::print_failed_test "${label}" "to not be empty" "but got" "${expected}"
     return
@@ -54,9 +74,10 @@ function assert_not_empty() {
 function assert_not_equals() {
   local expected="$1"
   local actual="$2"
-  local label="${3:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
 
   if [[ "$expected" == "$actual" ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
     state::add_assertions_failed
     console_results::print_failed_test "${label}" "${expected}" "but got" "${actual}"
     return
@@ -67,10 +88,13 @@ function assert_not_equals() {
 
 function assert_contains() {
   local expected="$1"
-  local actual="$2"
-  local label="${3:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
+  local actual_arr=("${@:2}")
+  local actual
+  actual=$(printf '%s\n' "${actual_arr[@]}")
 
   if ! [[ $actual == *"$expected"* ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
     state::add_assertions_failed
     console_results::print_failed_test "${label}" "${actual}" "to contain" "${expected}"
     return
@@ -82,14 +106,14 @@ function assert_contains() {
 function assert_contains_ignore_case() {
   local expected="$1"
   local actual="$2"
-  local label="${3:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
 
   shopt -s nocasematch
 
   if ! [[ $actual =~ $expected ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
     state::add_assertions_failed
     console_results::print_failed_test "${label}" "${actual}" "to contain" "${expected}"
-
     shopt -u nocasematch
     return
   fi
@@ -100,10 +124,13 @@ function assert_contains_ignore_case() {
 
 function assert_not_contains() {
   local expected="$1"
-  local actual="$2"
-  local label="${3:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
+  local actual_arr=("${@:2}")
+  local actual
+  actual=$(printf '%s\n' "${actual_arr[@]}")
 
   if [[ $actual == *"$expected"* ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
     state::add_assertions_failed
     console_results::print_failed_test "${label}" "${actual}" "to not contain" "${expected}"
     return
@@ -114,10 +141,13 @@ function assert_not_contains() {
 
 function assert_matches() {
   local expected="$1"
-  local actual="$2"
-  local label="${3:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
+  local actual_arr=("${@:2}")
+  local actual
+  actual=$(printf '%s\n' "${actual_arr[@]}")
 
   if ! [[ $actual =~ $expected ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
     state::add_assertions_failed
     console_results::print_failed_test "${label}" "${actual}" "to match" "${expected}"
     return
@@ -128,10 +158,13 @@ function assert_matches() {
 
 function assert_not_matches() {
   local expected="$1"
-  local actual="$2"
-  local label="${3:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
+  local actual_arr=("${@:2}")
+  local actual
+  actual=$(printf '%s\n' "${actual_arr[@]}")
 
   if [[ $actual =~ $expected ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
     state::add_assertions_failed
     console_results::print_failed_test "${label}" "${actual}" "to not match" "${expected}"
     return
@@ -143,9 +176,10 @@ function assert_not_matches() {
 function assert_exit_code() {
   local actual_exit_code=${3-"$?"}
   local expected_exit_code="$1"
-  local label="${2:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
 
   if [[ "$actual_exit_code" -ne "$expected_exit_code" ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
     state::add_assertions_failed
     console_results::print_failed_test "${label}" "${actual_exit_code}" "to be" "${expected_exit_code}"
     return
@@ -157,9 +191,10 @@ function assert_exit_code() {
 function assert_successful_code() {
   local actual_exit_code=${3-"$?"}
   local expected_exit_code=0
-  local label="${2:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
 
   if [[ "$actual_exit_code" -ne "$expected_exit_code" ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
     state::add_assertions_failed
     console_results::print_failed_test "${label}" "${actual_exit_code}" "to be exactly" "${expected_exit_code}"
     return
@@ -171,9 +206,10 @@ function assert_successful_code() {
 function assert_general_error() {
   local actual_exit_code=${3-"$?"}
   local expected_exit_code=1
-  local label="${2:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
 
   if [[ $actual_exit_code -ne "$expected_exit_code" ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
     state::add_assertions_failed
     console_results::print_failed_test "${label}" "${actual_exit_code}" "to be exactly" "${expected_exit_code}"
     return
@@ -185,9 +221,10 @@ function assert_general_error() {
 function assert_command_not_found() {
   local actual_exit_code=${3-"$?"}
   local expected_exit_code=127
-  local label="${2:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
 
   if [[ $actual_exit_code -ne "$expected_exit_code" ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
     state::add_assertions_failed
     console_results::print_failed_test "${label}" "${actual_exit_code}" "to be exactly" "${expected_exit_code}"
     return
@@ -198,10 +235,13 @@ function assert_command_not_found() {
 
 function assert_string_starts_with() {
   local expected="$1"
-  local actual="$2"
-  local label="${3:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
+  local actual_arr=("${@:2}")
+  local actual
+  actual=$(printf '%s\n' "${actual_arr[@]}")
 
   if ! [[ $actual =~ ^"$expected"* ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
     state::add_assertions_failed
     console_results::print_failed_test "${label}" "${actual}" "to start with" "${expected}"
     return
@@ -213,9 +253,10 @@ function assert_string_starts_with() {
 function assert_string_not_starts_with() {
   local expected="$1"
   local actual="$2"
-  local label="${3:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
 
   if [[ $actual =~ ^"$expected"* ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
     state::add_assertions_failed
     console_results::print_failed_test "${label}" "${actual}" "to not start with" "${expected}"
     return
@@ -226,10 +267,13 @@ function assert_string_not_starts_with() {
 
 function assert_string_ends_with() {
   local expected="$1"
-  local actual="$2"
-  local label="${3:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
+  local actual_arr=("${@:2}")
+  local actual
+  actual=$(printf '%s\n' "${actual_arr[@]}")
 
   if ! [[ $actual =~ .*"$expected"$ ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
     state::add_assertions_failed
     console_results::print_failed_test "${label}" "${actual}" "to end with" "${expected}"
     return
@@ -240,10 +284,13 @@ function assert_string_ends_with() {
 
 function assert_string_not_ends_with() {
   local expected="$1"
-  local actual="$2"
-  local label="${3:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
+  local actual_arr=("${@:2}")
+  local actual
+  actual=$(printf '%s\n' "${actual_arr[@]}")
 
   if [[ $actual =~ .*"$expected"$ ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
     state::add_assertions_failed
     console_results::print_failed_test "${label}" "${actual}" "to not end with" "${expected}"
     return
@@ -255,9 +302,10 @@ function assert_string_not_ends_with() {
 function assert_less_than() {
   local expected="$1"
   local actual="$2"
-  local label="${3:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
 
   if ! [[ "$actual" -lt "$expected" ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
     state::add_assertions_failed
     console_results::print_failed_test "${label}" "${actual}" "to be less than" "${expected}"
     return
@@ -269,9 +317,10 @@ function assert_less_than() {
 function assert_less_or_equal_than() {
   local expected="$1"
   local actual="$2"
-  local label="${3:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
 
   if ! [[ "$actual" -le "$expected" ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
     state::add_assertions_failed
     console_results::print_failed_test "${label}" "${actual}" "to be less or equal than" "${expected}"
     return
@@ -283,9 +332,10 @@ function assert_less_or_equal_than() {
 function assert_greater_than() {
   local expected="$1"
   local actual="$2"
-  local label="${3:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
 
   if ! [[ "$actual" -gt "$expected" ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
     state::add_assertions_failed
     console_results::print_failed_test "${label}" "${actual}" "to be greater than" "${expected}"
     return
@@ -297,9 +347,10 @@ function assert_greater_than() {
 function assert_greater_or_equal_than() {
   local expected="$1"
   local actual="$2"
-  local label="${3:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
 
   if ! [[ "$actual" -ge "$expected" ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
     state::add_assertions_failed
     console_results::print_failed_test "${label}" "${actual}" "to be greater or equal than" "${expected}"
     return
@@ -307,7 +358,37 @@ function assert_greater_or_equal_than() {
 
   state::add_assertions_passed
 }
-#!/bin/bash
+
+function assert_line_count() {
+  local expected="$1"
+  local input_arr=("${@:2}")
+  local input_str
+  input_str=$(printf '%s\n' "${input_arr[@]}")
+
+  if [ -z "$input_str" ]; then
+    local actual=0
+  else
+    local actual
+    actual=$(echo "$input_str" | wc -l | tr -d '[:blank:]')
+    additional_new_lines=$(grep -o '\\n' <<< "$input_str" | wc -l | tr -d '[:blank:]')
+    ((actual+=additional_new_lines))
+  fi
+
+  if [[ "$expected" != "$actual" ]]; then
+    local label
+    label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
+
+    state::add_assertions_failed
+    console_results::print_failed_test "${label}" "${input_str}"\
+      "to contain number of lines equal to" "${expected}"\
+      "but found" "${actual}"
+    return
+  fi
+
+  state::add_assertions_passed
+}
+
+# src/assert_arrays.sh
 
 function assert_array_contains() {
   local expected="$1"
@@ -340,7 +421,8 @@ function assert_array_not_contains() {
 
   state::add_assertions_passed
 }
-#!/bin/bash
+
+# src/assert_files.sh
 
 function assert_file_exists() {
   local expected="$1"
@@ -393,7 +475,8 @@ function assert_is_file_empty() {
 
   state::add_assertions_passed
 }
-#!/bin/bash
+
+# src/assert_folders.sh
 
 function assert_directory_exists() {
   local expected="$1"
@@ -511,7 +594,8 @@ function assert_is_directory_not_writable() {
 
   state::add_assertions_passed
 }
-#!/bin/bash
+
+# src/assert_snapshot.sh
 
 function assert_match_snapshot() {
   local actual
@@ -549,9 +633,33 @@ function assert_match_snapshot() {
   state::add_assertions_passed
 }
 
-#!/bin/bash
 
-#!/bin/bash
+# src/assertions.sh
+
+
+# src/bashunit.sh
+
+# This file provides a facade to developers who wants
+# to interact with the internals of bashunit.
+# e.g. adding custom assertions
+
+function bashunit::assertion_failed() {
+  local expected=$1
+  local actual=$2
+  local failure_condition_message=${3:-"but got"}
+
+  local label
+  label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
+  state::add_assertions_failed
+  console_results::print_failed_test "${label}" "${expected}" \
+    "$failure_condition_message" "${actual}"
+}
+
+function bashunit::assertion_passed() {
+  state::add_assertions_passed
+}
+
+# src/check_os.sh
 
 # shellcheck disable=SC2034
 _OS="Unknown"
@@ -563,23 +671,65 @@ elif [[ "$(uname)" == "Darwin" ]]; then
 elif [[ $(uname) == *"MINGW"* ]]; then
   _OS="Windows"
 fi
-#!/bin/bash
 
-# shellcheck disable=SC2034
-_COLOR_DEFAULT=$'\e[0m'
-_COLOR_BOLD=$'\e[1m'
-_COLOR_FAINT=$'\e[2m'
-_COLOR_FAILED=$'\e[31m'
-_COLOR_PASSED=$'\e[32m'
-_COLOR_SKIPPED=$'\e[33m'
-_COLOR_INCOMPLETE=$'\e[36m'
-_COLOR_SNAPSHOT=$'\e[34m'
-_COLOR_RETURN_ERROR=$'\e[41m'
-_COLOR_RETURN_SUCCESS=$'\e[42m'
-_COLOR_RETURN_SKIPPED=$'\e[43m'
-_COLOR_RETURN_INCOMPLETE=$'\e[46m'
-_COLOR_RETURN_SNAPSHOT=$'\e[44m'
-#!/bin/bash
+# src/clock.sh
+
+function clock::now() {
+  if perl --version > /dev/null 2>&1; then
+    perl -MTime::HiRes -e 'printf("%.0f\n",Time::HiRes::time()*1000)'
+  elif [[ "$_OS" != "OSX" ]]; then
+    date +%s%N
+  else
+    echo ""
+  fi
+}
+
+_START_TIME=$(clock::now)
+
+function clock::runtime_in_milliseconds() {
+  end_time=$(clock::now)
+  if [[ -n $end_time ]]; then
+    echo $(( end_time - _START_TIME ))
+  else
+    echo ""
+  fi
+}
+
+# src/colors.sh
+
+# Pass in any number of ANSI SGR codes.
+#
+# Code reference:
+#   https://en.wikipedia.org/wiki/ANSI_escape_code#SGR_(Select_Graphic_Rendition)_parameters
+# Credit:
+#   https://superuser.com/a/1119396
+sgr() {
+  local codes=${1:-0}
+  shift
+
+  for c in "$@"; do
+    codes="$codes;$c"
+  done
+
+  echo $'\e'"[${codes}m"
+}
+
+_COLOR_BOLD="$(sgr 1)"
+_COLOR_FAINT="$(sgr 2)"
+_COLOR_BLACK="$(sgr 30)"
+_COLOR_FAILED="$(sgr 31)"
+_COLOR_PASSED="$(sgr 32)"
+_COLOR_SKIPPED="$(sgr 33)"
+_COLOR_INCOMPLETE="$(sgr 36)"
+_COLOR_SNAPSHOT="$(sgr 34)"
+_COLOR_RETURN_ERROR="$(sgr 41)$_COLOR_BLACK$_COLOR_BOLD"
+_COLOR_RETURN_SUCCESS="$(sgr 42)$_COLOR_BLACK$_COLOR_BOLD"
+_COLOR_RETURN_SKIPPED="$(sgr 43)$_COLOR_BLACK$_COLOR_BOLD"
+_COLOR_RETURN_INCOMPLETE="$(sgr 46)$_COLOR_BLACK$_COLOR_BOLD"
+_COLOR_RETURN_SNAPSHOT="$(sgr 44)$_COLOR_BLACK$_COLOR_BOLD"
+_COLOR_DEFAULT="$(sgr 0)"
+
+# src/console_header.sh
 
 function console_header::print_version() {
   if [[ $HEADER_ASCII_ART == true ]]; then
@@ -614,8 +764,23 @@ Arguments:
   If you use wildcards, bashunit will run any tests it finds.
 
 Options:
-  -f|--filer <filter>
+  -a|--assert <function ...args>
+    Run a core assert function standalone without a test context.
+
+  --debug
+    Print all executed shell commands to the terminal.
+
+  -e|--env <file-path>
+    Load a custom env file overriding the .env environment variables.
+
+  -f|--filter <filter>
     Filters the tests to run based on the test name.
+
+  -l|--log-junit <out.xml>
+    Create a report JUnit XML file that contains information about the test results.
+
+  -r|--report-html <out.html>
+    Create a report HTML file that contains information about the test results.
 
   -s|simple || -v|verbose
     Enables simplified or verbose output to the console.
@@ -623,11 +788,11 @@ Options:
   -S|--stop-on-failure
     Force to stop the runner right after encountering one failing test.
 
-  -e|--env <file-path>
-    Load a custom env file overriding the .env environment variables.
-
   --version
     Displays the current version of bashunit.
+
+  --upgrade
+    Upgrade to latest version of bashunit.
 
   --help
     This message.
@@ -635,9 +800,9 @@ Options:
 See more: https://bashunit.typeddevs.com/command-line
 EOF
 }
-#!/bin/bash
 
-_START_TIME=$(date +%s%N);
+# src/console_results.sh
+
 _SUCCESSFUL_TEST_COUNT=0
 
 function console_results::render_result() {
@@ -646,24 +811,24 @@ function console_results::render_result() {
     printf "%s%s%s\n" "${_COLOR_RETURN_ERROR}" "Duplicate test functions found" "${_COLOR_DEFAULT}"
     printf "File with duplicate functions: %s\n" "$(state::get_file_with_duplicated_function_names)"
     printf "Duplicate functions: %s\n" "$(state::get_duplicated_function_names)"
-    exit 1
+    return 1
   fi
 
   echo ""
 
   local total_tests=0
-  ((total_tests+=$(state::get_tests_passed)))
-  ((total_tests+=$(state::get_tests_skipped)))
-  ((total_tests+=$(state::get_tests_incomplete)))
-  ((total_tests+=$(state::get_tests_snapshot)))
-  ((total_tests+=$(state::get_tests_failed)))
+  ((total_tests += $(state::get_tests_passed))) || true
+  ((total_tests += $(state::get_tests_skipped))) || true
+  ((total_tests += $(state::get_tests_incomplete))) || true
+  ((total_tests += $(state::get_tests_snapshot))) || true
+  ((total_tests += $(state::get_tests_failed))) || true
 
   local total_assertions=0
-  ((total_assertions+=$(state::get_assertions_passed)))
-  ((total_assertions+=$(state::get_assertions_skipped)))
-  ((total_assertions+=$(state::get_assertions_incomplete)))
-  ((total_assertions+=$(state::get_assertions_snapshot)))
-  ((total_assertions+=$(state::get_assertions_failed)))
+  ((total_assertions += $(state::get_assertions_passed))) || true
+  ((total_assertions += $(state::get_assertions_skipped))) || true
+  ((total_assertions += $(state::get_assertions_incomplete))) || true
+  ((total_assertions += $(state::get_assertions_snapshot))) || true
+  ((total_assertions += $(state::get_assertions_failed))) || true
 
   printf "%sTests:     %s" "$_COLOR_FAINT" "$_COLOR_DEFAULT"
   if [[ "$(state::get_tests_passed)" -gt 0 ]] || [[ "$(state::get_assertions_passed)" -gt 0 ]]; then
@@ -702,38 +867,38 @@ function console_results::render_result() {
   printf " %s total\n" "$total_assertions"
 
   if [[ "$(state::get_tests_failed)" -gt 0 ]]; then
-    printf "%s%s%s\n" "$_COLOR_RETURN_ERROR" "Some tests failed" "$_COLOR_DEFAULT"
+    printf "\n%s%s%s\n" "$_COLOR_RETURN_ERROR" " Some tests failed " "$_COLOR_DEFAULT"
     console_results::print_execution_time
-    exit 1
+    return 1
   fi
 
   if [[ "$(state::get_tests_incomplete)" -gt 0 ]]; then
-    printf "%s%s%s\n" "$_COLOR_RETURN_INCOMPLETE" "Some tests incomplete" "$_COLOR_DEFAULT"
+    printf "\n%s%s%s\n" "$_COLOR_RETURN_INCOMPLETE" " Some tests incomplete " "$_COLOR_DEFAULT"
     console_results::print_execution_time
-    exit 0
+    return 0
   fi
 
   if [[ "$(state::get_tests_skipped)" -gt 0 ]]; then
-    printf "%s%s%s\n" "$_COLOR_RETURN_SKIPPED" "Some tests skipped" "$_COLOR_DEFAULT"
+    printf "\n%s%s%s\n" "$_COLOR_RETURN_SKIPPED" " Some tests skipped " "$_COLOR_DEFAULT"
     console_results::print_execution_time
-    exit 0
+    return 0
   fi
 
   if [[ "$(state::get_tests_snapshot)" -gt 0 ]]; then
-    printf "%s%s%s\n" "$_COLOR_RETURN_SNAPSHOT" "Some snapshots created" "$_COLOR_DEFAULT"
+    printf "\n%s%s%s\n" "$_COLOR_RETURN_SNAPSHOT" " Some snapshots created " "$_COLOR_DEFAULT"
     console_results::print_execution_time
-    exit 0
+    return 0
   fi
 
   if [[ $total_tests -eq 0 ]]; then
-    printf "%s%s%s\n" "$_COLOR_RETURN_ERROR" "No tests found" "$_COLOR_DEFAULT"
+    printf "\n%s%s%s\n" "$_COLOR_RETURN_ERROR" " No tests found " "$_COLOR_DEFAULT"
     console_results::print_execution_time
-    exit 1
+    return 1
   fi
 
-  printf "%s%s%s\n" "$_COLOR_RETURN_SUCCESS" "All tests passed" "$_COLOR_DEFAULT"
+  printf "\n%s%s%s\n" "$_COLOR_RETURN_SUCCESS" " All tests passed " "$_COLOR_DEFAULT"
   console_results::print_execution_time
-  exit 0
+  return 0
 }
 
 function console_results::print_execution_time() {
@@ -741,14 +906,12 @@ function console_results::print_execution_time() {
     return
   fi
 
-  if [[ "$_OS" != "OSX" ]]; then
-    _EXECUTION_TIME=$((($(date +%s%N) - "$_START_TIME") / 1000000))
-    printf "${_COLOR_BOLD}%s${_COLOR_DEFAULT}\n" "Time taken: ${_EXECUTION_TIME} ms"
-  fi
+  _EXECUTION_TIME=$(clock::runtime_in_milliseconds)
+  printf "${_COLOR_BOLD}%s${_COLOR_DEFAULT}\n" "Time taken: ${_EXECUTION_TIME} ms"
 }
 
 function console_results::print_successful_test() {
-  ((_SUCCESSFUL_TEST_COUNT++))
+  ((_SUCCESSFUL_TEST_COUNT++)) || true
 
   if [[ "$SIMPLE_OUTPUT" == true ]]; then
     if (( _SUCCESSFUL_TEST_COUNT % 50 != 0 )); then
@@ -758,14 +921,24 @@ function console_results::print_successful_test() {
     fi
   else
     local test_name=$1
-    local data=$2
+    shift
 
-    if [[ -z "$data" ]]; then
+    if [[ -z "$*" ]]; then
       printf "%s✓ Passed%s: %s\n" "$_COLOR_PASSED" "$_COLOR_DEFAULT" "${test_name}"
     else
-      printf "%s✓ Passed%s: %s (%s)\n" "$_COLOR_PASSED" "$_COLOR_DEFAULT" "${test_name}" "${data}"
+      printf "%s✓ Passed%s: %s (%s)\n" "$_COLOR_PASSED" "$_COLOR_DEFAULT" "${test_name}" "$*"
     fi
   fi
+}
+
+function console_results::print_failure_message() {
+  local test_name=$1
+  local failure_message=$2
+
+  printf "\
+${_COLOR_FAILED}✗ Failed${_COLOR_DEFAULT}: %s
+    ${_COLOR_FAINT}Message:${_COLOR_DEFAULT} ${_COLOR_BOLD}'%s'${_COLOR_DEFAULT}\n"\
+    "${test_name}" "${failure_message}"
 }
 
 function console_results::print_failed_test() {
@@ -773,12 +946,20 @@ function console_results::print_failed_test() {
   local expected=$2
   local failure_condition_message=$3
   local actual=$4
+  local extra_key=${5-}
+  local extra_value=${6-}
 
   printf "\
 ${_COLOR_FAILED}✗ Failed${_COLOR_DEFAULT}: %s
     ${_COLOR_FAINT}Expected${_COLOR_DEFAULT} ${_COLOR_BOLD}'%s'${_COLOR_DEFAULT}
     ${_COLOR_FAINT}%s${_COLOR_DEFAULT} ${_COLOR_BOLD}'%s'${_COLOR_DEFAULT}\n"\
     "${test_name}" "${expected}" "${failure_condition_message}" "${actual}"
+
+  if [ -n "$extra_key" ]; then
+    printf "\
+    ${_COLOR_FAINT}%s${_COLOR_DEFAULT} ${_COLOR_BOLD}'%s'${_COLOR_DEFAULT}\n"\
+    "${extra_key}" "${extra_value}"
+  fi
 }
 
 function console_results::print_failed_snapshot_test() {
@@ -800,7 +981,7 @@ function console_results::print_failed_snapshot_test() {
 
 function console_results::print_skipped_test() {
   local test_name=$1
-  local reason=$2
+  local reason=${2-}
 
   printf "${_COLOR_SKIPPED}↷ Skipped${_COLOR_DEFAULT}: %s\n" "${test_name}"
 
@@ -811,7 +992,7 @@ function console_results::print_skipped_test() {
 
 function console_results::print_incomplete_test() {
   local test_name=$1
-  local pending=$2
+  local pending=${2-}
 
   printf "${_COLOR_INCOMPLETE}✒ Incomplete${_COLOR_DEFAULT}: %s\n" "${test_name}"
 
@@ -835,7 +1016,8 @@ function console_results::print_error_test() {
   printf "${_COLOR_FAILED}✗ Failed${_COLOR_DEFAULT}: %s
     ${_COLOR_FAINT}%s${_COLOR_DEFAULT}\n" "${test_name}" "${error}"
 }
-#!/bin/bash
+
+# src/default_env_config.sh
 
 # shellcheck disable=SC2034
 _DEFAULT_PARALLEL_RUN=false
@@ -845,8 +1027,11 @@ _DEFAULT_SIMPLE_OUTPUT=false
 _DEFAULT_STOP_ON_FAILURE=false
 _DEFAULT_SHOW_EXECUTION_TIME=true
 _DEFAULT_DEFAULT_PATH=
+_DEFAULT_LOG_JUNIT=
+_DEFAULT_REPORT_HTML=
 CAT="$(which cat)"
-#!/bin/bash
+
+# src/deprecated_assert.sh
 
 # Deprecated: Please use assert_equals instead.
 function assertEquals() {
@@ -945,41 +1130,27 @@ function assertArrayContains() {
 function assertArrayNotContains() {
   assert_array_not_contains "$1" "${@:1}"
 }
-#!/bin/bash
+
+# src/env_configuration.sh
 
 set -o allexport
 # shellcheck source=/dev/null
 [[ -f ".env" ]] && source .env set
 set +o allexport
 
-if [[ -z "$PARALLEL_RUN" ]]; then
-  PARALLEL_RUN=$_DEFAULT_PARALLEL_RUN
-fi
+: "${PARALLEL_RUN:=$_DEFAULT_PARALLEL_RUN}"
+: "${SHOW_HEADER:=$_DEFAULT_SHOW_HEADER}"
+: "${HEADER_ASCII_ART:=$_DEFAULT_HEADER_ASCII_ART}"
+: "${SIMPLE_OUTPUT:=$_DEFAULT_SIMPLE_OUTPUT}"
+: "${STOP_ON_FAILURE:=$_DEFAULT_STOP_ON_FAILURE}"
+: "${SHOW_EXECUTION_TIME:=$_DEFAULT_SHOW_EXECUTION_TIME}"
+: "${DEFAULT_PATH:=$_DEFAULT_DEFAULT_PATH}"
+: "${LOG_JUNIT:=$_DEFAULT_LOG_JUNIT}"
+: "${REPORT_HTML:=$_DEFAULT_REPORT_HTML}"
 
-if [[ -z "$SHOW_HEADER" ]]; then
-  SHOW_HEADER=$_DEFAULT_SHOW_HEADER
-fi
+# src/helpers.sh
 
-if [[ -z "$HEADER_ASCII_ART" ]]; then
-  HEADER_ASCII_ART=$_DEFAULT_HEADER_ASCII_ART
-fi
-
-if [[ -z "$SIMPLE_OUTPUT" ]]; then
-  SIMPLE_OUTPUT=$_DEFAULT_SIMPLE_OUTPUT
-fi
-
-if [[ -z "$STOP_ON_FAILURE" ]]; then
-  STOP_ON_FAILURE=$_DEFAULT_STOP_ON_FAILURE
-fi
-
-if [[ -z "$SHOW_EXECUTION_TIME" ]]; then
-  SHOW_EXECUTION_TIME=$_DEFAULT_SHOW_EXECUTION_TIME
-fi
-
-if [[ -z "$DEFAULT_PATH" ]]; then
-  DEFAULT_PATH=$_DEFAULT_DEFAULT_PATH
-fi
-#!/bin/bash
+declare -r BASHUNIT_GIT_REPO="https://github.com/TypedDevs/bashunit"
 
 #
 # @param $1 string Eg: "test_some_logic_camelCase"
@@ -987,7 +1158,7 @@ fi
 # @return string Eg: "Some logic camelCase"
 #
 function helper::normalize_test_function_name() {
-  local original_function_name="$1"
+  local original_function_name="${1-}"
   local result
 
   # Remove "test_" prefix
@@ -1034,40 +1205,26 @@ function helper::get_functions_to_run() {
   local filter=$2
   local function_names=$3
 
-  local functions_to_run=()
+  local filtered_functions=""
 
-  for function_name in $function_names; do
-    if [[ $function_name != ${prefix}* ]]; then
-      continue
+  for fn in $function_names; do
+    if [[ $fn == ${prefix}_${filter}* ]]; then
+      if [[ $filtered_functions == *" $fn"* ]]; then
+        return 1
+      fi
+      filtered_functions+=" $fn"
     fi
-
-    local lower_case_function_name
-    lower_case_function_name=$(echo "$function_name" | tr '[:upper:]' '[:lower:]')
-    local lower_case_filter
-    lower_case_filter=$(echo "$filter" | tr '[:upper:]' '[:lower:]')
-
-    if [[ -n $filter && $lower_case_function_name != *"$lower_case_filter"* ]]; then
-      continue
-    fi
-
-    if [[ "${functions_to_run[*]}" =~ ${function_name} ]]; then
-      return 1
-    fi
-
-    functions_to_run+=("$function_name")
   done
 
-  echo "${functions_to_run[@]}"
+  echo "${filtered_functions# }"
 }
 
 #
 # @param $1 string Eg: "do_something"
 #
 function helper::execute_function_if_exists() {
-  local function_name=$1
-
-  if declare -F | awk '{print $3}' | grep -Eq "^${function_name}$"; then
-    "$function_name"
+  if [[ "$(type -t "$1")" == "function" ]]; then
+    "$1" 2>/dev/null
   fi
 }
 
@@ -1075,11 +1232,7 @@ function helper::execute_function_if_exists() {
 # @param $1 string Eg: "do_something"
 #
 function helper::unset_if_exists() {
-  local function_name=$1
-
-  if declare -F | awk '{print $3}' | grep -Eq "^${function_name}$"; then
-    unset "$function_name"
-  fi
+  unset "$1" 2>/dev/null
 }
 
 function helper::find_files_recursive() {
@@ -1120,6 +1273,7 @@ function helper::get_provider_data() {
     grep -B 1 "function $function_name()" "$script" |\
     grep "# data_provider " |\
     sed -E -e 's/\ *# data_provider (.*)$/\1/g'\
+    || true
   )
 
   if [[ -n "$data_provider_function" ]]; then
@@ -1127,16 +1281,287 @@ function helper::get_provider_data() {
   fi
 }
 
-function helper::trim() {
-    local input_string="$1"
-    local trimmed_string
+function helper::get_multi_invoker_function() {
+  local function_name="$1"
+  local script="$2"
+  local multi_invoker_function
 
-    trimmed_string="${input_string#"${input_string%%[![:space:]]*}"}"
-    trimmed_string="${trimmed_string%"${trimmed_string##*[![:space:]]}"}"
+  if [[ ! -f "$script" ]]; then
+    return
+  fi
 
-    echo "$trimmed_string"
+  multi_invoker_function=$(\
+    grep -B 1 "function $function_name()" "$script" |\
+    grep "# multi_invoker " |\
+    sed -E -e 's/\ *# multi_invoker (.*)$/\1/g'\
+  )
+  func_exists=$(declare -f "$multi_invoker_function")
+  if [[ -n "$func_exists" ]]; then
+    echo "$multi_invoker_function"
+  fi
 }
-#!/bin/bash
+
+function helper::trim() {
+  local input_string="$1"
+  local trimmed_string
+
+  trimmed_string="${input_string#"${input_string%%[![:space:]]*}"}"
+  trimmed_string="${trimmed_string%"${trimmed_string##*[![:space:]]}"}"
+
+  echo "$trimmed_string"
+}
+
+function helpers::get_latest_tag() {
+  git ls-remote --tags "$BASHUNIT_GIT_REPO" |
+    awk '{print $2}' |
+    sed 's|^refs/tags/||' |
+    sort -Vr |
+    head -n 1
+}
+
+# src/logger.sh
+
+TEST_NAMES=()
+TEST_STATUSES=()
+TEST_DURATIONS=()
+
+function logger::test_snapshot() {
+  logger::log "$1" "$2" "$3" "snapshot"
+}
+
+function logger::test_incomplete() {
+  logger::log "$1" "$2" "$3" "incomplete"
+}
+
+function logger::test_skipped() {
+  logger::log "$1" "$2" "$3" "skipped"
+}
+
+function logger::test_passed() {
+  logger::log "$1" "$2" "$3" "passed"
+}
+
+function logger::test_failed() {
+  logger::log "$1" "$2" "$3" "failed"
+}
+
+function logger::log() {
+  local file="$1"
+  local test_name="$2"
+  local start_time="$3"
+  local status="$4"
+
+  local end_time
+  end_time=$(clock::now)
+  local duration=$((end_time - start_time))
+
+  TEST_FILES+=("$file")
+  TEST_NAMES+=("$test_name")
+  TEST_STATUSES+=("$status")
+  TEST_DURATIONS+=("$duration")
+}
+
+function logger::generate_junit_xml() {
+  local output_file="$1"
+  local test_passed
+  test_passed=$(state::get_tests_passed)
+  local tests_skipped
+  tests_skipped=$(state::get_tests_skipped)
+  local tests_incomplete
+  tests_incomplete=$(state::get_tests_incomplete)
+  local tests_snapshot
+  tests_snapshot=$(state::get_tests_snapshot)
+  local tests_failed
+  tests_failed=$(state::get_tests_failed)
+  local time
+  time=$(clock::runtime_in_milliseconds)
+
+  {
+    echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+    echo "<testsuites>"
+    echo "  <testsuite name=\"bashunit\" tests=\"${#TEST_NAMES[@]}\" time=\"$time\""
+    echo "             passed=\"$test_passed\" failures=\"$tests_failed\" incomplete=\"$tests_incomplete\""
+    echo "             skipped=\"$tests_skipped\" snapshot=\"$tests_snapshot\">"
+
+    for i in "${!TEST_NAMES[@]}"; do
+      local file="${TEST_FILES[$i]}"
+      local name="${TEST_NAMES[$i]}"
+      local status="${TEST_STATUSES[$i]}"
+      local test_time="${TEST_DURATIONS[$i]}"
+
+      echo "    <testcase file=\"$file\""
+      echo "        name=\"$name\""
+      echo "        status=\"$status\" time=\"$test_time\">"
+      echo "    </testcase>"
+    done
+
+    echo "  </testsuite>"
+    echo "</testsuites>"
+  } > "$output_file"
+}
+
+function logger::generate_report_html() {
+  local output_file="$1"
+  local test_passed
+  test_passed=$(state::get_tests_passed)
+  local tests_skipped
+  tests_skipped=$(state::get_tests_skipped)
+  local tests_incomplete
+  tests_incomplete=$(state::get_tests_incomplete)
+  local tests_snapshot
+  tests_snapshot=$(state::get_tests_snapshot)
+  local tests_failed
+  tests_failed=$(state::get_tests_failed)
+  local time
+  time=$(clock::runtime_in_milliseconds)
+
+  # Temporary file to store test cases by file
+  local temp_file="temp_test_cases.txt"
+
+  # Collect test cases by file
+  : > "$temp_file"  # Clear temp file if it exists
+  for i in "${!TEST_NAMES[@]}"; do
+    local file="${TEST_FILES[$i]}"
+    local name="${TEST_NAMES[$i]}"
+    local status="${TEST_STATUSES[$i]}"
+    local test_time="${TEST_DURATIONS[$i]}"
+    local test_case="$file|$name|$status|$test_time"
+
+    echo "$test_case" >> "$temp_file"
+  done
+
+  {
+    echo "<!DOCTYPE html>"
+    echo "<html lang=\"en\">"
+    echo "<head>"
+    echo "  <meta charset=\"UTF-8\">"
+    echo "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"
+    echo "  <title>Test Report</title>"
+    echo "  <style>"
+    echo "    body { font-family: Arial, sans-serif; }"
+    echo "    table { width: 100%; border-collapse: collapse; }"
+    echo "    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }"
+    echo "    th { background-color: #f2f2f2; }"
+    echo "    .passed { background-color: #dff0d8; }"
+    echo "    .failed { background-color: #f2dede; }"
+    echo "    .skipped { background-color: #fcf8e3; }"
+    echo "    .incomplete { background-color: #d9edf7; }"
+    echo "    .snapshot { background-color: #dfe6e9; }"
+    echo "  </style>"
+    echo "</head>"
+    echo "<body>"
+    echo "  <h1>Test Report</h1>"
+    echo "  <table>"
+    echo "    <thead>"
+    echo "      <tr>"
+    echo "        <th>Total Tests</th>"
+    echo "        <th>Passed</th>"
+    echo "        <th>Failed</th>"
+    echo "        <th>Incomplete</th>"
+    echo "        <th>Skipped</th>"
+    echo "        <th>Snapshot</th>"
+    echo "        <th>Time (ms)</th>"
+    echo "      </tr>"
+    echo "    </thead>"
+    echo "    <tbody>"
+    echo "      <tr>"
+    echo "        <td>${#TEST_NAMES[@]}</td>"
+    echo "        <td>$test_passed</td>"
+    echo "        <td>$tests_failed</td>"
+    echo "        <td>$tests_incomplete</td>"
+    echo "        <td>$tests_skipped</td>"
+    echo "        <td>$tests_snapshot</td>"
+    echo "        <td>${time}</td>"
+    echo "      </tr>"
+    echo "    </tbody>"
+    echo "  </table>"
+    echo "  <p>Time: $time ms</p>"
+
+    # Read the temporary file and group by file
+    local current_file=""
+    while IFS='|' read -r file name status test_time; do
+      if [ "$file" != "$current_file" ]; then
+        if [ -n "$current_file" ]; then
+          echo "    </tbody>"
+          echo "  </table>"
+        fi
+        echo "  <h2>File: $file</h2>"
+        echo "  <table>"
+        echo "    <thead>"
+        echo "      <tr>"
+        echo "        <th>Test Name</th>"
+        echo "        <th>Status</th>"
+        echo "        <th>Time (ms)</th>"
+        echo "      </tr>"
+        echo "    </thead>"
+        echo "    <tbody>"
+        current_file="$file"
+      fi
+      echo "      <tr class=\"$status\">"
+      echo "        <td>$name</td>"
+      echo "        <td>$status</td>"
+      echo "        <td>$test_time</td>"
+      echo "      </tr>"
+    done < "$temp_file"
+
+    # Close the last table
+    if [ -n "$current_file" ]; then
+      echo "    </tbody>"
+      echo "  </table>"
+    fi
+
+    echo "</body>"
+    echo "</html>"
+  } > "$output_file"
+
+  # Clean up temporary file
+  rm -f "$temp_file"
+}
+
+# src/main.sh
+
+function main::exec_tests() {
+  local filter=$1
+  local files=("${@:2}")
+
+  console_header::print_version_with_env
+  runner::load_test_files "$filter" "${files[@]}"
+  console_results::render_result
+  exit_code=$?
+
+  if [[ -n "$LOG_JUNIT" ]]; then
+    logger::generate_junit_xml "$LOG_JUNIT"
+  fi
+
+  if [[ -n "$REPORT_HTML" ]]; then
+    logger::generate_report_html "$REPORT_HTML"
+  fi
+
+  exit $exit_code
+}
+
+function main::exec_assert() {
+  local original_assert_fn=$1
+  local assert_fn=$original_assert_fn
+  local args=("${@:2}")
+
+  if ! type "$assert_fn" > /dev/null 2>&1; then
+    # try again using prefix `assert_`
+    assert_fn="assert_$assert_fn"
+    if ! type "$assert_fn" > /dev/null 2>&1; then
+      echo "Function $original_assert_fn does not exist."
+      exit 127
+    fi
+  fi
+
+  "$assert_fn" "${args[@]}"
+
+  if [[ "$(state::get_tests_failed)" -gt 0 ]] || [[ "$(state::get_assertions_failed)" -gt 0 ]]; then
+      exit 1
+  fi
+}
+
+# src/runner.sh
 
 function runner::load_test_files() {
   local filter=$1
@@ -1172,23 +1597,44 @@ function runner::load_test_files() {
   done
 }
 
+function runner::functions_for_script() {
+  local script="$1"
+  local all_function_names="$2"
+
+  # Filter the names down to the ones defined in the script, sort them by line number
+  shopt -s extdebug
+  for f in $all_function_names; do
+    declare -F "$f" | grep "$script"
+  done | sort -k2 -n | awk '{print $1}'
+  shopt -u extdebug
+}
+
+# Helper function for test authors to invoke a named test case
+function run_test() {
+  runner::run_test "testing-fn" "$function_name" "$@"
+}
+
 function runner::call_test_functions() {
   local script="$1"
   local filter="$2"
   local prefix="test"
   # Use declare -F to list all function names
-  local function_names
-  function_names=$(declare -F | awk '{print $3}')
+  local all_function_names
+  all_function_names=$(declare -F | awk '{print $3}')
+  local filtered_functions
+  # shellcheck disable=SC2207
+  filtered_functions=$(helper::get_functions_to_run "$prefix" "$filter" "$all_function_names")
+
   local functions_to_run
   # shellcheck disable=SC2207
-  functions_to_run=($(helper::get_functions_to_run "$prefix" "$filter" "$function_names"))
+  functions_to_run=($(runner::functions_for_script "$script" "$filtered_functions"))
 
   if [[ "${#functions_to_run[@]}" -gt 0 ]]; then
     if [[ "$SIMPLE_OUTPUT" == false ]]; then
       echo "Running $script"
     fi
 
-    helper::check_duplicate_functions "$script"
+    helper::check_duplicate_functions "$script" || true
 
     for function_name in "${functions_to_run[@]}"; do
       local provider_data=()
@@ -1196,13 +1642,19 @@ function runner::call_test_functions() {
 
       if [[ "${#provider_data[@]}" -gt 0 ]]; then
         for data in "${provider_data[@]}"; do
-          runner::run_test "$function_name" "$data"
+          runner::run_test "$script" "$function_name" "$data"
         done
       else
-        runner::run_test "$function_name"
+        local multi_invoker
+        multi_invoker=$(helper::get_multi_invoker_function "$function_name" "$script")
+        if [[ -n "${multi_invoker}" ]]; then
+          helper::execute_function_if_exists "${multi_invoker}"
+        else
+          runner::run_test "$script" "$function_name"
+        fi
       fi
 
-      unset "$function_name"
+      unset function_name
     done
   fi
 }
@@ -1245,16 +1697,21 @@ function runner::parse_execution_result() {
     sed -E -e 's/.*##ASSERTIONS_SNAPSHOT=([0-9]*)##.*/\1/g'\
   )
 
-  _ASSERTIONS_PASSED=$((_ASSERTIONS_PASSED + assertions_passed))
-  _ASSERTIONS_FAILED=$((_ASSERTIONS_FAILED + assertions_failed))
-  _ASSERTIONS_SKIPPED=$((_ASSERTIONS_SKIPPED + assertions_skipped))
-  _ASSERTIONS_INCOMPLETE=$((_ASSERTIONS_INCOMPLETE + assertions_incomplete))
-  _ASSERTIONS_SNAPSHOT=$((_ASSERTIONS_SNAPSHOT + assertions_snapshot))
+  ((_ASSERTIONS_PASSED += assertions_passed)) || true
+  ((_ASSERTIONS_FAILED += assertions_failed)) || true
+  ((_ASSERTIONS_SKIPPED += assertions_skipped)) || true
+  ((_ASSERTIONS_INCOMPLETE += assertions_incomplete)) || true
+  ((_ASSERTIONS_SNAPSHOT += assertions_snapshot)) || true
 }
 
 function runner::run_test() {
+  local start_time
+  start_time=$(clock::now)
+
+  local test_file="$1"
+  shift
   local function_name="$1"
-  local data="$2"
+  shift
   local current_assertions_failed
   current_assertions_failed="$(state::get_assertions_failed)"
   local current_assertions_snapshot
@@ -1264,6 +1721,9 @@ function runner::run_test() {
   local current_assertions_skipped
   current_assertions_skipped="$(state::get_assertions_skipped)"
 
+  # (FD = File Descriptor)
+  # Duplicate the current std-output (FD 1) and assigns it to FD 3.
+  # This means that FD 3 now points to wherever the std-output was pointing.
   exec 3>&1
 
   local test_execution_result
@@ -1271,12 +1731,17 @@ function runner::run_test() {
     state::initialize_assertions_count
     runner::run_set_up
 
-    "$function_name" "$data" 2>&1 1>&3
+    # 2>&1: Redirects the std-error (FD 2) to the std-output (FD 1).
+    # 1>&3: Redirects the std-output (FD 1) to FD 3, which, as set up earlier,
+    # points to the original std-output.
+    "$function_name" "$@" 2>&1 1>&3
 
     runner::run_tear_down
+    runner::clear_mocks
     state::export_assertions_count
   )
 
+  # Closes FD 3, which was used temporarily to hold the original std-output.
   exec 3>&-
 
   runner::parse_execution_result "$test_execution_result"
@@ -1284,18 +1749,20 @@ function runner::run_test() {
   local runtime_error
   runtime_error=$(\
     echo "$test_execution_result" |\
-    head -n 1 |\
+    tail -n 1 |\
     sed -E -e 's/(.*)##ASSERTIONS_FAILED=.*/\1/g'\
   )
 
   if [[ -n $runtime_error ]]; then
     state::add_tests_failed
     console_results::print_error_test "$function_name" "$runtime_error"
+    logger::test_failed "$test_file" "$function_name" "$start_time"
     return
   fi
 
   if [[ "$current_assertions_failed" != "$(state::get_assertions_failed)" ]]; then
     state::add_tests_failed
+    logger::test_failed "$test_file" "$function_name" "$start_time"
 
     if [ "$STOP_ON_FAILURE" = true ]; then
       exit 1
@@ -1307,60 +1774,63 @@ function runner::run_test() {
   if [[ "$current_assertions_snapshot" != "$(state::get_assertions_snapshot)" ]]; then
     state::add_tests_snapshot
     console_results::print_snapshot_test "$function_name"
+    logger::test_snapshot "$test_file" "$function_name" "$start_time"
     return
   fi
 
   if [[ "$current_assertions_incomplete" != "$(state::get_assertions_incomplete)" ]]; then
     state::add_tests_incomplete
+    logger::test_incomplete "$test_file" "$function_name" "$start_time"
     return
   fi
 
   if [[ "$current_assertions_skipped" != "$(state::get_assertions_skipped)" ]]; then
     state::add_tests_skipped
+    logger::test_skipped "$test_file" "$function_name" "$start_time"
     return
   fi
 
   local label
   label="$(helper::normalize_test_function_name "$function_name")"
 
-  console_results::print_successful_test "${label}" "${data}"
+  console_results::print_successful_test "${label}" "$@"
   state::add_tests_passed
+  logger::test_passed "$test_file" "$function_name" "$start_time"
 }
 
 function runner::run_set_up() {
-  helper::execute_function_if_exists 'setUp' # Deprecated: please use set_up instead.
   helper::execute_function_if_exists 'set_up'
 }
 
 function runner::run_set_up_before_script() {
-  helper::execute_function_if_exists 'setUpBeforeScript' # Deprecated: please use set_up_before_script instead.
   helper::execute_function_if_exists 'set_up_before_script'
 }
 
 function runner::run_tear_down() {
-  helper::execute_function_if_exists 'tearDown' # Deprecated: please use tear_down instead.
   helper::execute_function_if_exists 'tear_down'
 }
 
+function runner::clear_mocks() {
+  for i in "${!MOCKED_FUNCTIONS[@]}"; do
+    unmock "${MOCKED_FUNCTIONS[$i]}"
+  done
+}
+
 function runner::run_tear_down_after_script() {
-  helper::execute_function_if_exists 'tearDownAfterScript' # Deprecated: please use tear_down_after_script instead.
   helper::execute_function_if_exists 'tear_down_after_script'
 }
 
 function runner::clean_set_up_and_tear_down_after_script() {
-  helper::unset_if_exists 'setUp' # Deprecated: please use set_up instead.
   helper::unset_if_exists 'set_up'
-  helper::unset_if_exists 'tearDown' # Deprecated: please use tear_down instead.
   helper::unset_if_exists 'tear_down'
-  helper::unset_if_exists 'setUpBeforeScript' # Deprecated: please use set_up_before_script instead.
   helper::unset_if_exists 'set_up_before_script'
-  helper::unset_if_exists 'tearDownAfterScript' # Deprecated: please use tear_down_after_script instead.
   helper::unset_if_exists 'tear_down_after_script'
 }
-#!/bin/bash
+
+# src/skip_todo.sh
 
 function skip() {
-  local reason=$1
+  local reason=${1-}
   local label
   label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
 
@@ -1370,7 +1840,7 @@ function skip() {
 }
 
 function todo() {
-  local pending=$1
+  local pending=${1-}
   local label
   label="$(helper::normalize_test_function_name "${FUNCNAME[1]}")"
 
@@ -1378,7 +1848,8 @@ function todo() {
 
   state::add_assertions_incomplete
 }
-#!/bin/bash
+
+# src/state.sh
 
 _TESTS_PASSED=0
 _TESTS_FAILED=0
@@ -1521,7 +1992,22 @@ function state::export_assertions_count() {
 ##ASSERTIONS_SNAPSHOT=$_ASSERTIONS_SNAPSHOT\
 ##"
 }
-#!/bin/bash
+
+# src/test_doubles.sh
+
+declare -a MOCKED_FUNCTIONS=()
+
+function unmock() {
+  local command=$1
+
+  for i in "${!MOCKED_FUNCTIONS[@]}"; do
+    if [[ "${MOCKED_FUNCTIONS[$i]}" == "$command" ]]; then
+      unset "MOCKED_FUNCTIONS[$i]"
+      unset -f "$command"
+      break
+    fi
+  done
+}
 
 function mock() {
   local command=$1
@@ -1534,6 +2020,8 @@ function mock() {
   fi
 
   export -f "${command?}"
+
+  MOCKED_FUNCTIONS+=("$command")
 }
 
 function spy() {
@@ -1547,6 +2035,8 @@ function spy() {
   eval "function $command() { ${variable}_params=(\"\$*\"); ((${variable}_times++)) || true; }"
 
   export -f "${command?}"
+
+  MOCKED_FUNCTIONS+=("$command")
 }
 
 function assert_have_been_called() {
@@ -1593,7 +2083,7 @@ function assert_have_been_called_times() {
   actual="${variable}_times"
   local label="${3:-$(helper::normalize_test_function_name "${FUNCNAME[1]}")}"
 
-  if [[ ${!actual} -ne $expected ]]; then
+  if [[ -z "${!actual-}" && $expected -ne 0 || ${!actual-0} -ne $expected ]]; then
     state::add_assertions_failed
     console_results::print_failed_test "${label}" "${command}" "to has been called" "${expected} times"
     return
@@ -1601,40 +2091,70 @@ function assert_have_been_called_times() {
 
   state::add_assertions_passed
 }
+
+# src/upgrade.sh
+
+function upgrade::upgrade() {
+  local script_path
+  script_path="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  local latest_tag
+  latest_tag="$(helpers::get_latest_tag)"
+
+  if [[ "$BASHUNIT_VERSION" == "$latest_tag" ]]; then
+    echo "> You are already on latest version"
+    return
+  fi
+
+  echo "> Upgrading bashunit to latest version"
+  cd "$script_path" || exit
+  curl -L -J -o bashunit "https://github.com/TypedDevs/bashunit/releases/download/$latest_tag/bashunit" 2>/dev/null
+  chmod u+x "bashunit"
+
+  echo "> bashunit upgraded successfully to latest version $latest_tag"
+}
+
 #!/bin/bash
+set -euo pipefail
 
 # shellcheck disable=SC2034
-declare -r BASHUNIT_VERSION="0.10.1"
+declare -r BASHUNIT_VERSION="0.14.0"
 
-readonly BASHUNIT_ROOT_DIR="$(dirname "${BASH_SOURCE[0]}")"
+# shellcheck disable=SC2155
+declare -r BASHUNIT_ROOT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 export BASHUNIT_ROOT_DIR
 
 
-###############
-#### MAIN #####
-###############
-
+_ASSERT_FN=""
 _FILTER=""
-_FILES=()
+_ARGS=()
 
 while [[ $# -gt 0 ]]; do
   argument="$1"
   case $argument in
+    -a|--assert)
+      _ASSERT_FN="$2"
+      shift
+      shift
+      ;;
     -f|--filter)
       _FILTER="$2"
       shift
       shift
       ;;
     -s|--simple)
-      SIMPLE_OUTPUT=true
+      export SIMPLE_OUTPUT=true
       shift
       ;;
     -v|--verbose)
-      SIMPLE_OUTPUT=false
+      export SIMPLE_OUTPUT=false
+      shift
+      ;;
+    --debug)
+      set -x
       shift
       ;;
     -S|--stop-on-failure)
-      STOP_ON_FAILURE=true
+      export STOP_ON_FAILURE=true
       shift
       ;;
     -e|--env)
@@ -1643,8 +2163,22 @@ while [[ $# -gt 0 ]]; do
       shift
       shift
       ;;
+    -l|--log-junit)
+      export LOG_JUNIT="$2";
+      shift
+      shift
+      ;;
+    -r|--report-html)
+      export REPORT_HTML="$2";
+      shift
+      shift
+      ;;
     --version)
       console_header::print_version
+      trap '' EXIT && exit 0
+      ;;
+    --upgrade)
+      upgrade::upgrade
       trap '' EXIT && exit 0
       ;;
     --help)
@@ -1653,15 +2187,17 @@ while [[ $# -gt 0 ]]; do
       ;;
     *)
       while IFS='' read -r line; do
-        _FILES+=("$line");
+        _ARGS+=("$line");
       done < <(helper::find_files_recursive "$argument")
       shift
       ;;
   esac
 done
 
-console_header::print_version_with_env
-runner::load_test_files "$_FILTER" "${_FILES[@]}"
-console_results::render_result
+set +eu
 
-exit 0
+if [[ -n "$_ASSERT_FN" ]]; then
+  main::exec_assert "$_ASSERT_FN" "${_ARGS[@]}"
+else
+  main::exec_tests "$_FILTER" "${_ARGS[@]}"
+fi
