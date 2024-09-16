@@ -1,4 +1,5 @@
 ARG ALPINE=3.20
+ENV ALPINE=$ALPINE
 FROM alpine:${ALPINE}
 
 ARG PHP
@@ -11,7 +12,7 @@ ARG WITHOUT_WATCHR
 ENV WITHOUT_WATCHR=$WITHOUT_WATCHR
 
 COPY rootfs /
-RUN sed -i 's/latest-stable/v$ALPINE/g' /etc/apk/repositories && \
+RUN sed -i "s/latest-stable/v${ALPINE}/g" /etc/apk/repositories && \
     apk update && apk upgrade && apk add --no-cache \
         git \
         docker-cli \
