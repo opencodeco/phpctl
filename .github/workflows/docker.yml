@@ -1,5 +1,4 @@
 name: Docker
-
 on:
   pull_request:
   push:
@@ -12,13 +11,13 @@ jobs:
     strategy:
       matrix:
         include:
-          - alpine: 3.19 
+          - alpine: '3.19' 
             php: 81
             without-watchr: 1
-          - alpine: 3.20
+          - alpine: '3.20'
             php: 82
             without-watchr: ''
-          - alpine: 3.20
+          - alpine: '3.20'
             php: 83
             without-watchr: ''
     steps:
