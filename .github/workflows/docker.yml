@@ -12,11 +12,14 @@ jobs:
     strategy:
       matrix:
         include:
-          - php: 81
+          - alpine: 3.19 
+            php: 81
             without-watchr: 1
-          - php: 82
+          - alpine: 3.20
+            php: 82
             without-watchr: ''
-          - php: 83
+          - alpine: 3.20
+            php: 83
             without-watchr: ''
     steps:
       -
@@ -41,6 +44,7 @@ jobs:
           context: .
           load: true
           build-args: |
+            ALPINE=${{ matrix.alpine }}
             PHP=${{ matrix.php }}
             WITHOUT_WATCHR=${{ matrix.without-watchr }}
           tags: opencodeco/phpctl:php${{ matrix.php }}
