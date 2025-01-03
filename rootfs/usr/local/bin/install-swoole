@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -e
 
-SWOOLE_VERSION="5.1.2"
+SWOOLE_VERSION="5.1.4"
 echo "Installing Swoole $SWOOLE_VERSION"
 
 # Download
