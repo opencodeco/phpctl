@@ -106,7 +106,7 @@ And everything should ok fine.
 
 The command PhpStorm should be using will be something similar to:
 ```text
-[docker://opencodeco/phpctl:php82/]:php /opt/project/examples/phpunit/vendor/phpunit/phpunit/phpunit --configuration /opt/project/examples/phpunit/phpunit.xml --teamcity
+[docker://opencodeco/phpctl:php84/]:php /opt/project/examples/phpunit/vendor/phpunit/phpunit/phpunit --configuration /opt/project/examples/phpunit/phpunit.xml --teamcity
 ```
 
 ---

@@ -1,7 +1,7 @@
 {
-    "image": "opencodeco/phpctl:php83-devcontainer",
+    "image": "opencodeco/phpctl:php84-devcontainer",
     "containerEnv": {
-        "PHP_VERSION": "83"
+        "PHP_VERSION": "84"
     },
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},

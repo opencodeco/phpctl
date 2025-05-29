@@ -20,6 +20,9 @@ jobs:
           - alpine: '3.20'
             php: 83
             without-watchr: ''
+          - alpine: '3.21'
+            php: 84
+            without-watchr: ''
     steps:
       -
         name: Checkout
