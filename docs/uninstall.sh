@@ -1,7 +1,59 @@
 #!/usr/bin/env bash
 
-INSTALL_DIR=~/.phpctl
-SYMLINK_DIR=/usr/local/bin
+INSTALL_DIR="${HOME}/.phpctl"
+SYMLINK_DIR="/usr/local/bin"
+
+while getopts "hi:s:" opt; do
+    case $opt in
+    h)
+        echo "Uninstall phpctl."
+        echo ""
+        echo "Usage: $0 [OPTIONS]"
+        echo "Options:"
+        echo "  -h                Display this help message and exit"
+        echo "  -i <directory>    Set the installation directory (default: $HOME/.phpctl)"
+        echo "  -s <directory>    Set the symlink directory (default: /usr/local/bin)"
+        exit 0
+        ;;
+    i)
+        INSTALL_DIR="$OPTARG"
+        ;;
+    s)
+        SYMLINK_DIR="$OPTARG"
+        ;;
+    \?) # Handle invalid options
+        echo "Error: Invalid option: -$OPTARG" >&2
+        echo "Try '$0 -h' for more information." >&2
+        exit 1
+        ;;
+    :) # Handle missing arguments for options that require them
+        echo "Error: Option -$OPTARG requires an argument." >&2
+        echo "Try '$0 -h' for more information." >&2
+        exit 1
+        ;;
+    esac
+done
+
+# Shift off the options and their arguments, so that any remaining
+# positional parameters (if any) are correctly handled.
+shift $((OPTIND - 1))
+
+# Compatibility with previous script version
+if [[ $SYMLINK_DIR = "/usr/local/bin" && -n ${1} ]]; then
+    SYMLINK_DIR=$1
+fi
+
+if [ ! -w "${SYMLINK_DIR}" ]; then
+    ELEVATED=true
+else
+    ELEVATED=false
+fi
+
+if "$ELEVATED"; then
+    echo "Running in elevated mode. This might require sudo for operations in ${SYMLINK_DIR}."
+fi
+
+[[ $ELEVATED = true ]] && SUDO="sudo" || SUDO=""
 
 LINKS=(
     composer
@@ -31,7 +83,7 @@ LINKS=(
 echo "Removing symbolic links..."
 for link in "${LINKS[@]}"; do
     if [ -L "${SYMLINK_DIR}/${link}" ]; then
-        sudo rm "${SYMLINK_DIR}/${link}"
+        $SUDO rm "${SYMLINK_DIR}/${link}"
         echo "Removed ${SYMLINK_DIR}/${link}"
     else
         echo "Link ${SYMLINK_DIR}/${link} does not exist, skipping."
