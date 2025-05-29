@@ -18,6 +18,8 @@ jobs:
             php-str: 8.2
           - php: 83
             php-str: 8.3
+          - php: 84
+            php-str: 8.4
     
     steps:
       -
