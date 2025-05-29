@@ -1,5 +1,57 @@
 #!/usr/bin/env bash
 
+set_colors() {
+    # Initialize colors (if available)
+    if tput setaf 1 &>/dev/null; then
+        RED=$(tput setaf 1)
+        GREEN=$(tput setaf 2)
+        YELLOW=$(tput setaf 3)
+        BLUE=$(tput setaf 4)
+        NC=$(tput sgr0) # Reset attributes
+
+        TPUT_AVAILABLE=true
+    else
+        RED='\033[0;31m'
+        GREEN='\033[0;32m'
+        YELLOW='\033[0;33m'
+        BLUE='\033[0;34m'
+        NC='\033[0m' # No Color
+
+        TPUT_AVAILABLE=false
+    fi
+}
+
+ensure_dir() {
+    if [[ -e "${SYMLINK_DIR}" ]]; then
+        if [[ ! -d "${SYMLINK_DIR}" ]]; then
+            echo "${RED}Error: ${SYMLINK_DIR} exists but is not a directory. Please remove it or choose a different path.${NC}"
+            exit 1
+        fi
+        return
+    fi
+
+    if [[ ! -d ${SYMLINK_DIR} ]]; then
+        echo "${YELLOW}$SYMLINK_DIR does not exist and will be created.${NC}"
+        mkdir -p "${SYMLINK_DIR}" 2>/dev/null
+        local success=$?
+
+        if [[ $success != 0 ]]; then
+            echo -e -n "${RED}Could not create $SYMLINK_DIR. Exit status: ${success}.${NC} Try again with sudo? (Y/n) "
+            read -r answer
+            if [ "$answer" != "${answer#[Nn]}" ]; then
+                exit 1
+            fi
+
+            sudo mkdir -p "${SYMLINK_DIR}" 2>/dev/null
+            success=$?
+            if [[ -n $success ]]; then
+                echo -e -n "${RED}Could not create $SYMLINK_DIR. Exit status: ${success}.${NC}"
+                exit ${success}
+            fi
+        fi
+    fi
+}
+
 INSTALL_DIR="${HOME}/.phpctl"
 SYMLINK_DIR="/usr/local/bin"
 LOCAL_SOURCES_DIR=""
@@ -40,6 +92,8 @@ while getopts "hi:s:l:" opt; do
     esac
 done
 
+set_colors
+
 # Shift off the options and their arguments, so that any remaining
 # positional parameters (if any) are correctly handled.
 shift $((OPTIND - 1))
@@ -49,7 +103,9 @@ if [[ $SYMLINK_DIR = "/usr/local/bin" && -n ${1} ]]; then
     SYMLINK_DIR=$1
 fi
 
-if [ ! -w "${SYMLINK_DIR}" ]; then
+ensure_dir
+
+if [[ ! -w "${SYMLINK_DIR}" ]]; then
     SUDO="sudo"
 else
     SUDO=""
@@ -57,25 +113,6 @@ fi
 
 if [[ -n $SUDO ]]; then
     echo "Running in elevated mode. This might require sudo for operations in ${SYMLINK_DIR}."
-fi
-
-# Initialize colors (if available)
-if tput setaf 1 &>/dev/null; then
-    RED=$(tput setaf 1)
-    GREEN=$(tput setaf 2)
-    YELLOW=$(tput setaf 3)
-    BLUE=$(tput setaf 4)
-    NC=$(tput sgr0) # Reset attributes
-
-    TPUT_AVAILABLE=true
-else
-    RED='\033[0;31m'
-    GREEN='\033[0;32m'
-    YELLOW='\033[0;33m'
-    BLUE='\033[0;34m'
-    NC='\033[0m' # No Color
-
-    TPUT_AVAILABLE=false
 fi
 
 spinner() {
@@ -134,7 +171,7 @@ install_sources() {
         else
             echo "Failed to clone $GITHUB_REPO into $INSTALL_DIR."
             echo "Error: git clone failed with status ${_git_status}"
-            exit 255
+            exit 1
         fi
     fi
     echo "${GREEN}Success: ${NC}Operation completed successfully."
