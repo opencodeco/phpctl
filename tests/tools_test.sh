@@ -25,7 +25,8 @@ function test_exakat() {
 }
 
 function test_infection() {
-    assert_matches "Infection - PHP Mutation Testing Framework version 0\.27\." "$(./bin/phpctl infection --version)"
+    [ "$PHP_VERSION" = "81" ] && _expected_version="0\.27\." || _expected_version="0\.29\."
+    assert_matches "Infection - PHP Mutation Testing Framework version ${_expected_version}" "$(./bin/phpctl infection --version)"
 }
 
 function test_php_cs_fixer() {

@@ -2,7 +2,7 @@
 set -e
 
 box() {
-    _version="4.6.1"
+    _version="4.6.6"
     if [ "$PHP_VERSION" = "81" ]; then
         _version="4.5.1"
     fi
@@ -12,14 +12,14 @@ box() {
 }
 
 co_phpunit() {
-    _version="3.1.3"
+    _version="3.1.55"
     echo "Installing co-phpunit $_version"
     wget -q "https://raw.githubusercontent.com/hyperf/testing/v$_version/co-phpunit" -O /usr/local/bin/co-phpunit
     chmod a+x /usr/local/bin/co-phpunit
 }
 
 composer() {
-    _version="993f9fec74930f32f7015e71543243bf6d9b9e93"
+    _version="e8882379a53c329ed348ca583cdc3f8ba6fc4d96"
     echo "Installing Composer $_version"
     wget "https://raw.githubusercontent.com/composer/getcomposer.org/$_version/web/installer" -O - -q | php -- --quiet
     mv composer.phar /usr/local/bin/composer
@@ -27,7 +27,7 @@ composer() {
 }
 
 composer_require_checker() {
-    _version="4.10.0"
+    _version="4.16.1"
     if [ "$PHP_VERSION" = "81" ]; then
         _version="4.7.1"
     fi
@@ -58,7 +58,10 @@ exakat() {
 }
 
 infection() {
-    _version="0.27.10"
+    _version="0.29.14"
+    if [ "$PHP_VERSION" = "81" ]; then
+       _version="0.27.10"
+    fi;
     echo "Installing Infection $_version"
     wget -q "https://github.com/infection/infection/releases/download/$_version/infection.phar" -O /usr/local/bin/infection
     chmod a+x /usr/local/bin/infection
@@ -72,16 +75,16 @@ php_cs_fixer() {
 }
 
 phpcbf() {
-    _version="3.7.2"
+    _version="3.13.0"
     echo "Installing PHP CodeSniffer $_version (phpcbf)"
-    wget -q "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/$_version/phpcbf.phar" -O /usr/local/bin/phpcbf
+    wget -q "https://github.com/PHPCSStandards/PHP_CodeSniffer//releases/download/$_version/phpcbf.phar" -O /usr/local/bin/phpcbf
     chmod a+x /usr/local/bin/phpcbf
 }
 
 phpcs() {
-    _version="3.7.2"
+    _version="3.13.0"
     echo "Installing PHP CodeSniffer $_version (phpcs)"
-    wget -q "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/$_version/phpcs.phar" -O /usr/local/bin/phpcs
+    wget -q "https://github.com/PHPCSStandards/PHP_CodeSniffer//releases/download/$_version/phpcs.phar" -O /usr/local/bin/phpcs
     chmod a+x /usr/local/bin/phpcs
 }
 
@@ -93,7 +96,7 @@ phpmd() {
 }
 
 phpstan() {
-    _version="1.10.59"
+    _version="1.12.27"
     echo "Installing PHPStan $_version"
     wget -q "https://github.com/phpstan/phpstan/releases/download/$_version/phpstan.phar" -O /usr/local/bin/phpstan
     chmod a+x /usr/local/bin/phpstan
@@ -112,7 +115,10 @@ phpunit() {
 }
 
 pint() {
-    _version="1.14.0"
+    _version="1.22.1"
+    if [ "$PHP_VERSION" = "81" ]; then
+         _version="1.14.0"
+    fi;
     echo "Installing Pint $_version"
     wget -q "https://github.com/laravel/pint/releases/download/v$_version/pint.phar" -O /usr/local/bin/pint
     chmod a+x /usr/local/bin/pint
