@@ -2,117 +2,119 @@
 set -e
 
 box() {
-    local version="4.6.1"
+    _version="4.6.1"
     if [ "$PHP_VERSION" = "81" ]; then
-        version="4.5.1"
+        _version="4.5.1"
     fi
-    echo "Installing Box $version"
-    wget -q "https://github.com/box-project/box/releases/download/$version/box.phar" -O /usr/local/bin/box
+    echo "Installing Box $_version"
+    wget -q "https://github.com/box-project/box/releases/download/$_version/box.phar" -O /usr/local/bin/box
     chmod a+x /usr/local/bin/box
 }
 
 co_phpunit() {
-    local version="3.1.3"
-    echo "Installing co-phpunit $version"
-    wget -q "https://raw.githubusercontent.com/hyperf/testing/v$version/co-phpunit" -O /usr/local/bin/co-phpunit
+    _version="3.1.3"
+    echo "Installing co-phpunit $_version"
+    wget -q "https://raw.githubusercontent.com/hyperf/testing/v$_version/co-phpunit" -O /usr/local/bin/co-phpunit
     chmod a+x /usr/local/bin/co-phpunit
 }
 
 composer() {
-    local version="993f9fec74930f32f7015e71543243bf6d9b9e93"
-    echo "Installing Composer $version"
-    wget "https://raw.githubusercontent.com/composer/getcomposer.org/$version/web/installer" -O - -q | php -- --quiet
+    _version="993f9fec74930f32f7015e71543243bf6d9b9e93"
+    echo "Installing Composer $_version"
+    wget "https://raw.githubusercontent.com/composer/getcomposer.org/$_version/web/installer" -O - -q | php -- --quiet
     mv composer.phar /usr/local/bin/composer
     chmod a+x /usr/local/bin/composer
 }
 
 composer_require_checker() {
-    local version="4.10.0"
+    _version="4.10.0"
     if [ "$PHP_VERSION" = "81" ]; then
-        version="4.7.1"
+        _version="4.7.1"
     fi
-    echo "Installing ComposerRequireChecker $version"
-    wget -q "https://github.com/maglnet/ComposerRequireChecker/releases/download/$version/composer-require-checker.phar" -O /usr/local/bin/composer-require-checker
+    echo "Installing ComposerRequireChecker $_version"
+    wget -q "https://github.com/maglnet/ComposerRequireChecker/releases/download/$_version/composer-require-checker.phar" -O /usr/local/bin/composer-require-checker
     chmod a+x /usr/local/bin/composer-require-checker
 }
 
 couscous() {
-    local version="1.10.0"
-    echo "Installing Couscous $version"
-    wget -q "https://github.com/CouscousPHP/Couscous/releases/download/$version/couscous.phar" -O /usr/local/bin/couscous
+    _version="1.10.0"
+    echo "Installing Couscous $_version"
+    wget -q "https://github.com/CouscousPHP/Couscous/releases/download/$_version/couscous.phar" -O /usr/local/bin/couscous
     chmod a+x /usr/local/bin/couscous
 }
 
 deptrac() {
-    local version="1.0.2"
-    echo "Installing Deptrac $version"
-    wget -q "https://github.com/qossmic/deptrac/releases/download/$version/deptrac.phar" -O /usr/local/bin/deptrac
+    _version="1.0.2"
+    echo "Installing Deptrac $_version"
+    wget -q "https://github.com/deptrac/deptrac/releases/download/$_version/deptrac.phar" -O /usr/local/bin/deptrac
     chmod a+x /usr/local/bin/deptrac
 }
 
 exakat() {
-    local version="2.6.2"
-    echo "Installing Exakat $version"
-    wget -q "https://www.exakat.io/versions/index.php?file=exakat-$version.phar" -O /usr/local/bin/exakat
+    _version="2.6.2"
+    echo "Installing Exakat $_version"
+    wget -q "https://www.exakat.io/versions/index.php?file=exakat-$_version.phar" -O /usr/local/bin/exakat
     chmod a+x /usr/local/bin/exakat
 }
 
 infection() {
-    local version="0.27.10"
-    echo "Installing Infection $version"
-    wget -q "https://github.com/infection/infection/releases/download/$version/infection.phar" -O /usr/local/bin/infection
+    _version="0.27.10"
+    echo "Installing Infection $_version"
+    wget -q "https://github.com/infection/infection/releases/download/$_version/infection.phar" -O /usr/local/bin/infection
     chmod a+x /usr/local/bin/infection
 }
 
 php_cs_fixer() {
-    local version="3.51.0"
-    echo "Installing PHP CS Fixer $version"
-    wget -q "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/releases/download/v$version/php-cs-fixer.phar" -O /usr/local/bin/php-cs-fixer
+    _version="3.75.0"
+    echo "Installing PHP CS Fixer $_version"
+    wget -q "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/releases/download/v$_version/php-cs-fixer.phar" -O /usr/local/bin/php-cs-fixer
     chmod a+x /usr/local/bin/php-cs-fixer
 }
 
 phpcbf() {
-    local version="3.7.2"
-    echo "Installing PHP CodeSniffer $version (phpcbf)"
-    wget -q "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/$version/phpcbf.phar" -O /usr/local/bin/phpcbf
+    _version="3.7.2"
+    echo "Installing PHP CodeSniffer $_version (phpcbf)"
+    wget -q "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/$_version/phpcbf.phar" -O /usr/local/bin/phpcbf
     chmod a+x /usr/local/bin/phpcbf
 }
 
 phpcs() {
-    local version="3.7.2"
-    echo "Installing PHP CodeSniffer $version (phpcs)"
-    wget -q "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/$version/phpcs.phar" -O /usr/local/bin/phpcs
+    _version="3.7.2"
+    echo "Installing PHP CodeSniffer $_version (phpcs)"
+    wget -q "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/$_version/phpcs.phar" -O /usr/local/bin/phpcs
     chmod a+x /usr/local/bin/phpcs
 }
 
 phpmd() {
-    local version="2.15.0"
-    echo "Installing PHP Mess Detector $version"
-    wget -q "https://github.com/phpmd/phpmd/releases/download/$version/phpmd.phar" -O /usr/local/bin/phpmd
+    _version="2.15.0"
+    echo "Installing PHP Mess Detector $_version"
+    wget -q "https://github.com/phpmd/phpmd/releases/download/$_version/phpmd.phar" -O /usr/local/bin/phpmd
     chmod a+x /usr/local/bin/phpmd
 }
 
 phpstan() {
-    local version="1.10.59"
-    echo "Installing PHPStan $version"
-    wget -q "https://github.com/phpstan/phpstan/releases/download/$version/phpstan.phar" -O /usr/local/bin/phpstan
+    _version="1.10.59"
+    echo "Installing PHPStan $_version"
+    wget -q "https://github.com/phpstan/phpstan/releases/download/$_version/phpstan.phar" -O /usr/local/bin/phpstan
     chmod a+x /usr/local/bin/phpstan
 }
 
 phpunit() {
-    local version="11"
+    _version="11"
     if [ "$PHP_VERSION" = "81" ]; then
-        version="10"
+        _version="10"
+    elif [ "$PHP_VERSION" = "84" ]; then
+        _version="12"
     fi
-    echo "Installing PHPUnit $version"
-    wget -q "https://phar.phpunit.de/phpunit-$version.phar" -O /usr/local/bin/phpunit
+    echo "Installing PHPUnit $_version"
+    wget -q "https://phar.phpunit.de/phpunit-$_version.phar" -O /usr/local/bin/phpunit
     chmod a+x /usr/local/bin/phpunit
 }
 
 pint() {
-    local version="1.14.0"
-    echo "Installing Pint $version"
-    wget -q "https://github.com/laravel/pint/releases/download/v$version/pint.phar" -O /usr/local/bin/pint
+    _version="1.14.0"
+    echo "Installing Pint $_version"
+    wget -q "https://github.com/laravel/pint/releases/download/v$_version/pint.phar" -O /usr/local/bin/pint
     chmod a+x /usr/local/bin/pint
 }
 
@@ -123,9 +125,9 @@ psysh() {
 }
 
 watchr() {
-    local version="0.5.3"
-    echo "Installing watchr $version"
-    wget -q "https://github.com/flavioheleno/watchr/releases/download/v$version/watchr.phar" -O /usr/local/bin/watchr
+    _version="0.5.3"
+    echo "Installing watchr $_version"
+    wget -q "https://github.com/flavioheleno/watchr/releases/download/v$_version/watchr.phar" -O /usr/local/bin/watchr
     chmod a+x /usr/local/bin/watchr
 }
 

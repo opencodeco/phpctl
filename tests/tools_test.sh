@@ -29,6 +29,10 @@ function test_infection() {
 }
 
 function test_php_cs_fixer() {
+    if [[ $PHP_VERSION = "84" ]]; then
+        # TODO: remove this when php-cs-fixer becomes stable with php 8.4
+        export PHP_CS_FIXER_IGNORE_ENV=yes
+    fi
     assert_matches "PHP CS Fixer 3\." "$(./bin/phpctl php-cs-fixer --version)"
 }
 
@@ -51,6 +55,8 @@ function test_phpstan() {
 function test_phpunit() {
     if [ "$PHP_VERSION" = "81" ]; then
         assert_matches "PHPUnit 10\." "$(./bin/phpctl phpunit --version)"
+    elif [ "$PHP_VERSION" = "84" ]; then
+        assert_matches "PHPUnit 12\." "$(./bin/phpctl phpunit --version)"
     else
         assert_matches "PHPUnit 11\." "$(./bin/phpctl phpunit --version)"
     fi
