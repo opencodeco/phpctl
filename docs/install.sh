@@ -68,13 +68,38 @@ if tput setaf 1 &>/dev/null; then
     YELLOW=$(tput setaf 3)
     BLUE=$(tput setaf 4)
     NC=$(tput sgr0) # Reset attributes
+
+    TPUT_AVAILABLE=true
 else
     RED='\033[0;31m'
     GREEN='\033[0;32m'
     YELLOW='\033[0;33m'
     BLUE='\033[0;34m'
     NC='\033[0m' # No Color
+
+    TPUT_AVAILABLE=false
 fi
+
+spinner() {
+    local i=0
+    local sp="⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏"
+    while true; do
+        printf "\r[%s] Cloning repository..." "${sp:i++%${#sp}:1}"
+        sleep 0.1
+    done
+}
+
+cleanup() {
+    if [[ -n "$SPINNER_PID" ]]; then
+        kill "$SPINNER_PID" 2>/dev/null
+        if $TPUT_AVAILABLE; then
+            printf "\r%*s\r" "$(tput cols)" ""
+        else
+            printf "\r\033[2K"
+        fi
+    fi
+    exit
+}
 
 install_sources() {
     echo -e "${YELLOW}Installing phpctl at ${NC}$INSTALL_DIR"
@@ -88,18 +113,31 @@ install_sources() {
         cp -r "$LOCAL_SOURCES_DIR" "$INSTALL_DIR"
     else
         GITHUB_REPO="https://github.com/opencodeco/phpctl.git"
-        echo "Cloning from $GITHUB_REPO..."
-        echo -n ""
+
+        trap cleanup EXIT INT TERM
+
+        spinner &
+        SPINNER_PID=$!
         git clone --quiet "$GITHUB_REPO" "$INSTALL_DIR" &
         PID=$!
-        while kill -0 $PID 2>/dev/null; do
-            for CHAR in '-' '/' '|' "\\"; do
-                printf "\b%s" "$CHAR"
-                sleep 0.1
-            done
-        done
-        printf "\r"
-        echo " done."
+        wait "$PID"
+        _git_status=$?
+
+        kill "$SPINNER_PID" 2>/dev/null
+        # clear the spinner line one last time
+        if $TPUT_AVAILABLE; then
+            printf "\r%*s\r" "$(tput cols)" ""
+        else
+            printf "\r\033[2K"
+        fi
+
+        if [[ $_git_status -eq 0 ]]; then
+            echo "done."
+        else
+            echo "Failed to clone $GITHUB_REPO into $INSTALL_DIR."
+            echo "Error: git clone failed with status ${_git_status}"
+            exit 255
+        fi
     fi
     echo "${GREEN}Success: ${NC}Operation completed successfully."
 }
@@ -123,3 +161,5 @@ if [ "$answer" != "${answer#[Nn]}" ]; then
 else
     $SUDO "${INSTALL_DIR}/scripts/symlink-bins.sh" "${INSTALL_DIR}" "${SYMLINK_DIR}"
 fi
+
+echo "${GREEN}Installation complete!${NC}"
