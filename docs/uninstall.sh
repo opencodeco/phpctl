@@ -44,16 +44,14 @@ if [[ $SYMLINK_DIR = "/usr/local/bin" && -n ${1} ]]; then
 fi
 
 if [ ! -w "${SYMLINK_DIR}" ]; then
-    ELEVATED=true
+    SUDO="sudo"
 else
-    ELEVATED=false
+    SUDO=""
 fi
 
-if "$ELEVATED"; then
+if [[ -n $SUDO ]]; then
     echo "Running in elevated mode. This might require sudo for operations in ${SYMLINK_DIR}."
 fi
-
-[[ $ELEVATED = true ]] && SUDO="sudo" || SUDO=""
 
 LINKS=(
     composer

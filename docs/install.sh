@@ -50,16 +50,14 @@ if [[ $SYMLINK_DIR = "/usr/local/bin" && -n ${1} ]]; then
 fi
 
 if [ ! -w "${SYMLINK_DIR}" ]; then
-    ELEVATED=true
+    SUDO="sudo"
 else
-    ELEVATED=false
+    SUDO=""
 fi
 
-if "$ELEVATED"; then
+if [[ -n $SUDO ]]; then
     echo "Running in elevated mode. This might require sudo for operations in ${SYMLINK_DIR}."
 fi
-
-[[ $ELEVATED = true ]] && SUDO="sudo" || SUDO=""
 
 # Initialize colors (if available)
 if tput setaf 1 &>/dev/null; then
@@ -146,7 +144,7 @@ install_sources
 
 echo -n "Files will be symlinked to ${SYMLINK_DIR}."
 if [[ -n $SUDO ]]; then
-    echo -n "Sudo will be prompted to symlink the phpctl files."
+    echo -n " ${RED}Sudo will be prompted to symlink the phpctl files.${NC}"
 fi
 
 echo -e -n " ${GREEN}Do you want to continue? (Y/n)${NC} "
