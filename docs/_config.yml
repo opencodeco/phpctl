@@ -1,7 +1,7 @@
 title: phpctl
 description: Frictionless PHP Development
 remote_theme: just-the-docs/just-the-docs
-url: https://phpctl.dev
+url: https://github.com/opencodeco/phpctl
 repository: https://github.com/opencodeco/phpctl
 permalink: pretty
 

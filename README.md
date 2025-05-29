@@ -45,13 +45,13 @@ In fact, we use it ourselves to develop `phpctl` itself: [devcontainer.json](.de
 
 ## Getting started
 
-- [Installation guide](https://phpctl.dev/#installation)
-- [How to use](https://phpctl.dev/#usage)
-- [Available commands](https://phpctl.dev/commands)
-- [The `.phpctlrc` file](https://phpctl.dev/phpctlrc)
-- [The `phpctl.ini` file](https://phpctl.dev/phpctlini)
-- [Available extensions](https://phpctl.dev/extensions)
-- [Why it exists?](https://phpctl.dev/why)
+- [Installation guide](./docs/index.md#installation)
+- [How to use](./docs/index.md#usage)
+- [Available commands](./docs/commands.md)
+- [The `.phpctlrc` file](./docs/phpctlrc.md)
+- [The `phpctl.ini` file](./docs/phpctlini.md)
+- [Available extensions](./docs/extensions.md)
+- [Why it exists?](./docs/why.md)
 
 ## Contributing
 Click here to read the [contributing guidelines](CONTRIBUTING.md).
