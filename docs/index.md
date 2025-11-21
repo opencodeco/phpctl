@@ -18,7 +18,7 @@ Take the advantage of goodies commands like `phpctl create` to start a new proje
 ### Installation
 
 ```shell
-/bin/bash -c "$(curl -fsSL https://phpctl.dev/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/opencodeco/phpctl/refs/heads/main/docs/install.sh)"
 ```
 
 **That is it!** Now you have `phpctl` available in your system.
@@ -26,7 +26,7 @@ Take the advantage of goodies commands like `phpctl create` to start a new proje
 #### Custom installation
 You can also pass an argument to install at a custom location (e.g. `~/bin`), but you have to make sure that folder is in your `$PATH` variable.
 ```shell
-/bin/bash -c "$(curl -fsSL https://phpctl.dev/install.sh)" ~/bin
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/opencodeco/phpctl/refs/heads/main/docs/install.sh)" ~/bin
 ```
 
 #### Homebrew
