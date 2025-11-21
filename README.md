@@ -24,7 +24,7 @@ Take the advantage of goodie commands like `phpctl create` to start a new projec
 
 ### Just install
 ```shell
-/bin/bash -c "$(curl -fsSL https://phpctl.dev/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/opencodeco/phpctl/refs/heads/main/docs/install.sh)"
 ```
 ### And that is it!
 Try it out:
