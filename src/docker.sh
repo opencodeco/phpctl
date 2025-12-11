@@ -9,6 +9,26 @@ build() {
         without_watchr="--build-arg WITHOUT_WATCHR=1"
     fi
 
+    if [[ -z $ALPINE ]]; then
+        case $PHP_VERSION in
+        "81")
+            ALPINE=3.19
+            ;;
+        "82")
+            ALPINE=3.20
+            ;;
+        "83")
+            ALPINE=3.20
+            ;;
+        "84")
+            ALPINE=3.21
+            ;;
+        *)
+            ALPINE=3.21
+            ;;
+        esac
+    fi
+
     echo -e "Building \033[0;32m$PHPCTL_IMAGE\033[0m"
     # shellcheck disable=SC2068
     # shellcheck disable=SC2154
@@ -16,6 +36,7 @@ build() {
         --build-arg PHP="$PHP_VERSION" \
         --build-arg COMPOSER_AUTH="$COMPOSER_AUTH" \
         --build-arg HOST_USER="$(whoami)" \
+        --build-arg ALPINE="$ALPINE" \
         $with_exakat \
         $without_watchr \
         ${build[@]} -t "$PHPCTL_IMAGE" .
@@ -59,7 +80,7 @@ run() {
     if [ -n "$GIT_EXEC_PATH" ]; then
         # In a Git hook environment, we need to disable TTY allocation
         PHPCTL_TTY="--label=no-tty"
-	fi
+    fi
 
     # shellcheck disable=SC2046
     # shellcheck disable=SC2068
